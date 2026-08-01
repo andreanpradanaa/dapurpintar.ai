@@ -1,0 +1,7 @@
+* text=auto
+*.go
+*.md
+*.png
+*.jpg
+*.svg
+*.pdf
