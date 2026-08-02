@@ -5,8 +5,8 @@
 - Cara membaca roadmap
 
 ## Current Status
-- Current Milestone: M2 - Solution Architecture
-- Progress: M2-016 Architecture Sign-off - In Review
+- Current Milestone: M3 - UX/UI Design
+- Progress: M3-006 UX/UI Design Sign-off - In Review
 
 ## Milestone 0
 - Foundation
@@ -23,6 +23,8 @@
 
 ## Milestone 3
 - UX & Product Design
+- M3-001 through M3-005 complete
+- M3-006 UX/UI Design Sign-off in review
 
 ## Milestone 4
 - Solution Architecture
