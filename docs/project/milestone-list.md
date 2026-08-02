@@ -4,10 +4,10 @@
 
 | Item | Status |
 |---|---|
-| Current milestone | M5 - Database Design |
-| Current deliverable | M5-004 Seed and Test Data Strategy |
+| Current milestone | M6 - API Design |
+| Current deliverable | M6-003 Contract Tests and Compatibility Policy |
 | Current status | In Review |
-| Next action | Review M5 deliverables, then start M6 API Design (DP-CON-003) |
+| Next action | Review M6 deliverables, then start M7 Backend Foundation (DP-FND-001) |
 | Next implementation milestone | M10 - Frontend Development |
 
 Milestone approval tetap mengikuti proses review. Artifact yang sudah dibuat tidak otomatis berarti milestone telah disetujui atau ditutup.
@@ -22,6 +22,7 @@ Milestone approval tetap mengikuti proses review. Artifact yang sudah dibuat tid
 | M3 | UX/UI Design | UX strategy, wireframes, design system, prototype, usability | In Review |
 | M4 | Solution Architecture | Architecture refinement and implementation preparation | In Review |
 | M5 | Database Design | Schema, migrations, indexes, constraints, query design | In Review |
+| M6 | API Design | Detailed schemas, OpenAPI, contract validation | In Review |
 | M6 | API Design | Detailed schemas, OpenAPI, contract validation | Planned |
 | M7 | Backend Foundation | Go, Fiber, Clean Architecture, module scaffolding | Planned |
 | M8 | AI Foundation | AI Gateway implementation, prompts, evaluation foundation | Planned |
@@ -138,7 +139,15 @@ Scope:
 
 ## M6 - API Design
 
-Status: **Planned**
+Status: **In Review**
+
+| ID | Deliverable | Artifact | Status |
+|---|---|---|---|
+| M6-001 | OpenAPI Contract | `docs/api/openapi.yaml` | In Review |
+| M6-002 | Error, Validation, Pagination, Idempotency Catalog | `docs/api/m6-error-catalog.md` | In Review |
+| M6-003 | Contract Tests and Compatibility Policy | `docs/api/m6-contract-tests.md` | In Review |
+
+Scope:
 
 - Detailed request and response schemas.
 - OpenAPI specification.

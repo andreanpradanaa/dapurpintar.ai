@@ -5,8 +5,8 @@
 - Cara membaca roadmap
 
 ## Current Status
-- Current Milestone: M5 - Database Design
-- Progress: M5-004 Seed and Test Data Strategy - In Review
+- Current Milestone: M6 - API Design
+- Progress: M6-003 Contract Tests and Compatibility Policy - In Review
 
 ## Milestone 0
 - Foundation
@@ -42,6 +42,9 @@
 
 ## Milestone 6
 - API Design
+- M6-001 OpenAPI Contract in review
+- M6-002 Error and Validation Catalog in review
+- M6-003 Contract Tests and Compatibility Policy in review
 
 ## Milestone 7
 - Backend Foundation
