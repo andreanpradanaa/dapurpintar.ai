@@ -201,7 +201,7 @@ Status: **In Progress** (vertical slices from `docs/architecture/implementation-
 |---|---|---|---|
 | M9-001 | Registration, login, logout, refresh, profile, preferences | DP-FEAT-001 | Ready for review |
 | M9-002 | Pantry and Pantry Item CRUD, expiry attention view | DP-FEAT-002 | Ready for review |
-| M9-003 | Recipe discovery, detail, favorites | DP-FEAT-003 | Planned |
+| M9-003 | Recipe discovery, detail, favorites | DP-FEAT-003 | Ready for review |
 | M9-004 | Meal Plan and Planned Meal lifecycle | DP-FEAT-004 | Planned |
 | M9-005 | Shopping List generation, review, activation, completion | DP-FEAT-005 | Planned |
 | M9-006 | Kitchen Recommendation request, present, accept, reject, supersede | DP-FEAT-006 | Planned |

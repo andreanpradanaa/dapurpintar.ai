@@ -1,11 +1,11 @@
-# DapurPintar AI M9 Identity and Pantry - Sign-off
+# DapurPintar AI M9 Identity, Pantry, and Recipes - Sign-off
 
 ## Document Control
 
 | Item | Value |
 |---|---|
 | Milestone | M9 - MVP Features |
-| Deliverables | M9-001 DP-FEAT-001 Identity and Access: registration, login, logout, refresh, profile, preferences; M9-002 DP-FEAT-002 Pantry: CRUD and expiry attention view |
+| Deliverables | M9-001 DP-FEAT-001 Identity and Access; M9-002 DP-FEAT-002 Pantry; M9-003 DP-FEAT-003 Recipes and Favorites |
 | Status | Ready for review |
 | Parent documents | `docs/architecture/m4-decision-register.md`, `docs/architecture/authentication-authorization.md`, `docs/api/m6-api-contract.md`, `docs/database/m5-schema.md` |
 
@@ -129,3 +129,44 @@ DP-FEAT-002 is complete when:
 - Ownership is enforced (item belongs to the user's pantry).
 - The expiry endpoint returns items approaching a configurable cutoff date.
 - All endpoints return the M6 PantryItemView schema with stable error codes.
+
+---
+
+## DP-FEAT-003 Recipe Discovery, Detail, and Favorites
+
+### Decisions Applied
+
+- M4-DEC-009: public/private recipe visibility boundary. Public listing only returns `is_public = true AND status = 'available'`. Detail endpoint gates private recipes behind the `is_public` flag with `RECIPE_NOT_PUBLIC` (404).
+
+### Deliverables
+
+**DP-FEAT-003-1 SQLC queries**
+
+- `backend/internal/database/queries/recipes.sql`: 6 named queries — `ListPublicRecipes` (cursor, text search, prep-time filter, sort), `GetRecipeByID` (with visibility gate), `GetActiveFavorite`, `CreateFavorite` (idempotent upsert via `ON CONFLICT DO NOTHING`), `RemoveFavorite` (soft-delete), `ListFavorites` (joined with recipe summaries, cursor-paginated).
+
+**DP-FEAT-003-2 Domain and store**
+
+- `backend/internal/recipes/domain.go`: `Recipe`, `RecipeSummary`, `RecipeIngredient`, `Favorite` aggregates with JSONB unmarshaling helpers.
+- `backend/internal/recipes/store.go`: Store port — public listing with optional search/filters, recipe detail, favorite lifecycle (create/get/remove), and paginated favorite list.
+- `backend/internal/recipes/service.go`: use cases `ListRecipes`, `GetRecipe`, `Favorite` (idempotent: double-favorite succeeds), `Unfavorite` (idempotent: unfavorite without active favorite succeeds), `ListFavorites`.
+- `backend/internal/recipes/store/postgres.go`: SQLC adapter handling `pgtype.Int4` time fields, `pgtype.Bool` visibility, JSONB ingredient/instruction unmarshaling, and `ON CONFLICT DO NOTHING` graceful fallback for idempotent favorites.
+
+**DP-FEAT-003-3 HTTP handlers**
+
+- `backend/internal/http/handlers_recipes.go`: 5 route handlers — `GET /recipes` (public), `GET /recipes/:recipeId` (public), `GET /favorites` (auth), `PUT /favorites/recipes/:recipeId` (auth, idempotent), `DELETE /favorites/recipes/:recipeId` (auth, idempotent). Uses `RecipeSummaryView`, `RecipeDetailView`, and `FavoriteView` M6 schemas.
+- `backend/internal/http/server.go`: Handler struct and `New()` accept `*recipes.Service`. Routes registered: public recipes on the API group, authenticated favorites on the authed group.
+
+### Verified
+
+- `go build ./...`, `go vet ./...`, `gofmt -l .` clean.
+- 8 test packages pass (unit + integration).
+- 4 recipe integration tests (requiring Postgres): public listing excludes private recipes, detail with JSONB parsing, favorite create/read/remove lifecycle with idempotent behavior, service end-to-end (list→get→favorite→double-favorite→list-favorites→unfavorite).
+
+### Exit Criteria
+
+DP-FEAT-003 is complete when:
+- Public recipe listing returns only `is_public = true AND status = 'available'` recipes with text search, prep-time filter, and sort options.
+- Recipe detail includes parsed `ingredients` and `instructions` arrays and gates non-public recipes.
+- Favoriting is idempotent (double-favorite succeeds with 204).
+- Unfavoriting is idempotent (unfavorite without active favorite succeeds with 204).
+- The `ListFavorites` endpoint returns paginated favorites with embedded `RecipeSummaryView`.
