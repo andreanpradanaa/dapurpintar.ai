@@ -8,6 +8,7 @@ const links = [
   { href: "/pantry", label: "Pantry" },
   { href: "/planner", label: "Planner" },
   { href: "/shopping", label: "Shopping" },
+  { href: "/discover", label: "Discover" },
 ];
 
 export default function Shell({ children }: { children: React.ReactNode }) {

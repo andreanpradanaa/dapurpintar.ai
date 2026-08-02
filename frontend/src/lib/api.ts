@@ -26,6 +26,12 @@ export type PantrySummary = { total_items: number; expiring_soon_count: number; 
 export type Page<T> = { next_cursor?: string; has_more: boolean };
 export type Collection<T> = { data: T[]; page: Page<T> };
 
+export type Recipe = { id: string; title: string; summary: string; servings: number; prep_time_minutes?: number; cook_time_minutes?: number; ingredients?: {name:string;quantity:string}[]; instructions?: string[] };
+export type MealPlan = { id: string; title: string; period_start: string; period_end: string; status: string; created_at: string };
+export type PlannedMeal = { id: string; meal_plan_id: string; meal_date: string; meal_occasion: string; recipe_id?: string; recommendation_option_id?: string; status: string };
+export type ShoppingList = { id: string; title: string; status: string; item_counts: { open: number; completed: number }; created_at: string };
+export type ShoppingItem = { id: string; shopping_list_id: string; ingredient_name: string; quantity: number; unit: string; source: string; status: string };
+
 export const api = {
   // Auth
   register: (body: { email: string; password: string; display_name: string; timezone: string }) =>
@@ -44,11 +50,47 @@ export const api = {
   // Pantry
   pantrySummary: () => request<{ data: PantrySummary }>("/pantry"),
   pantryItems: (cursor?: string) =>
-    request<Collection<PantryItem>>(`/pantry/items?cursor=${cursor || ""}&limit=50`),
+    request<Collection<PantryItem>>(`/pantry/items?limit=50&cursor=${cursor || ""}`),
   addPantryItem: (body: { ingredient_name: string; category: string; quantity: number; unit?: string; expiry_date?: string }) =>
     request<{ data: PantryItem }>("/pantry/items", { method: "POST", body }),
   expiringItems: (cursor?: string) =>
-    request<Collection<PantryItem>>(`/pantry/expiry?cursor=${cursor || ""}&limit=20`),
+    request<Collection<PantryItem>>(`/pantry/expiry?limit=20&cursor=${cursor || ""}`),
+
+  // Recipes
+  recipes: (q?: string, cursor?: string) =>
+    request<Collection<Recipe>>(`/recipes?limit=20${q ? "&q=" + encodeURIComponent(q) : ""}&cursor=${cursor || ""}`),
+  recipe: (id: string) => request<{ data: Recipe }>(`/recipes/${id}`),
+  favoriteRecipe: (recipeId: string) => request<void>(`/favorites/recipes/${recipeId}`, { method: "PUT" }),
+  unfavoriteRecipe: (recipeId: string) => request<void>(`/favorites/recipes/${recipeId}`, { method: "DELETE" }),
+  favorites: (cursor?: string) =>
+    request<Collection<{ recipe: Recipe; created_at: string }>>(`/favorites?limit=20&cursor=${cursor || ""}`),
+
+  // Meal Plans
+  mealPlans: (cursor?: string) =>
+    request<Collection<MealPlan>>(`/meal-plans?limit=20&cursor=${cursor || ""}`),
+  createMealPlan: (body: { period_start: string; period_end: string; title: string }) =>
+    request<{ data: MealPlan }>("/meal-plans", { method: "POST", body }),
+  mealPlan: (id: string) => request<{ data: MealPlan }>(`/meal-plans/${id}`),
+  plannedMeals: (planId: string, cursor?: string) =>
+    request<Collection<PlannedMeal>>(`/meal-plans/${planId}/meals?limit=50&cursor=${cursor || ""}`),
+  planMeal: (planId: string, body: { meal_date: string; meal_occasion: string; recipe_id?: string }) =>
+    request<{ data: PlannedMeal }>(`/meal-plans/${planId}/meals`, { method: "POST", body }),
+  completeMealPlan: (id: string) => request<{ data: MealPlan }>(`/meal-plans/${id}/complete`, { method: "POST" }),
+
+  // Shopping
+  shoppingLists: (cursor?: string) =>
+    request<Collection<ShoppingList>>(`/shopping-lists?limit=20&cursor=${cursor || ""}`),
+  createShoppingList: (body: { title: string }) =>
+    request<{ data: ShoppingList }>("/shopping-lists", { method: "POST", body }),
+  shoppingList: (id: string) => request<{ data: ShoppingList }>(`/shopping-lists/${id}`),
+  shoppingItems: (listId: string, cursor?: string) =>
+    request<Collection<ShoppingItem>>(`/shopping-lists/${listId}/items?limit=50&cursor=${cursor || ""}`),
+  addShoppingItem: (listId: string, body: { ingredient_name: string; quantity?: number; unit?: string }) =>
+    request<{ data: ShoppingItem }>(`/shopping-lists/${listId}/items`, { method: "POST", body }),
+  activateShoppingList: (id: string) => request<{ data: ShoppingList }>(`/shopping-lists/${id}/activate`, { method: "POST" }),
+  completeShoppingList: (id: string) => request<{ data: ShoppingList }>(`/shopping-lists/${id}/complete`, { method: "POST" }),
+  completeShoppingItem: (listId: string, itemId: string) =>
+    request<{ data: ShoppingItem }>(`/shopping-lists/${listId}/items/${itemId}/complete`, { method: "POST" }),
 };
 
 export async function getAuthenticated<T>(fn: () => Promise<T>): Promise<T> {
