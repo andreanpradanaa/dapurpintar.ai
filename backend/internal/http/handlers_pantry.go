@@ -2,6 +2,7 @@ package http
 
 import (
 	"strconv"
+	"strings"
 	"time"
 	"unicode/utf8"
 
@@ -315,4 +316,33 @@ func (h *Handler) refreshPantryStatuses(c *fiber.Ctx) error {
 		return response.Error(c, err)
 	}
 	return response.NoContent(c)
+}
+
+var categoryHints = map[string]string{
+	"beras": "pokok", "tepung": "pokok", "gula": "pokok", "garam": "pokok", "minyak": "pokok",
+	"bawang": "bumbu", "cabai": "bumbu", "jahe": "bumbu", "kunyit": "bumbu", "lengkuas": "bumbu",
+	"serai": "bumbu", "daun": "bumbu", "merica": "bumbu", "ketumbar": "bumbu",
+	"ayam": "protein", "daging": "protein", "ikan": "protein", "telur": "protein",
+	"tahu": "protein", "tempe": "protein", "udang": "protein", "cumi": "protein",
+	"sayur": "sayur", "bayam": "sayur", "kangkung": "sayur", "wortel": "sayur",
+	"kol": "sayur", "sawi": "sayur", "tomat": "sayur", "brokoli": "sayur",
+	"susu": "susu", "keju": "susu", "yogurt": "susu", "mentega": "susu",
+	"kecap": "saus", "saus": "saus", "sambal": "saus",
+	"buah": "buah", "apel": "buah", "pisang": "buah", "jeruk": "buah", "mangga": "buah",
+	"roti": "roti", "mi": "mi", "pasta": "mi",
+}
+
+// suggestCategory handles GET /api/v1/pantry/suggest-category.
+func (h *Handler) suggestCategory(c *fiber.Ctx) error {
+	name := c.Query("name")
+	if name == "" {
+		return response.OK(c, map[string]string{"category": ""})
+	}
+	lower := strings.ToLower(name)
+	for keyword, cat := range categoryHints {
+		if strings.Contains(lower, keyword) {
+			return response.OK(c, map[string]string{"category": cat})
+		}
+	}
+	return response.OK(c, map[string]string{"category": "other"})
 }

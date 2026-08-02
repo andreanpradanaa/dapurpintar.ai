@@ -29,7 +29,7 @@ export default function PantryPage() {
         </button>
       </div>
 
-      {showAdd && <AddItemForm onAdded={() => { setShowAdd(false); toast("success", "Item added"); load(); }} />}
+      {showAdd && <AddItemForm onAdded={() => { setShowAdd(false); toast("success", "Item added"); load(); }} existingNames={items.map(i => i.ingredient_name)} />}
 
       {loading ? <ListSkeleton count={4} /> : items.length === 0 && !showAdd ? (
         <div className="text-center py-8 text-ink-700">
@@ -56,13 +56,24 @@ export default function PantryPage() {
   );
 }
 
-function AddItemForm({ onAdded }: { onAdded: () => void }) {
+function AddItemForm({ onAdded, existingNames }: { onAdded: () => void; existingNames: string[] }) {
   const { toast } = useToast();
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [qty, setQty] = useState("1");
   const [unit, setUnit] = useState("");
   const [expiry, setExpiry] = useState("");
+  const [duplicate, setDuplicate] = useState(false);
+
+  const handleNameChange = (v: string) => {
+    setName(v);
+    setDuplicate(existingNames.some(n => n.toLowerCase() === v.trim().toLowerCase()));
+    if (v.trim().length > 2) {
+      api.suggestCategory(v).then(r => {
+        if (r.category && r.category !== "other") setCategory(r.category);
+      }).catch(() => {});
+    }
+  };
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -77,7 +88,8 @@ function AddItemForm({ onAdded }: { onAdded: () => void }) {
   return (
     <form onSubmit={submit} className="bg-white-000 border border-steel-200 rounded-lg p-4 space-y-3" aria-label="Add pantry item">
       <label htmlFor="ingredient-name" className="sr-only">Ingredient name</label>
-      <input id="ingredient-name" type="text" placeholder="Ingredient name" value={name} onChange={e => setName(e.target.value)} required className="w-full" />
+      <input id="ingredient-name" type="text" placeholder="Ingredient name" value={name} onChange={e => handleNameChange(e.target.value)} required className="w-full" />
+      {duplicate && <p className="text-context-attention-dark text-xs">This item may already be in your pantry.</p>}
       <div className="flex gap-2">
         <label htmlFor="category" className="sr-only">Category</label>
         <input id="category" type="text" placeholder="Category" value={category} onChange={e => setCategory(e.target.value)} className="flex-1" />

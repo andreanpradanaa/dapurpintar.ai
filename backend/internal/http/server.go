@@ -128,6 +128,7 @@ func (s *Server) registerRoutes() {
 	authed.Delete("/pantry/items/:itemId", s.handler.removePantryItem)
 	authed.Get("/pantry/expiry", s.handler.listExpiringItems)
 	authed.Post("/pantry/refresh-statuses", s.handler.refreshPantryStatuses)
+	authed.Get("/pantry/suggest-category", s.handler.suggestCategory)
 
 	api.Get("/recipes", s.handler.listRecipes)
 	api.Get("/recipes/:recipeId", s.handler.getRecipe)
