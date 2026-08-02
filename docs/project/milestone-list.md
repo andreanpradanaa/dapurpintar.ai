@@ -6,8 +6,8 @@
 |---|---|
 | Current milestone | M9 (Ready for review) / M10 (In Progress) |
 | Current deliverable | Frontend foundation: Next.js app, auth, MVP screens |
-| Current status | M9: Ready for review; M10: In Progress (6 pages, auth flow, design system) |
-| Next action | Complete M10: meal planner UI, shopping UI, recipe discover, loading/error states |
+| Current status | M9: Ready for review; M10: Complete; M11: In Progress (smart reminders, pantry intelligence) |
+| Next action | See `docs/remaining-work.md` for deferred testing, features, and polish items |
 | Next implementation milestone | M10 - Frontend Development |
 
 Milestone approval tetap mengikuti proses review. Artifact yang sudah dibuat tidak otomatis berarti milestone telah disetujui atau ditutup. M2 through M8 were reviewed and approved in the M8 sign-off review (2026-08-02).
@@ -26,8 +26,8 @@ Milestone approval tetap mengikuti proses review. Artifact yang sudah dibuat tid
 | M7 | Backend Foundation | Go, Fiber, Clean Architecture, module scaffolding | Approved |
 | M8 | AI Foundation | AI Gateway implementation, prompts, evaluation foundation | Approved |
 | M9 | MVP Features | Backend implementation of approved MVP capabilities | In Progress |
-| M10 | Frontend Development | Next.js application implementation | In Progress |
-| M11 | Smart Kitchen Features | Smart pantry and kitchen enhancements | Planned |
+| M10 | Frontend Development | Next.js application implementation | Complete |
+| M11 | Smart Kitchen Features | Smart pantry and kitchen enhancements | In Progress |
 | M12 | Advanced AI | Advanced recommendations and AI capabilities | Planned |
 | M13 | SaaS Platform | Plans, entitlements, usage, commercial capabilities | Planned |
 | M14 | Testing | Quality assurance, performance, security, AI evaluation | Planned |
