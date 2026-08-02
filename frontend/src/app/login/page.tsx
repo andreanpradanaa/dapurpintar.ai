@@ -4,13 +4,19 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/auth";
 
 export default function LoginPage() {
-  const { login, register, account } = useAuth();
+  const { login, register, account, loading } = useAuth();
   const router = useRouter();
   const [mode, setMode] = useState<"login" | "register">("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [error, setError] = useState("");
+
+  if (loading) return (
+    <div className="min-h-screen flex items-center justify-center bg-paper-050">
+      <div className="animate-pulse text-steel-400 text-sm">Loading...</div>
+    </div>
+  );
 
   if (account) { router.replace("/today"); return null; }
 
