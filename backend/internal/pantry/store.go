@@ -17,4 +17,5 @@ type Store interface {
 
 	ListPantryItems(ctx context.Context, profileID, cursor string, limit int32, category, status, sortOrder *string) ([]PantryItem, error)
 	ListExpiringItems(ctx context.Context, profileID, cursor string, limit int32, beforeDate time.Time) ([]PantryItem, error)
+	RefreshPantryItemStatuses(ctx context.Context, profileID string, expiryDays int32) error
 }

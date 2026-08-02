@@ -60,6 +60,7 @@ export const api = {
   expiringItems: (cursor?: string) =>
     request<Collection<PantryItem>>(`/pantry/expiry?limit=20&cursor=${cursor || ""}`),
   analyzePantry: () => request<{ data: PantryAnalysis }>("/ai/pantry-analysis", { method: "POST" }),
+  refreshPantryStatuses: () => request<void>("/pantry/refresh-statuses", { method: "POST" }),
 
   // Recipes
   recipes: (q?: string, cursor?: string) =>

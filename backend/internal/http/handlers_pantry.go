@@ -304,3 +304,15 @@ func (h *Handler) analyzePantry(c *fiber.Ctx) error {
 		"data": analysis,
 	})
 }
+
+// refreshPantryStatuses handles POST /api/v1/pantry/refresh-statuses.
+func (h *Handler) refreshPantryStatuses(c *fiber.Ctx) error {
+	profile, err := h.profileFor(c)
+	if err != nil {
+		return response.Error(c, err)
+	}
+	if err := h.pantry.RefreshStatuses(c.Context(), profile.ID); err != nil {
+		return response.Error(c, err)
+	}
+	return response.NoContent(c)
+}

@@ -189,6 +189,10 @@ func (s *Service) ListExpiringItems(ctx context.Context, profileID, cursor strin
 	return items, &PageInfo{Cursor: nextCursor, Limit: limit, HasMore: hasMore}, nil
 }
 
+func (s *Service) RefreshStatuses(ctx context.Context, profileID string) error {
+	return s.store.RefreshPantryItemStatuses(ctx, profileID, 3)
+}
+
 func (s *Service) ensurePantry(ctx context.Context, profileID string) (*Pantry, error) {
 	pantry, err := s.store.GetPantryByProfileID(ctx, profileID)
 	if err == nil {

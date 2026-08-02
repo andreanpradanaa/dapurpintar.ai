@@ -117,6 +117,13 @@ func (p *Postgres) ListPantryItems(ctx context.Context, profileID, cursor string
 	return items, nil
 }
 
+func (p *Postgres) RefreshPantryItemStatuses(ctx context.Context, profileID string, expiryDays int32) error {
+	return mapPantryErr(p.db.RefreshPantryItemStatuses(ctx, sqlc.RefreshPantryItemStatusesParams{
+		UserProfileID: profileID,
+		Column2:       expiryDays,
+	}))
+}
+
 func (p *Postgres) ListExpiringItems(ctx context.Context, profileID, cursor string, limit int32, beforeDate time.Time) ([]pantry.PantryItem, error) {
 	rows, err := p.db.ListExpiringItems(ctx, sqlc.ListExpiringItemsParams{
 		Column1:       cursor,

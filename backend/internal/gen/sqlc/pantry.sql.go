@@ -270,6 +270,31 @@ func (q *Queries) ListPantryItems(ctx context.Context, arg ListPantryItemsParams
 	return items, nil
 }
 
+const refreshPantryItemStatuses = `-- name: RefreshPantryItemStatuses :exec
+update pantry_items
+set status = case
+  when expiry_date is not null and expiry_date <= current_date + $2::int then 'expiring_soon'
+  when quantity <= 1 then 'running_low'
+  else status
+end,
+updated_at = now()
+from pantries p
+where p.id = pantry_items.pantry_id
+  and p.user_profile_id = $1
+  and pantry_items.status = 'available'
+  and pantry_items.deleted_at is null
+`
+
+type RefreshPantryItemStatusesParams struct {
+	UserProfileID string `json:"user_profile_id"`
+	Column2       int32  `json:"column_2"`
+}
+
+func (q *Queries) RefreshPantryItemStatuses(ctx context.Context, arg RefreshPantryItemStatusesParams) error {
+	_, err := q.db.Exec(ctx, refreshPantryItemStatuses, arg.UserProfileID, arg.Column2)
+	return err
+}
+
 const removePantryItem = `-- name: RemovePantryItem :one
 update pantry_items
 set status = 'removed', deleted_at = now(), updated_at = now()

@@ -18,6 +18,7 @@ export default function TodayPage() {
   useEffect(() => {
     if (!account) return;
     setLoadingData(true);
+    api.refreshPantryStatuses().catch(() => {});
     Promise.all([
       api.pantrySummary().then(r => setSummary(r.data)).catch(() => toast("error", "Failed to load pantry summary")),
       api.expiringItems().then(r => setExpiring(r.data)).catch(() => {}),

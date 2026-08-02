@@ -44,6 +44,13 @@ where id = sqlc.arg('id')
   and deleted_at is null
 returning *;
 
+-- name: UpdatePantryItemStatus :one
+update pantry_items
+set status = $2, updated_at = now()
+where id = $1
+  and deleted_at is null
+returning *;
+
 -- name: RemovePantryItem :one
 update pantry_items
 set status = 'removed', deleted_at = now(), updated_at = now()
@@ -51,12 +58,19 @@ where id = $1
   and deleted_at is null
 returning *;
 
--- name: UpdatePantryItemStatus :one
+-- name: RefreshPantryItemStatuses :exec
 update pantry_items
-set status = $2, updated_at = now()
-where id = $1
-  and deleted_at is null
-returning *;
+set status = case
+  when expiry_date is not null and expiry_date <= current_date + $2::int then 'expiring_soon'
+  when quantity <= 1 then 'running_low'
+  else status
+end,
+updated_at = now()
+from pantries p
+where p.id = pantry_items.pantry_id
+  and p.user_profile_id = $1
+  and pantry_items.status = 'available'
+  and pantry_items.deleted_at is null;
 
 -- name: ListPantryItems :many
 select pi.*
