@@ -1,0 +1,66 @@
+flowchart LR
+    User[User]
+    API[REST API<br/>/api/v1]
+
+    subgraph Application[AI Application Boundary]
+        UseCase[AI Use Cases<br/>Recommendation and Pantry Analysis]
+        Auth[Authorization<br/>Authenticated User scope]
+        Context[Context Assembler<br/>Purpose-specific and minimized]
+        Policy[Prompt and Safety Policy<br/>Versioned revisions]
+        Gateway[AI Gateway<br/>Provider-neutral contract]
+        Validate[Output Validation<br/>Schema, source, business, safety]
+    end
+
+    subgraph Sources[Authorized Product Context]
+        Profile[User Profile and Preferences]
+        Pantry[Pantry Management]
+        Recipe[Culinary Knowledge and Recipes]
+        Meal[Meal Planning]
+        Shopping[Shopping Optimization]
+    end
+
+    Provider[OpenAI Provider Adapter]
+    External[External AI Provider]
+    Recommendation[Kitchen Recommendation<br/>Aggregate and Conversation context]
+    PostgreSQL[(PostgreSQL<br/>Authoritative business state)]
+    Redis[(Redis<br/>Safe cache and bounded coordination)]
+
+    User --> API
+    API --> Auth
+    Auth --> UseCase
+    UseCase --> Context
+    Context --> Profile
+    Context --> Pantry
+    Context --> Recipe
+    Context --> Meal
+    Context --> Shopping
+    Context --> Policy
+    Context --> Gateway
+    Gateway --> Provider
+    Provider --> External
+    External --> Provider
+    Provider --> Gateway
+    Gateway --> Validate
+    Policy --> Validate
+    Validate -->|Validated proposal| UseCase
+    UseCase -->|Create or update recommendation state| Recommendation
+    Recommendation --> PostgreSQL
+    Gateway -->|Safe scoped cache or coordination only| Redis
+    UseCase -->|Accepted option informs explicit command| Meal
+    UseCase -->|Accepted option informs explicit command| Shopping
+
+    classDef actor fill:#dae8fc,stroke:#6c8ebf,color:#1a1a1a;
+    classDef api fill:#fff2cc,stroke:#d6b656,color:#1a1a1a;
+    classDef ai fill:#f8cecc,stroke:#b85450,color:#1a1a1a;
+    classDef source fill:#e2f0d9,stroke:#70ad47,color:#1a1a1a;
+    classDef provider fill:#f5f5f5,stroke:#666666,color:#1a1a1a;
+    classDef domain fill:#c6e0b4,stroke:#548235,color:#1a1a1a,stroke-width:3px;
+    classDef store fill:#f4cccc,stroke:#cc0000,color:#1a1a1a;
+
+    class User actor;
+    class API api;
+    class UseCase,Auth,Context,Policy,Gateway,Validate ai;
+    class Profile,Pantry,Recipe,Meal,Shopping source;
+    class Provider,External provider;
+    class Recommendation domain;
+    class PostgreSQL,Redis store;
