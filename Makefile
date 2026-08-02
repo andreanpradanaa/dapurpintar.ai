@@ -12,6 +12,7 @@ make build
 make test
 make lint
 make fmt
+make ai-eval
 
 Database
 ---------
@@ -44,7 +45,7 @@ make prompt
 # --- Backend targets ---------------------------------------------------------
 BACKEND_DIR := backend
 
-.PHONY: run build test lint fmt
+.PHONY: run build test lint fmt ai-eval
 
 run:
 	cd $(BACKEND_DIR) && go run ./cmd/api
@@ -60,3 +61,8 @@ lint:
 
 fmt:
 	cd $(BACKEND_DIR) && gofmt -w .
+
+# Runs the AI evaluation harness against the configured provider
+# (M8-003, M4-DEC-012). Requires AI_PROVIDER and AI_API_KEY.
+ai-eval:
+	cd $(BACKEND_DIR) && go run ./cmd/ai-eval

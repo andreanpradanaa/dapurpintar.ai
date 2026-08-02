@@ -5,9 +5,9 @@
 | Item | Status |
 |---|---|
 | Current milestone | M8 - AI Foundation |
-| Current deliverable | M8-002 Prompt and Policy Versioning |
+| Current deliverable | M8-003 AI Evaluation Harness |
 | Current status | In Review |
-| Next action | Review M8-002, then M8-003 evaluation harness |
+| Next action | Review M8-001/002/003, then M9 MVP features |
 | Next implementation milestone | M10 - Frontend Development |
 
 Milestone approval tetap mengikuti proses review. Artifact yang sudah dibuat tidak otomatis berarti milestone telah disetujui atau ditutup.
@@ -182,7 +182,7 @@ Status: **In Review** (blocked by M4-DEC-010/011/012/016)
 |---|---|---|---|
 | M8-001 | AI Gateway port and OpenAI provider adapter | `backend/internal/ai/`, `docs/backend/m8-signoff.md` | In Review |
 | M8-002 | Prompt, safety, and structured-output policy versioning | `backend/internal/ai/`, `docs/backend/m8-signoff.md` | In Review |
-| M8-003 | AI evaluation harness and representative scenarios | `backend/internal/ai/` | Planned |
+| M8-003 | AI evaluation harness and representative scenarios | `backend/internal/ai/`, `backend/cmd/ai-eval/` | In Review |
 
 Scope:
 

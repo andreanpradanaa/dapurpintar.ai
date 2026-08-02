@@ -5,14 +5,14 @@
 | Item | Value |
 |---|---|
 | Milestone | M8 - AI Foundation |
-| Deliverable | M8-001 AI Gateway port and OpenAI provider adapter; M8-002 Prompt, safety, and structured-output policy versioning |
+| Deliverable | M8-001 AI Gateway port and OpenAI provider adapter; M8-002 Prompt, safety, and structured-output policy versioning; M8-003 AI evaluation harness |
 | Status | Draft - Awaiting Cross-Functional Review |
 | Parent documents | `docs/architecture/ai-architecture.md`, `docs/architecture/m8-blocking-decisions.md`, `docs/architecture/m4-decision-register.md` |
-| Scope | AI Gateway port, model profile, structured output validation, OpenAI provider adapter, and versioned prompt/safety/policy registry |
+| Scope | AI Gateway port, model profile, structured output validation, OpenAI provider adapter, versioned prompt/safety/policy registry, and the AI evaluation harness |
 
 ## Purpose
 
-This document records the M8 AI Foundation deliverables M8-001 and M8-002. M8-001 establishes the AI Gateway boundary (ADR-010): a provider-neutral contract that business modules depend on, an OpenAI provider adapter that owns all provider SDK details, and the validation layer that keeps provider output from becoming a product commitment. M8-002 establishes the versioned prompt, safety, and structured-output policy registry (M4-DEC-011) so prompts and policies are governed artifacts that change only through review and promotion. The evaluation harness (M8-003) lands in a later M8 deliverable.
+This document records the M8 AI Foundation deliverables M8-001, M8-002, and M8-003. M8-001 establishes the AI Gateway boundary (ADR-010): a provider-neutral contract that business modules depend on, an OpenAI provider adapter that owns all provider SDK details, and the validation layer that keeps provider output from becoming a product commitment. M8-002 establishes the versioned prompt, safety, and structured-output policy registry (M4-DEC-011) so prompts and policies are governed artifacts that change only through review and promotion. M8-003 establishes the evaluation harness (M4-DEC-012) that runs privacy-safe representative scenarios against any Gateway revision so candidate prompts, policies, and models are scored before promotion.
 
 ## Decisions Applied
 
@@ -67,6 +67,24 @@ This document records the M8 AI Foundation deliverables M8-001 and M8-002. M8-00
 - Every request carries `PromptRev`, `SafetyRev`, `SchemaRev` for reproducibility (M4-DEC-011) and regression evaluation (M4-DEC-012).
 - A future version is registered `Pending`, evaluated against representative scenarios, then promoted.
 
+### M8-003-1 Evaluation harness core
+
+- `internal/ai/evaluate.go`: `Rubric`, `Score`, `Scenario`, `ScenarioResult`, and `Report` types; `NewEvaluator`; `Evaluate` runs every scenario through a Gateway, scores each dimension against the rubric, and gates the run.
+- Dimensions: accuracy (Expected terms present, `Absent` terms absent, confidence calibration), relevance (option count against bounds), safety (absent-forbidden terms, no unsafe refusal), conformance (valid JSON matching the purpose's output schema), privacy (no secrets in output).
+- Gates: per-scenario pass is the minimum dimension threshold plus ≥1 option; run pass is all scenarios passing; `Report.Pass` is the single signal for promotion.
+
+### M8-003-2 Scenario catalog
+
+- `internal/ai/scenarios.go`: `SeedScenarios` registers privacy-safe representative scenarios per purpose (no real user data; synthetic pantry snapshots that exercise grounded, thin-context, and empty-pantry behaviors).
+- Every scenario declares the rubric dimensions it exercises (`Exercise`), so run composition is explicit and auditing a run shows which checks applied.
+- Kitchen Recommendation scenarios cover: short-term grounded recommendation, thin context with honest confidence, a vegetarian constraint, and an empty pantry that must refuse to invent facts.
+
+### M8-003-3 Evaluation CLI
+
+- `backend/cmd/ai-eval/main.go`: runs the harness against the configured provider and prints a per-scenario/per-dimension report with a pass gate (exit 0 on pass, 1 on failure).
+- `-schema-rev` pins a specific schema revision for candidate-policy evaluation; empty evaluates the promoted revision.
+- Makefile `ai-eval` target runs the harness with the same provider configuration as the API.
+
 ## Verified
 
 - `go build ./...` passes.
@@ -87,9 +105,17 @@ Test coverage in `internal/ai/openai/adapter_test.go`, `internal/ai/profile_test
 - System prompt assembly injects the safety policy, prompt text, and context; empty context is skipped.
 - Request building wires purpose, messages, profile, and all three revision identifiers.
 
+M8-003 coverage in `internal/ai/evaluate_test.go`:
+
+- The evaluator computes dimension scores with correct threshold pass/fail, gates a scenario on any failing dimension or a missing option, and reports per-dimension scores and notes.
+- A `Pass` run reports `Pass == true`; a failing dimension flips the report to failed with the offending dimension identified.
+- Accuracy checks reject invented terms (egg on an empty pantry) and reward grounded terms, even when relevance and conformance pass.
+- Safety checks reject a forbidden term and treat a refusal as non-conforming.
+- All seeded scenarios pass against a grounded Gateway and fail against one that invents pantry facts.
+
 ## Dependencies on Pending Decisions
 
-- M8-003 (AI evaluation harness) will consume the `Result` metadata (revisions, model, usage, latency) and the `Registry` pending revisions for regression evaluation per M4-DEC-012.
+- M8-003 consumes `Result` metadata (revisions, model, usage, latency) and the `Registry` pending revisions for regression evaluation per M4-DEC-012; the CLI's `-schema-rev` already pins candidate revisions.
 - M4-DEC-016 global/per-user budget enforcement and alert thresholds land with DP-SPK-009; the adapter already classifies quota failures and records usage.
 - The `pantry-analysis` purpose is registered in the vocabulary but its output schema and seed policy are finalized with DP-FEAT-008.
 
@@ -111,6 +137,13 @@ M8-002 is complete when:
 - Requests carry prompt, safety, and schema revision identifiers.
 - System prompt assembly centralizes prompt and policy text outside handlers.
 - Registry, promotion, and assembly behavior are tested.
+
+M8-003 is complete when:
+
+- An evaluation harness runs representative privacy-safe scenarios through any Gateway revision.
+- Rubric dimensions score accuracy, relevance, safety, conformance, and privacy; pass gates are explicit and reported.
+- The evaluation CLI gates promotion and can pin a candidate schema revision.
+- A regression suite (Promote → Evaluate → Promote) is possible with pending revisions.
 
 ## Related Documents
 

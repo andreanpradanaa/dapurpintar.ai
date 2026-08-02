@@ -11,8 +11,8 @@
 - **Project Type:** AI-powered Kitchen Management SaaS
 - **Current Phase:** Implementation
 - **Current Milestone:** M8 - AI Foundation
-- **Progress:** M8-002 Prompt and Policy Versioning - In Review
-- **Next:** M8-003 evaluation harness
+- **Progress:** M8-003 AI Evaluation Harness - In Review
+- **Next:** M9 MVP features (registration, pantry CRUD, recipe search, AI recommendation, meal planning, shopping list)
 
 ---
 
