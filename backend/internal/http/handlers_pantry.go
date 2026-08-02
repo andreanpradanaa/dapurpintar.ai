@@ -11,6 +11,7 @@ import (
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/pantry"
 	apperr "github.com/andreanpradanaa/dapurpintar.ai/backend/internal/platform/errors"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/platform/response"
+	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/recommendation"
 )
 
 type pantryItemView struct {
@@ -272,11 +273,34 @@ func (h *Handler) analyzePantry(c *fiber.Ctx) error {
 	if err != nil {
 		return response.Error(c, err)
 	}
-	_ = profile
+
+	items, _, listErr := h.pantry.ListItems(c.Context(), profile.ID, "", 200, nil, nil, nil)
+	if listErr != nil {
+		items = nil
+	}
+
+	snapshots := make([]recommendation.PantryItemSnapshot, len(items))
+	for i, it := range items {
+		var expiry string
+		if it.ExpiryDate != nil {
+			expiry = it.ExpiryDate.Format("2006-01-02")
+		}
+		snapshots[i] = recommendation.PantryItemSnapshot{
+			ID:             it.ID,
+			IngredientName: it.IngredientName,
+			Category:       it.Category,
+			Quantity:       it.Quantity,
+			Unit:           it.Unit,
+			ExpiryDate:     expiry,
+		}
+	}
+
+	analysis, err := h.rec.AnalyzePantry(c.Context(), profile.ID, snapshots)
+	if err != nil {
+		return response.Error(c, err)
+	}
+
 	return response.OK(c, map[string]any{
-		"data": map[string]any{
-			"use_first_opportunities":  []any{},
-			"optimization_suggestions": []any{},
-		},
+		"data": analysis,
 	})
 }

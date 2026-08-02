@@ -76,6 +76,58 @@ func (s *Service) Request(ctx context.Context, profileID, purpose string, maxPre
 	return rec, nil
 }
 
+func (s *Service) AnalyzePantry(ctx context.Context, profileID string, items []PantryItemSnapshot) (*PantryAnalysis, error) {
+	if s.gateway == nil {
+		return &PantryAnalysis{UseFirst: []PantryUseFirst{}, Suggestions: []PantrySuggestion{}}, nil
+	}
+
+	contextJSON, _ := json.Marshal(items)
+	req := ai.Request{
+		Purpose:  ai.PurposePantryAnalysis,
+		Messages: []ai.Message{{Role: ai.RoleSystem, Content: "Analyze this pantry and suggest what to use first:\n" + string(contextJSON)}},
+		Profile:  ai.DefaultProfile(),
+	}
+	result, err := s.gateway.Complete(ctx, req)
+	if err != nil {
+		return &PantryAnalysis{UseFirst: []PantryUseFirst{}, Suggestions: []PantrySuggestion{}}, nil
+	}
+
+	var output struct {
+		UseFirst    []PantryUseFirst   `json:"use_first_opportunities"`
+		Suggestions []PantrySuggestion `json:"optimization_suggestions"`
+	}
+	if err := json.Unmarshal(result.Content, &output); err != nil {
+		return &PantryAnalysis{UseFirst: []PantryUseFirst{}, Suggestions: []PantrySuggestion{}}, nil
+	}
+
+	return &PantryAnalysis{UseFirst: output.UseFirst, Suggestions: output.Suggestions}, nil
+}
+
+type PantryItemSnapshot struct {
+	ID             string  `json:"id"`
+	IngredientName string  `json:"ingredient_name"`
+	Category       string  `json:"category"`
+	Quantity       float64 `json:"quantity"`
+	Unit           string  `json:"unit"`
+	ExpiryDate     string  `json:"expiry_date,omitempty"`
+}
+
+type PantryUseFirst struct {
+	PantryItemID   string `json:"pantry_item_id"`
+	IngredientName string `json:"ingredient_name"`
+	Reason         string `json:"reason"`
+}
+
+type PantrySuggestion struct {
+	Title       string `json:"title"`
+	Description string `json:"description"`
+}
+
+type PantryAnalysis struct {
+	UseFirst    []PantryUseFirst   `json:"use_first_opportunities"`
+	Suggestions []PantrySuggestion `json:"optimization_suggestions"`
+}
+
 func (s *Service) Get(ctx context.Context, id string) (*Recommendation, []RecommendationOption, error) {
 	rec, err := s.store.GetRecommendationByID(ctx, id)
 	if err != nil {
