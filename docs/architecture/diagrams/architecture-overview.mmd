@@ -1,0 +1,43 @@
+flowchart TD
+    U[User]
+
+    N[Next.js<br/>React / TypeScript / Tailwind CSS]
+
+    F[Fiber REST API<br/>/api/v1]
+
+    A[Application Layer<br/>Use Cases]
+
+    D[Domain Layer<br/>Entities / Domain Services]
+
+    R[Repository Layer]
+
+    P[(PostgreSQL)]
+
+    X[(Redis)]
+
+    I[AI Gateway]
+
+    O[OpenAI]
+
+    T[OpenTelemetry]
+
+    G[Grafana]
+
+    U --> N
+    N --> F
+
+    F --> A
+    A --> D
+    D --> R
+    R --> P
+
+    A -. Cache .-> X
+
+    A -. AI Requests .-> I
+    I --> O
+
+    F -. Traces .-> T
+    A -. Traces .-> T
+    R -. Traces .-> T
+
+    T --> G
