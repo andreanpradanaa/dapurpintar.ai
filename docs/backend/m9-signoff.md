@@ -1,11 +1,11 @@
-# DapurPintar AI M9 Identity, Pantry, Recipes, and Meal Plans - Sign-off
+# DapurPintar AI M9 MVP Features - Sign-off
 
 ## Document Control
 
 | Item | Value |
 |---|---|
 | Milestone | M9 - MVP Features |
-| Deliverables | M9-001 DP-FEAT-001 Identity; M9-002 DP-FEAT-002 Pantry; M9-003 DP-FEAT-003 Recipes; M9-004 DP-FEAT-004 Meal Plans |
+| Deliverables | M9-001 Identity, M9-002 Pantry, M9-003 Recipes, M9-004 Meal Plans, M9-005 Shopping |
 | Status | Ready for review |
 | Parent documents | `docs/architecture/m4-decision-register.md`, `docs/architecture/authentication-authorization.md`, `docs/api/m6-api-contract.md`, `docs/database/m5-schema.md` |
 
@@ -214,3 +214,33 @@ DP-FEAT-004 is complete when:
 - Planned meals can be added within the plan's date range with slot conflict detection.
 - Planned meals can be updated (occasion, recipe reference, status) and removed.
 - All 10 endpoints return the M6 MealPlanView/PlannedMealView schemas with stable error codes.
+
+---
+
+## DP-FEAT-005 Shopping List and Item Management
+
+### Deliverables
+
+**DP-FEAT-005-1 SQLC queries**
+
+- `backend/internal/database/queries/shopping.sql`: 11 named queries covering list and item lifecycles with nullable coalesce updates and profile-scoped ownership.
+
+**DP-FEAT-005-2 Domain and service**
+
+- `backend/internal/shopping/domain.go`: `ShoppingList` and `ShoppingItem` aggregates, `ListStatus` (8 states) and `ItemStatus` (3 states) enums.
+- `backend/internal/shopping/service.go`: use cases with lifecycle state guards (activate requires non-terminal, complete/cancel guard against archived, archive requires terminal state, complete-item requires open).
+- `backend/internal/shopping/store/postgres.go`: adapter handling `pgtype.Numeric` quantities.
+
+**DP-FEAT-005-3 HTTP handlers**
+
+- `backend/internal/http/handlers_shopping.go`: 14 route handlers with `ShoppingListView` (including `item_counts`) and `ShoppingItemView`.
+
+### Verified
+
+- `go build ./...`, `go vet ./...`, `gofmt -l .` clean.
+- 10 test packages pass.
+- 4 integration tests: list CRUD, lifecycle transitions (draft→active→completed→archived), item CRUD with status changes, service end-to-end.
+
+### Exit Criteria
+
+DP-FEAT-005 complete when all 14 endpoints return M6 schemas with lifecycle state guards and stable error codes.
