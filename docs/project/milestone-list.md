@@ -4,10 +4,10 @@
 
 | Item | Status |
 |---|---|
-| Current milestone | M4 - Solution Architecture Refinement |
-| Current deliverable | M4-004 M5 Blocking Decision Records |
+| Current milestone | M5 - Database Design |
+| Current deliverable | M5-004 Seed and Test Data Strategy |
 | Current status | In Review |
-| Next action | Approve M4-DEC-006, M4-DEC-007, M4-DEC-013, then start M5 Database Design (DP-CON-001) |
+| Next action | Review M5 deliverables, then start M6 API Design (DP-CON-003) |
 | Next implementation milestone | M10 - Frontend Development |
 
 Milestone approval tetap mengikuti proses review. Artifact yang sudah dibuat tidak otomatis berarti milestone telah disetujui atau ditutup.
@@ -20,8 +20,8 @@ Milestone approval tetap mengikuti proses review. Artifact yang sudah dibuat tid
 | M1 | Product Planning | Product vision, scope, personas, roadmap, metrics | Complete |
 | M2 | Solution Architecture | Domain, system, API, security, AI, observability, deployment | In Review |
 | M3 | UX/UI Design | UX strategy, wireframes, design system, prototype, usability | In Review |
-| M4 | Solution Architecture | Architecture refinement and implementation preparation | Planned |
-| M5 | Database Design | Schema, migrations, indexes, constraints, query design | Planned |
+| M4 | Solution Architecture | Architecture refinement and implementation preparation | In Review |
+| M5 | Database Design | Schema, migrations, indexes, constraints, query design | In Review |
 | M6 | API Design | Detailed schemas, OpenAPI, contract validation | Planned |
 | M7 | Backend Foundation | Go, Fiber, Clean Architecture, module scaffolding | Planned |
 | M8 | AI Foundation | AI Gateway implementation, prompts, evaluation foundation | Planned |
@@ -119,7 +119,16 @@ Status: **In Review**
 
 ## M5 - Database Design
 
-Status: **Planned**
+Status: **In Review**
+
+| ID | Deliverable | Artifact | Status |
+|---|---|---|---|
+| M5-001 | Concrete PostgreSQL Schema | `docs/database/m5-schema.md` | In Review |
+| M5-002 | Goose Migration Strategy | `docs/database/m5-migrations.md` | In Review |
+| M5-003 | SQLC Query Contract | `docs/database/m5-sqlc.md` | In Review |
+| M5-004 | Seed and Test Data Strategy | `docs/database/m5-seed-and-test-data.md` | In Review |
+
+Scope:
 
 - Detailed PostgreSQL schema.
 - Goose migration strategy.

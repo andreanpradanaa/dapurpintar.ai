@@ -5,8 +5,8 @@
 - Cara membaca roadmap
 
 ## Current Status
-- Current Milestone: M4 - Solution Architecture Refinement
-- Progress: M4-004 M5 Blocking Decision Records - In Review
+- Current Milestone: M5 - Database Design
+- Progress: M5-004 Seed and Test Data Strategy - In Review
 
 ## Milestone 0
 - Foundation
@@ -35,6 +35,10 @@
 
 ## Milestone 5
 - Database Design
+- M5-001 Concrete PostgreSQL Schema in review
+- M5-002 Goose Migration Strategy in review
+- M5-003 SQLC Query Contract in review
+- M5-004 Seed and Test Data Strategy in review
 
 ## Milestone 6
 - API Design
