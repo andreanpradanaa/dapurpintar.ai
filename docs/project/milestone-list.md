@@ -4,10 +4,10 @@
 
 | Item | Status |
 |---|---|
-| Current milestone | M3 - UX/UI Design |
-| Current deliverable | M3-006 UX/UI Design Sign-off |
+| Current milestone | M4 - Solution Architecture Refinement |
+| Current deliverable | M4-001 Implementation Readiness |
 | Current status | In Review |
-| Next action | Usability validation and design review |
+| Next action | Resolve M2/M3 review gates and prepare M5/M6 contracts |
 | Next implementation milestone | M10 - Frontend Development |
 
 Milestone approval tetap mengikuti proses review. Artifact yang sudah dibuat tidak otomatis berarti milestone telah disetujui atau ditutup.
@@ -106,8 +106,9 @@ Prototype:
 
 ## M4 - Solution Architecture Refinement
 
-Status: **Planned**
+Status: **In Review**
 
+- M4-001 Implementation Readiness: `docs/architecture/implementation-readiness.md`
 - Resolve architecture decisions deferred from M2.
 - Refine implementation boundaries from M3 validation.
 - Confirm frontend, backend, database, and AI implementation contracts.

@@ -5,8 +5,8 @@
 - Cara membaca roadmap
 
 ## Current Status
-- Current Milestone: M3 - UX/UI Design
-- Progress: M3-006 UX/UI Design Sign-off - In Review
+- Current Milestone: M4 - Solution Architecture Refinement
+- Progress: M4-001 Implementation Readiness - In Review
 
 ## Milestone 0
 - Foundation
@@ -28,6 +28,7 @@
 
 ## Milestone 4
 - Solution Architecture
+- M4-001 Implementation Readiness in review
 
 ## Milestone 5
 - Database Design
