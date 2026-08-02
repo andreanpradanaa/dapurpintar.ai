@@ -203,7 +203,7 @@ func toPreferenceSet(r sqlc.PreferenceSet) *identity.PreferenceSet {
 		UserProfileID: r.UserProfileID,
 		Status:        r.Status,
 		Preferences:   r.Preferences,
-		ValidFrom:     r.ValidFrom,
+		ValidFrom:     r.ValidFrom.Format("2006-01-02"),
 		CreatedAt:     r.CreatedAt,
 		UpdatedAt:     r.UpdatedAt,
 	}

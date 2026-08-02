@@ -154,24 +154,7 @@ create table meal_plans (
 
 create index meal_plans_profile_period_idx on meal_plans (user_profile_id, period_start);
 
-create table planned_meals (
-    id                        uuid primary key default gen_random_uuid(),
-    meal_plan_id              uuid not null references meal_plans (id),
-    meal_date                 date not null,
-    meal_occasion             text not null default 'dinner',
-    recipe_id                 uuid references recipes (id),
-    recommendation_option_id  uuid references recommendation_options (id),
-    status                    text not null default 'proposed'
-                              check (status in ('proposed', 'planned', 'revised', 'removed', 'completed')),
-    created_at                timestamptz not null default now(),
-    updated_at                timestamptz not null default now(),
-    deleted_at                timestamptz
-);
-
-create index planned_meals_plan_idx on planned_meals (meal_plan_id);
-create index planned_meals_date_idx on planned_meals (meal_date, meal_occasion);
-
--- AI-Assisted Kitchen Decision Support
+-- AI-Assisted Kitchen Decision Support (dependency of planned_meals below)
 create table kitchen_recommendations (
     id                uuid primary key default gen_random_uuid(),
     user_profile_id   uuid not null references user_profiles (id),
@@ -203,6 +186,25 @@ create table recommendation_options (
 
 create index recommendation_options_recommendation_idx on recommendation_options (recommendation_id);
 
+create table planned_meals (
+    id                        uuid primary key default gen_random_uuid(),
+    meal_plan_id              uuid not null references meal_plans (id),
+    meal_date                 date not null,
+    meal_occasion             text not null default 'dinner',
+    recipe_id                 uuid references recipes (id),
+    recommendation_option_id  uuid references recommendation_options (id),
+    status                    text not null default 'proposed'
+                              check (status in ('proposed', 'planned', 'revised', 'removed', 'completed')),
+    created_at                timestamptz not null default now(),
+    updated_at                timestamptz not null default now(),
+    deleted_at                timestamptz
+);
+
+create index planned_meals_plan_idx on planned_meals (meal_plan_id);
+create index planned_meals_date_idx on planned_meals (meal_date, meal_occasion);
+
+-- AI-Assisted Kitchen Decision Support: conversation retained while active
+-- (M4-DEC-013: 30-day window, no raw prompts).
 create table recommendation_conversations (
     id                uuid primary key default gen_random_uuid(),
     recommendation_id uuid not null unique references kitchen_recommendations (id),
@@ -256,9 +258,9 @@ create index shopping_items_status_idx on shopping_items (shopping_list_id, stat
 drop table if exists shopping_items;
 drop table if exists shopping_lists;
 drop table if exists recommendation_conversations;
+drop table if exists planned_meals;
 drop table if exists recommendation_options;
 drop table if exists kitchen_recommendations;
-drop table if exists planned_meals;
 drop table if exists meal_plans;
 drop table if exists recipe_favorites;
 drop table if exists recipes;

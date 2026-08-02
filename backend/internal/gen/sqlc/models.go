@@ -51,8 +51,8 @@ type KitchenRecommendation struct {
 type MealPlan struct {
 	ID            string     `json:"id"`
 	UserProfileID string     `json:"user_profile_id"`
-	PeriodStart   string     `json:"period_start"`
-	PeriodEnd     string     `json:"period_end"`
+	PeriodStart   time.Time  `json:"period_start"`
+	PeriodEnd     time.Time  `json:"period_end"`
 	Status        string     `json:"status"`
 	CreatedAt     time.Time  `json:"created_at"`
 	UpdatedAt     time.Time  `json:"updated_at"`
@@ -75,7 +75,7 @@ type PantryItem struct {
 	Category       string         `json:"category"`
 	Quantity       pgtype.Numeric `json:"quantity"`
 	Unit           string         `json:"unit"`
-	ExpiryDate     *string        `json:"expiry_date"`
+	ExpiryDate     *time.Time     `json:"expiry_date"`
 	Status         string         `json:"status"`
 	CreatedAt      time.Time      `json:"created_at"`
 	UpdatedAt      time.Time      `json:"updated_at"`
@@ -85,7 +85,7 @@ type PantryItem struct {
 type PlannedMeal struct {
 	ID                     string     `json:"id"`
 	MealPlanID             string     `json:"meal_plan_id"`
-	MealDate               string     `json:"meal_date"`
+	MealDate               time.Time  `json:"meal_date"`
 	MealOccasion           string     `json:"meal_occasion"`
 	RecipeID               *string    `json:"recipe_id"`
 	RecommendationOptionID *string    `json:"recommendation_option_id"`
@@ -100,7 +100,7 @@ type PreferenceSet struct {
 	UserProfileID string    `json:"user_profile_id"`
 	Status        string    `json:"status"`
 	Preferences   []byte    `json:"preferences"`
-	ValidFrom     string    `json:"valid_from"`
+	ValidFrom     time.Time `json:"valid_from"`
 	CreatedAt     time.Time `json:"created_at"`
 	UpdatedAt     time.Time `json:"updated_at"`
 }
