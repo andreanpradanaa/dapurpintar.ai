@@ -1,9 +1,9 @@
 "use client";
 import { useEffect, useState, useCallback } from "react";
 import { useAuth } from "@/lib/auth";
-import { api, getAuthenticated, type MealPlan, type PlannedMeal } from "@/lib/api";
+import { api, getAuthenticated, type MealPlan, type PlannedMeal, type Recipe } from "@/lib/api";
 import { useToast } from "@/lib/toast";
-import { ListSkeleton } from "@/components/skeleton";
+import { ListSkeleton, Skeleton } from "@/components/skeleton";
 
 const OCCASIONS = ["breakfast", "lunch", "dinner", "snack"] as const;
 
@@ -31,6 +31,9 @@ export default function PlannerPage() {
   const [title, setTitle] = useState("");
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
+  const [picker, setPicker] = useState<{ date: string; occasion: string } | null>(null);
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [recipeLoading, setRecipeLoading] = useState(false);
 
   const loadPlans = useCallback(() => {
     getAuthenticated(() => api.mealPlans()).then(r => setPlans(r.data)).catch(() => toast("error", "Failed to load plans"));
@@ -65,16 +68,39 @@ export default function PlannerPage() {
     } catch { toast("error", "Failed to create plan"); }
   };
 
-  const addMeal = async (date: string, occasion: string) => {
+  const openPicker = async (date: string, occasion: string) => {
+    setPicker({ date, occasion });
+    setRecipeLoading(true);
+    try {
+      const r = await api.recipes();
+      setRecipes(r.data);
+    } catch { toast("error", "Failed to load recipes"); }
+    setRecipeLoading(false);
+  };
+
+  const pickRecipe = async (recipe: Recipe) => {
+    if (!picker || !plan) return;
+    try {
+      const r = await getAuthenticated(() => api.planMeal(plan.id, { meal_date: picker.date, meal_occasion: picker.occasion, recipe_id: recipe.id }));
+      toast("success", `${recipe.title} planned`);
+      setMeals(prev => {
+        const key = `${picker.date}|${picker.occasion}`;
+        return { ...prev, [key]: [...(prev[key] || []), r.data] };
+      });
+    } catch { toast("error", "Failed to plan meal"); }
+    setPicker(null);
+  };
+
+  const addEmptyMeal = async (date: string, occasion: string) => {
     if (!plan) return;
     try {
       const r = await getAuthenticated(() => api.planMeal(plan.id, { meal_date: date, meal_occasion: occasion }));
-      toast("success", "Meal planned");
+      toast("success", "Meal slot reserved");
       setMeals(prev => {
         const key = `${date}|${occasion}`;
         return { ...prev, [key]: [...(prev[key] || []), r.data] };
       });
-    } catch { toast("error", "Failed to plan meal"); }
+    } catch { toast("error", "Failed to reserve slot"); }
   };
 
   if (!account) return null;
@@ -151,12 +177,12 @@ export default function PlannerPage() {
                         <span className="text-steel-400">{o.slice(0, 2)}</span>
                         {slotMeals.length > 0 ? (
                           slotMeals.map(m => (
-                            <span key={m.id} className="ml-1 text-context-positive-dark font-medium">{m.recipe_id ? "Recipe" : "Meal"}</span>
+                            <span key={m.id} className="ml-1 text-context-positive-dark font-medium truncate block">{m.recipe_id ? "🍽" : "—"}</span>
                           ))
                         ) : (
                           <button
                             type="button"
-                            onClick={() => addMeal(dd.d, o)}
+                            onClick={() => openPicker(dd.d, o)}
                             className="ml-1 text-steel-400 hover:text-action-primary transition-colors"
                             aria-label={`Add ${o} on ${dd.d}`}
                           >+</button>
@@ -167,6 +193,41 @@ export default function PlannerPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      )}
+
+      {picker && (
+        <div className="fixed inset-0 bg-ink-950/50 flex items-center justify-center p-4 z-50" onClick={() => setPicker(null)}>
+          <div className="bg-white-000 rounded-xl max-w-md w-full max-h-[70vh] overflow-y-auto p-6 space-y-3" onClick={e => e.stopPropagation()} aria-label="Select a recipe">
+            <div className="flex justify-between items-center">
+              <h2 className="font-semibold text-ink-900">Pick a recipe for {picker.occasion} on {picker.date}</h2>
+              <button onClick={() => setPicker(null)} className="text-steel-400 hover:text-ink-700 text-sm">✕</button>
+            </div>
+            <button
+              type="button"
+              onClick={() => { addEmptyMeal(picker.date, picker.occasion); setPicker(null); }}
+              className="w-full text-left text-sm text-ink-700 hover:bg-steel-200 rounded-lg px-3 py-2 transition-colors"
+            >
+              Just reserve this slot (no recipe)
+            </button>
+            {recipeLoading ? (
+              <div className="space-y-2">{Array.from({length:3}).map((_,i)=><Skeleton key={i} className="h-12 w-full"/>)}</div>
+            ) : (
+              <div className="space-y-1">
+                {recipes.map(r => (
+                  <button
+                    key={r.id}
+                    type="button"
+                    onClick={() => pickRecipe(r)}
+                    className="w-full text-left bg-steel-200/50 hover:bg-steel-200 rounded-lg px-3 py-2 transition-colors"
+                  >
+                    <span className="font-medium text-ink-900 text-sm">{r.title}</span>
+                    <span className="text-xs text-ink-700 ml-2">{r.servings} servings</span>
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       )}
