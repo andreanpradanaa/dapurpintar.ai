@@ -41,4 +41,4 @@ Guide AI engineering work so AI remains an optional decision-support dependency,
 
 ## Status
 
-Active - M8 AI Foundation current; decision records M4-DEC-010/011/012/016 in review.
+Active - M8 AI Foundation approved; M9 DP-FEAT-006/007/008 in progress.

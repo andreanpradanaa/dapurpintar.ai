@@ -5,7 +5,7 @@
 | Item | Value |
 |---|---|
 | Milestone | M3 - UX/UI Design |
-| Status | Draft - Awaiting Product and Design Review |
+| Status | Approved |
 | Owner | Product Design |
 | Scope | MVP UX strategy, wireframes, design system, high-fidelity screen direction, and usability validation |
 | Next milestone | Frontend implementation planning and approved roadmap continuation |

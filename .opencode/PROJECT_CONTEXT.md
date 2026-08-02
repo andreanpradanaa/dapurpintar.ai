@@ -10,9 +10,9 @@
 - **Project Name:** DapurPintar AI
 - **Project Type:** AI-powered Kitchen Management SaaS
 - **Current Phase:** Implementation
-- **Current Milestone:** M8 - AI Foundation
-- **Progress:** M8-003 AI Evaluation Harness - In Review
-- **Next:** M9 MVP features (registration, pantry CRUD, recipe search, AI recommendation, meal planning, shopping list)
+- **Current Milestone:** M9 - MVP Features
+- **Progress:** DP-FEAT-001 Identity and Access (registration, login, logout, refresh, profile, preferences)
+- **Next:** DP-FEAT-002 pantry, then DP-FEAT-003 recipe discovery
 
 ---
 

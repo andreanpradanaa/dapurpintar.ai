@@ -37,7 +37,6 @@
 ## Status Saat Ini
 
 - M0, M1: Complete.
-- M2–M7: In Review (M7 Backend Foundation).
-- Current milestone: M8 AI Foundation (M4-DEC-010/011/012/016 approved).
-- Deliverable saat ini: M8-003 AI evaluation harness (In Review).
-- Berikutnya: M9 MVP features (registration, pantry CRUD, recipe search, AI recommendation, meal planning, shopping list).
+- M2–M8: Approved (reviewed and approved 2026-08-02).
+- Current milestone: M9 MVP Features (DP-FEAT-001 Identity and Access in progress).
+- Berikutnya: DP-FEAT-002 pantry, then DP-FEAT-003 recipe discovery.

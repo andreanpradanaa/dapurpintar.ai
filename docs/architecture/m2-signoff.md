@@ -5,7 +5,7 @@
 | Item | Value |
 |---|---|
 | Milestone | M2 - Solution Architecture |
-| Status | Draft - Awaiting Software Architect Review |
+| Status | Approved |
 | Owner | Solution Architecture |
 | Scope | Strategic domain design, system design, API, security, AI, observability, and deployment architecture |
 | Next milestone | M3 - UX/UI Design |

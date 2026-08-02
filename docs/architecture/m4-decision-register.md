@@ -48,19 +48,19 @@ These decisions should not be reopened during implementation without a new ADR o
 
 | ID | Decision needed | Owner | Target gate | Status | Impact if delayed |
 |---|---|---|---|---|---|
-| M4-DEC-001 | Email verification required for MVP? | Product + Security | M7 Auth foundation | Pending | Account lifecycle and onboarding ambiguity |
-| M4-DEC-002 | Password recovery and credential-change flow | Product + Security | M7 Auth foundation | Pending | Cannot complete account lifecycle safely |
-| M4-DEC-003 | Access-token and refresh-session lifetimes | Security + Backend | M7 Auth foundation | Pending | Cookie, refresh, logout, and test behavior remain undefined |
-| M4-DEC-004 | Final SameSite, cookie domain, and CSRF policy | Security + Frontend | M7 and M10 | Pending | Browser session implementation may be reworked |
+| M4-DEC-001 | Email verification required for MVP? | Product + Security | M7 Auth foundation | Decided | Account lifecycle and onboarding ambiguity |
+| M4-DEC-002 | Password recovery and credential-change flow | Product + Security | M7 Auth foundation | Decided | Cannot complete account lifecycle safely |
+| M4-DEC-003 | Access-token and refresh-session lifetimes | Security + Backend | M7 Auth foundation | Decided | Cookie, refresh, logout, and test behavior remain undefined |
+| M4-DEC-004 | Final SameSite, cookie domain, and CSRF policy | Security + Frontend | M7 and M10 | Decided | Browser session implementation may be reworked |
 | M4-DEC-005 | MFA requirement before public launch | Product + Security | M15/M16 | Pending | Launch security scope remains incomplete |
-| M4-DEC-006 | Concrete PostgreSQL schema and migration shape | Database + Backend | M5 | Pending | M7 repositories and M9 features cannot safely start |
-| M4-DEC-007 | MVP timezone policy | Product + Backend | M5 | Pending | Meal dates, expiry, and daily views may disagree |
-| M4-DEC-008 | Detailed API request/response schemas | API + Backend + Frontend | M6 | Pending | Client and server contract cannot be implemented reliably |
-| M4-DEC-009 | Public recipe access boundary | Product + Security | M6 | Pending | Public and authenticated UI/API behavior may diverge |
+| M4-DEC-006 | Concrete PostgreSQL schema and migration shape | Database + Backend | M5 | Decided | M7 repositories and M9 features cannot safely start |
+| M4-DEC-007 | MVP timezone policy | Product + Backend | M5 | Decided | Meal dates, expiry, and daily views may disagree |
+| M4-DEC-008 | Detailed API request/response schemas | API + Backend + Frontend | M6 | Decided | Client and server contract cannot be implemented reliably |
+| M4-DEC-009 | Public recipe access boundary | Product + Security | M6 | Decided | Public and authenticated UI/API behavior may diverge |
 | M4-DEC-010 | Initial OpenAI model and capability profile | AI Engineering + Product | M8 | Decided | Latency, cost, output, and evaluation targets remain uncertain |
 | M4-DEC-011 | Prompt, safety, and structured-output revisions | AI Engineering + Security | M8 | Decided | AI implementation cannot pass reliable safety and quality gates |
 | M4-DEC-012 | AI evaluation dataset and acceptance rubric | AI Engineering + Product | M8 | Decided | Recommendation quality cannot be measured consistently |
-| M4-DEC-013 | Raw prompt and conversation retention policy | Product + Security | M8/M15 | Pending | Privacy and reproducibility tradeoff remains unresolved |
+| M4-DEC-013 | Raw prompt and conversation retention policy | Product + Security | M8/M15 | Decided | Privacy and reproducibility tradeoff remains unresolved |
 | M4-DEC-014 | Hosting provider and production environment | DevOps + Product | M15 | Pending | Deployment, secrets, and recovery cannot be finalized |
 | M4-DEC-015 | Production RPO and RTO | DevOps + Product | M15 | Pending | Backup and recovery readiness cannot be approved |
 | M4-DEC-016 | AI quota and cost budget | Product + Finance + AI | M8/M15 | Decided | Cost exhaustion and plan limits remain uncontrolled |
@@ -156,6 +156,17 @@ The following are safe working assumptions for planning only. They are not final
 ## Recently Decided
 
 - M4-DEC-010, M4-DEC-011, M4-DEC-012, M4-DEC-016 were approved via `docs/architecture/m8-blocking-decisions.md` (M4-005). Recommended directions: fixed default model profile with versioned alternatives; versioned prompt/safety/structured-output pipeline with layered validation; privacy-safe evaluation dataset with published rubric and pass gates; explicit per-user and global AI budgets with enforced limits and alerts.
+- M4-DEC-001, M4-DEC-002, M4-DEC-003, M4-DEC-004, M4-DEC-006, M4-DEC-007, M4-DEC-008, M4-DEC-009, and M4-DEC-013 were approved as part of the M2-M8 milestone review sign-off. Chosen directions follow the "Current Recommended Defaults" below:
+  - M4-DEC-001: Email verification stays optional for local development; it becomes required before public launch.
+  - M4-DEC-002: Credential change (authenticated password update) is in MVP scope; forgotten-password recovery is deferred to pre-launch (M15/M16).
+  - M4-DEC-003: Short-lived access sessions (default 15m) with revocable refresh sessions (default 30d); revocation authority stored in PostgreSQL.
+  - M4-DEC-004: Session cookie `dp_session` with `HttpOnly`, `Secure` in production, `SameSite=Lax`; state-changing endpoints additionally verify the request origin to protect against CSRF.
+  - M4-DEC-006: The concrete PostgreSQL schema and migration shape follow `docs/database/m5-schema.md` and `docs/database/m5-migrations.md` (M5 sign-off).
+  - M4-DEC-007: Store UTC; interpret in the user timezone with `Asia/Jakarta` as the default (M5 sign-off).
+  - M4-DEC-008: The API contract follows `docs/api/openapi.yaml` and `docs/api/m6-error-catalog.md` (M6 sign-off).
+  - M4-DEC-009: Public recipe access returns only general recipe content; personalized context is never served to unauthenticated callers.
+  - M4-DEC-013: Recommendation conversations are retained only while the recommendation is active; raw prompts are never stored; retained context uses a 30-day window (M5/M8 sign-off).
+- M4-DEC-005 (MFA) and M4-DEC-014/015/017 remain Pending and gate M15/M16; they do not block M9 implementation.
 
 ## Review Protocol
 

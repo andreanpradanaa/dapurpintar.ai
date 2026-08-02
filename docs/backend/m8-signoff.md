@@ -6,7 +6,7 @@
 |---|---|
 | Milestone | M8 - AI Foundation |
 | Deliverable | M8-001 AI Gateway port and OpenAI provider adapter; M8-002 Prompt, safety, and structured-output policy versioning; M8-003 AI evaluation harness |
-| Status | Draft - Awaiting Cross-Functional Review |
+| Status | Approved |
 | Parent documents | `docs/architecture/ai-architecture.md`, `docs/architecture/m8-blocking-decisions.md`, `docs/architecture/m4-decision-register.md` |
 | Scope | AI Gateway port, model profile, structured output validation, OpenAI provider adapter, versioned prompt/safety/policy registry, and the AI evaluation harness |
 

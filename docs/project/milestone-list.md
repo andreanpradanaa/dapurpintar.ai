@@ -4,13 +4,13 @@
 
 | Item | Status |
 |---|---|
-| Current milestone | M8 - AI Foundation |
-| Current deliverable | M8-003 AI Evaluation Harness |
-| Current status | In Review |
-| Next action | Review M8-001/002/003, then M9 MVP features |
+| Current milestone | M9 - MVP Features |
+| Current deliverable | DP-FEAT-001 Identity and Access: registration, login, logout, refresh, profile, preferences |
+| Current status | In Progress |
+| Next action | Implement DP-FEAT-001 vertical slice, then DP-FEAT-002 pantry |
 | Next implementation milestone | M10 - Frontend Development |
 
-Milestone approval tetap mengikuti proses review. Artifact yang sudah dibuat tidak otomatis berarti milestone telah disetujui atau ditutup.
+Milestone approval tetap mengikuti proses review. Artifact yang sudah dibuat tidak otomatis berarti milestone telah disetujui atau ditutup. M2 through M8 were reviewed and approved in the M8 sign-off review (2026-08-02).
 
 ## Roadmap Overview
 
@@ -18,16 +18,14 @@ Milestone approval tetap mengikuti proses review. Artifact yang sudah dibuat tid
 |---|---|---|---|
 | M0 | Foundation | Repository, workflow, documentation, OpenCode workspace | Complete |
 | M1 | Product Planning | Product vision, scope, personas, roadmap, metrics | Complete |
-| M2 | Solution Architecture | Domain, system, API, security, AI, observability, deployment | In Review |
-| M3 | UX/UI Design | UX strategy, wireframes, design system, prototype, usability | In Review |
-| M4 | Solution Architecture | Architecture refinement and implementation preparation | In Review |
-| M5 | Database Design | Schema, migrations, indexes, constraints, query design | In Review |
-| M6 | API Design | Detailed schemas, OpenAPI, contract validation | In Review |
-| M7 | Backend Foundation | Go, Fiber, Clean Architecture, module scaffolding | In Review |
-| M6 | API Design | Detailed schemas, OpenAPI, contract validation | Planned |
-| M7 | Backend Foundation | Go, Fiber, Clean Architecture, module scaffolding | Planned |
-| M8 | AI Foundation | AI Gateway implementation, prompts, evaluation foundation | Planned |
-| M9 | MVP Features | Backend implementation of approved MVP capabilities | Planned |
+| M2 | Solution Architecture | Domain, system, API, security, AI, observability, deployment | Approved |
+| M3 | UX/UI Design | UX strategy, wireframes, design system, prototype, usability | Approved |
+| M4 | Solution Architecture | Architecture refinement and implementation preparation | Approved |
+| M5 | Database Design | Schema, migrations, indexes, constraints, query design | Approved |
+| M6 | API Design | Detailed schemas, OpenAPI, contract validation | Approved |
+| M7 | Backend Foundation | Go, Fiber, Clean Architecture, module scaffolding | Approved |
+| M8 | AI Foundation | AI Gateway implementation, prompts, evaluation foundation | Approved |
+| M9 | MVP Features | Backend implementation of approved MVP capabilities | In Progress |
 | M10 | Frontend Development | Next.js application implementation | Planned |
 | M11 | Smart Kitchen Features | Smart pantry and kitchen enhancements | Planned |
 | M12 | Advanced AI | Advanced recommendations and AI capabilities | Planned |
@@ -65,7 +63,7 @@ Reference: `docs/product/m1-signoff.md`
 
 ## M2 - Solution Architecture
 
-Status: **In Review**
+Status: **Approved**
 
 | ID | Deliverable | Artifact | Status |
 |---|---|---|---|
@@ -84,11 +82,11 @@ Status: **In Review**
 | M2-013 | AI Architecture | `docs/architecture/ai-architecture.md` | Complete |
 | M2-014 | Observability Architecture | `docs/architecture/observability-architecture.md` | Complete |
 | M2-015 | Deployment Architecture | `docs/architecture/deployment-architecture.md` | Complete |
-| M2-016 | Architecture Sign-off | `docs/architecture/m2-signoff.md` | In Review |
+| M2-016 | Architecture Sign-off | `docs/architecture/m2-signoff.md` | Approved |
 
 ## M3 - UX/UI Design
 
-Status: **In Review**
+Status: **Approved**
 
 | ID | Deliverable | Artifact | Status |
 |---|---|---|---|
@@ -97,7 +95,7 @@ Status: **In Review**
 | M3-003 | Design System Foundation | `docs/ux/design-system.md` | Complete |
 | M3-004 | High-Fidelity Screen Specification | `docs/ux/high-fidelity-screen-spec.md` | Complete |
 | M3-005 | Usability Validation Plan | `docs/ux/usability-validation-plan.md` | Complete |
-| M3-006 | UX/UI Design Sign-off | `docs/ux/m3-signoff.md` | In Review |
+| M3-006 | UX/UI Design Sign-off | `docs/ux/m3-signoff.md` | Approved |
 
 Prototype:
 
@@ -108,7 +106,7 @@ Prototype:
 
 ## M4 - Solution Architecture Refinement
 
-Status: **In Review**
+Status: **Approved**
 
 - M4-001 Implementation Readiness: `docs/architecture/implementation-readiness.md`
 - M4-002 Architecture Decision Register: `docs/architecture/m4-decision-register.md`
@@ -122,14 +120,14 @@ Status: **In Review**
 
 ## M5 - Database Design
 
-Status: **In Review**
+Status: **Approved**
 
 | ID | Deliverable | Artifact | Status |
 |---|---|---|---|
-| M5-001 | Concrete PostgreSQL Schema | `docs/database/m5-schema.md` | In Review |
-| M5-002 | Goose Migration Strategy | `docs/database/m5-migrations.md` | In Review |
-| M5-003 | SQLC Query Contract | `docs/database/m5-sqlc.md` | In Review |
-| M5-004 | Seed and Test Data Strategy | `docs/database/m5-seed-and-test-data.md` | In Review |
+| M5-001 | Concrete PostgreSQL Schema | `docs/database/m5-schema.md` | Approved |
+| M5-002 | Goose Migration Strategy | `docs/database/m5-migrations.md` | Approved |
+| M5-003 | SQLC Query Contract | `docs/database/m5-sqlc.md` | Approved |
+| M5-004 | Seed and Test Data Strategy | `docs/database/m5-seed-and-test-data.md` | Approved |
 
 Scope:
 
@@ -141,13 +139,13 @@ Scope:
 
 ## M6 - API Design
 
-Status: **In Review**
+Status: **Approved**
 
 | ID | Deliverable | Artifact | Status |
 |---|---|---|---|
-| M6-001 | OpenAPI Contract | `docs/api/openapi.yaml` | In Review |
-| M6-002 | Error, Validation, Pagination, Idempotency Catalog | `docs/api/m6-error-catalog.md` | In Review |
-| M6-003 | Contract Tests and Compatibility Policy | `docs/api/m6-contract-tests.md` | In Review |
+| M6-001 | OpenAPI Contract | `docs/api/openapi.yaml` | Approved |
+| M6-002 | Error, Validation, Pagination, Idempotency Catalog | `docs/api/m6-error-catalog.md` | Approved |
+| M6-003 | Contract Tests and Compatibility Policy | `docs/api/m6-contract-tests.md` | Approved |
 
 Scope:
 
@@ -159,11 +157,11 @@ Scope:
 
 ## M7 - Backend Foundation
 
-Status: **In Review**
+Status: **Approved**
 
 | ID | Deliverable | Artifact | Status |
 |---|---|---|---|
-| M7-001 | Go/Fiber Backend Foundation | `backend/`, `docs/backend/m7-signoff.md` | In Review |
+| M7-001 | Go/Fiber Backend Foundation | `backend/`, `docs/backend/m7-signoff.md` | Approved |
 
 Scope:
 
@@ -176,13 +174,13 @@ Scope:
 
 ## M8 - AI Foundation
 
-Status: **In Review** (blocked by M4-DEC-010/011/012/016)
+Status: **Approved**
 
 | ID | Deliverable | Artifact | Status |
 |---|---|---|---|
-| M8-001 | AI Gateway port and OpenAI provider adapter | `backend/internal/ai/`, `docs/backend/m8-signoff.md` | In Review |
-| M8-002 | Prompt, safety, and structured-output policy versioning | `backend/internal/ai/`, `docs/backend/m8-signoff.md` | In Review |
-| M8-003 | AI evaluation harness and representative scenarios | `backend/internal/ai/`, `backend/cmd/ai-eval/` | In Review |
+| M8-001 | AI Gateway port and OpenAI provider adapter | `backend/internal/ai/`, `docs/backend/m8-signoff.md` | Approved |
+| M8-002 | Prompt, safety, and structured-output policy versioning | `backend/internal/ai/`, `docs/backend/m8-signoff.md` | Approved |
+| M8-003 | AI evaluation harness and representative scenarios | `backend/internal/ai/`, `backend/cmd/ai-eval/` | Approved |
 
 Scope:
 
@@ -197,7 +195,20 @@ Blocking decisions: `docs/architecture/m8-blocking-decisions.md` (M4-DEC-010, M4
 
 ## M9 - MVP Features
 
-Status: **Planned**
+Status: **In Progress** (vertical slices from `docs/architecture/implementation-backlog.md`)
+
+| ID | Deliverable | Backlog item | Status |
+|---|---|---|---|
+| M9-001 | Registration, login, logout, refresh, profile, preferences | DP-FEAT-001 | In Progress |
+| M9-002 | Pantry and Pantry Item CRUD, expiry attention view | DP-FEAT-002 | Planned |
+| M9-003 | Recipe discovery, detail, favorites | DP-FEAT-003 | Planned |
+| M9-004 | Meal Plan and Planned Meal lifecycle | DP-FEAT-004 | Planned |
+| M9-005 | Shopping List generation, review, activation, completion | DP-FEAT-005 | Planned |
+| M9-006 | Kitchen Recommendation request, present, accept, reject, supersede | DP-FEAT-006 | Planned |
+| M9-007 | Recommendation-scoped conversation | DP-FEAT-007 | Planned |
+| M9-008 | AI Pantry Analysis endpoint | DP-FEAT-008 | Planned |
+
+Scope:
 
 - Registration, login, profile, and preferences.
 - Pantry CRUD and expiry context.
@@ -205,6 +216,8 @@ Status: **Planned**
 - AI recommendation and recommendation-scoped conversation.
 - Daily and weekly meal planning.
 - Shopping list and automatic generation.
+
+Blocking decisions: resolved in `docs/architecture/m4-decision-register.md` (M4-DEC-001/002/003/004/006/007/008/009/013 Decided).
 
 ## M10 - Frontend Development
 

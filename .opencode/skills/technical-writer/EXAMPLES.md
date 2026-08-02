@@ -21,5 +21,5 @@ enforced in the Recommendation aggregate
 ## Status line
 
 ```markdown
-Current milestone: M7 Backend Foundation (In Review). Next: M8 AI Foundation.
+Current milestone: M9 MVP Features (In Progress). Next: DP-FEAT-002 pantry.
 ```
