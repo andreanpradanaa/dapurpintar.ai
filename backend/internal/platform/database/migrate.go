@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log/slog"
 
+	_ "github.com/jackc/pgx/v5/stdlib"
 	"github.com/pressly/goose/v3"
 )
 
@@ -14,7 +15,7 @@ import (
 // out-of-date baseline. Migrations follow the M5-002 versioning and ordering
 // rules and target the public schema.
 func Migrate(ctx context.Context, databaseURL, dir string, log *slog.Logger) error {
-	db, err := goose.OpenDBWithDriver("postgres", databaseURL)
+	db, err := goose.OpenDBWithDriver("pgx", databaseURL)
 	if err != nil {
 		return fmt.Errorf("open goose db: %w", err)
 	}
