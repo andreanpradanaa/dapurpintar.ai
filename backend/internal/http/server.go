@@ -11,6 +11,7 @@ import (
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/config"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/http/middleware"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/identity"
+	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/mealplan"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/pantry"
 	apperr "github.com/andreanpradanaa/dapurpintar.ai/backend/internal/platform/errors"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/platform/response"
@@ -36,12 +37,13 @@ type Handler struct {
 	identity         *identity.Service
 	pantry           *pantry.Service
 	recipes          *recipes.Service
+	mealPlan         *mealplan.Service
 	sessionCookies   middleware.SessionCookies
 	refreshCookieTTL time.Duration
 }
 
 // New builds the Fiber application with global middleware and routes.
-func New(cfg *config.Config, log *slog.Logger, tokens *auth.TokenManager, identityService *identity.Service, pantryService *pantry.Service, recipesService *recipes.Service) *Server {
+func New(cfg *config.Config, log *slog.Logger, tokens *auth.TokenManager, identityService *identity.Service, pantryService *pantry.Service, recipesService *recipes.Service, mealPlanService *mealplan.Service) *Server {
 	app := fiber.New(fiber.Config{
 		AppName:               cfg.AppName,
 		DisableStartupMessage: true,
@@ -71,6 +73,7 @@ func New(cfg *config.Config, log *slog.Logger, tokens *auth.TokenManager, identi
 			identity:         identityService,
 			pantry:           pantryService,
 			recipes:          recipesService,
+			mealPlan:         mealPlanService,
 			sessionCookies:   sessionCookies,
 			refreshCookieTTL: tokens.RefreshTTL(),
 		},
@@ -125,6 +128,17 @@ func (s *Server) registerRoutes() {
 	authed.Get("/favorites", s.handler.listFavorites)
 	authed.Put("/favorites/recipes/:recipeId", s.handler.favoriteRecipe)
 	authed.Delete("/favorites/recipes/:recipeId", s.handler.unfavoriteRecipe)
+
+	authed.Get("/meal-plans", s.handler.listMealPlans)
+	authed.Post("/meal-plans", s.handler.createMealPlan)
+	authed.Get("/meal-plans/:planId", s.handler.getMealPlan)
+	authed.Patch("/meal-plans/:planId", s.handler.updateMealPlan)
+	authed.Post("/meal-plans/:planId/cancel", s.handler.cancelMealPlan)
+	authed.Post("/meal-plans/:planId/complete", s.handler.completeMealPlan)
+	authed.Get("/meal-plans/:planId/meals", s.handler.listPlannedMeals)
+	authed.Post("/meal-plans/:planId/meals", s.handler.planMeal)
+	authed.Patch("/meal-plans/:planId/meals/:plannedMealId", s.handler.updatePlannedMeal)
+	authed.Delete("/meal-plans/:planId/meals/:plannedMealId", s.handler.removePlannedMeal)
 }
 
 // health reports service liveness without exposing internals.
