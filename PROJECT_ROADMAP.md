@@ -6,7 +6,7 @@
 
 ## Current Status
 - Current Milestone: M4 - Solution Architecture Refinement
-- Progress: M4-003 Implementation Backlog and Technical Spikes - In Review
+- Progress: M4-004 M5 Blocking Decision Records - In Review
 
 ## Milestone 0
 - Foundation
@@ -31,6 +31,7 @@
 - M4-001 Implementation Readiness in review
 - M4-002 Architecture Decision Register in review
 - M4-003 Implementation Backlog and Technical Spikes in review
+- M4-004 M5 Blocking Decision Records in review
 
 ## Milestone 5
 - Database Design
