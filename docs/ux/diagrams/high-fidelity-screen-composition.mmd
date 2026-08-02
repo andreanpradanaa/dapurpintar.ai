@@ -1,0 +1,40 @@
+flowchart LR
+    Shell[App Shell]
+    Today[Today<br/>Decision surface]
+    Recommendation[Recommendation Detail<br/>Evidence and options]
+    Pantry[Pantry<br/>Inventory correction]
+    Recipe[Recipe Detail<br/>Reliable cooking content]
+    Planner[Planner<br/>Explicit commitment]
+    Shopping[Shopping List<br/>Purchase review]
+    Degraded[AI Degraded<br/>Non-AI alternatives]
+    Context[Context Strip<br/>Signature component]
+
+    Shell --> Today
+    Shell --> Pantry
+    Shell --> Recipe
+    Shell --> Planner
+    Shell --> Shopping
+    Today --> Context
+    Context --> Recommendation
+    Recommendation --> Recipe
+    Recommendation --> Planner
+    Recommendation --> Shopping
+    Pantry --> Recommendation
+    Planner --> Shopping
+    Recommendation -.-> Degraded
+    Degraded --> Recipe
+    Degraded --> Pantry
+
+    classDef shell fill:#17243A,stroke:#101A2B,color:#FFFFFF;
+    classDef decision fill:#F3C969,stroke:#9A7620,color:#17243A;
+    classDef data fill:#A7D46F,stroke:#5D7D36,color:#17243A;
+    classDef commitment fill:#F45B3C,stroke:#A52F1C,color:#FFFFFF;
+    classDef fallback fill:#E2E5EA,stroke:#8793A5,color:#17243A;
+    classDef signature fill:#F4F1E8,stroke:#F45B3C,color:#17243A,stroke-width:3px;
+
+    class Shell shell;
+    class Today,Recommendation decision;
+    class Pantry,Recipe data;
+    class Planner,Shopping commitment;
+    class Degraded fallback;
+    class Context signature;
