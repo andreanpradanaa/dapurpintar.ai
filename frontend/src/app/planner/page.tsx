@@ -110,14 +110,14 @@ export default function PlannerPage() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-xl font-bold text-ink-900">Planner</h1>
-        <button onClick={() => setCreate(!create)} className="bg-action-primary text-white-000 px-4 py-2 rounded-lg text-sm font-medium hover:bg-action-dark transition-colors focus:outline-none focus:ring-2 focus:ring-action-primary/50">
+        <h1 className="text-xl font-bold text-kuali-950">Planner</h1>
+        <button onClick={() => setCreate(!create)} className="bg-rempah-500 text-white-000 px-4 py-2 rounded-lg text-sm font-medium hover:bg-rempah-700 transition-colors focus:outline-none focus:ring-2 focus:ring-rempah-500/50">
           + New plan
         </button>
       </div>
 
       {create && (
-        <form onSubmit={submitPlan} className="bg-white-000 border border-steel-200 rounded-lg p-4 space-y-3">
+        <form onSubmit={submitPlan} className="bg-white border border-bambu-200 rounded-lg p-4 space-y-3">
           <label htmlFor="plan-title" className="sr-only">Title</label>
           <input id="plan-title" type="text" placeholder="Title (optional)" value={title} onChange={e => setTitle(e.target.value)} className="w-full" />
           <div className="flex gap-2">
@@ -126,25 +126,25 @@ export default function PlannerPage() {
             <label htmlFor="plan-end" className="sr-only">End date</label>
             <input id="plan-end" type="date" value={end} onChange={e => setEnd(e.target.value)} required className="flex-1" />
           </div>
-          <button type="submit" className="bg-action-primary text-white-000 px-4 py-2 rounded-lg text-sm font-medium hover:bg-action-dark transition-colors focus:outline-none focus:ring-2 focus:ring-action-primary/50">Create</button>
+          <button type="submit" className="bg-rempah-500 text-white-000 px-4 py-2 rounded-lg text-sm font-medium hover:bg-rempah-700 transition-colors focus:outline-none focus:ring-2 focus:ring-rempah-500/50">Create</button>
         </form>
       )}
 
       {!plan && (
         <div>
           {plans.length === 0 && (
-            <div className="text-center py-12 text-ink-700 bg-white-000 border border-steel-200 rounded-xl">
+            <div className="text-center py-12 text-kuali-700 bg-white border border-bambu-200 rounded-xl">
               <p className="text-lg">No meal plans yet.</p>
-              <p className="text-sm text-steel-400 mt-1">Create a weekly plan to organize your meals.</p>
+              <p className="text-sm text-bambu-300 mt-1">Create a weekly plan to organize your meals.</p>
             </div>
           )}
           <div className="space-y-2">
             {plans.map(p => (
-              <div key={p.id} onClick={() => openPlan(p)} className="bg-white-000 border border-steel-200 rounded-lg p-4 cursor-pointer hover:border-action-primary/30 transition-colors">
+              <div key={p.id} onClick={() => openPlan(p)} className="bg-white border border-bambu-200 rounded-lg p-4 cursor-pointer hover:border-rempah-500/30 transition-colors">
                 <div className="flex justify-between items-center">
                   <div>
-                    <p className="font-semibold text-ink-900">{p.title || "Meal plan"}</p>
-                    <p className="text-sm text-ink-700">{p.period_start} to {p.period_end}</p>
+                    <p className="font-semibold text-kuali-950">{p.title || "Meal plan"}</p>
+                    <p className="text-sm text-kuali-700">{p.period_start} to {p.period_end}</p>
                   </div>
                   <span className={`text-xs px-2 py-0.5 rounded ${p.status === "completed" ? "bg-context-positive/20 text-context-positive-dark" : p.status === "cancelled" ? "bg-feedback-error/10 text-feedback-error" : "bg-feedback-info/10 text-feedback-info"}`}>{p.status}</span>
                 </div>
@@ -159,22 +159,22 @@ export default function PlannerPage() {
       {plan && !loading && (
         <div>
           <div className="flex justify-between items-center mb-4">
-            <button onClick={() => setPlan(null)} className="text-action-primary text-sm font-medium hover:underline">← Back to plans</button>
-            <span className="text-sm text-steel-400">{plan.period_start} to {plan.period_end}</span>
+            <button onClick={() => setPlan(null)} className="text-rempah-500 text-sm font-medium hover:underline">← Back to plans</button>
+            <span className="text-sm text-bambu-300">{plan.period_start} to {plan.period_end}</span>
           </div>
           <div className="overflow-x-auto">
             <div className="grid grid-cols-7 gap-1 min-w-[700px]">
               {days.map(dd => (
-                <div key={dd.d} className="text-center text-xs font-semibold text-ink-700 py-1 truncate">{dd.label}</div>
+                <div key={dd.d} className="text-center text-xs font-semibold text-kuali-700 py-1 truncate">{dd.label}</div>
               ))}
               {days.map(dd => (
-                <div key={dd.d} className="border border-steel-200 rounded p-1 min-h-[90px] bg-white-000">
+                <div key={dd.d} className="border border-bambu-200 rounded p-1 min-h-[90px] bg-white">
                   {OCCASIONS.map(o => {
                     const key = `${dd.d}|${o}`;
                     const slotMeals = meals[key] || [];
                     return (
                       <div key={o} className="text-xs mb-1">
-                        <span className="text-steel-400">{o.slice(0, 2)}</span>
+                        <span className="text-bambu-300">{o.slice(0, 2)}</span>
                         {slotMeals.length > 0 ? (
                           slotMeals.map(m => (
                             <span key={m.id} className="ml-1 text-context-positive-dark font-medium truncate block">{m.recipe_id ? "🍽" : "—"}</span>
@@ -183,7 +183,7 @@ export default function PlannerPage() {
                           <button
                             type="button"
                             onClick={() => openPicker(dd.d, o)}
-                            className="ml-1 text-steel-400 hover:text-action-primary transition-colors"
+                            className="ml-1 text-bambu-300 hover:text-rempah-500 transition-colors"
                             aria-label={`Add ${o} on ${dd.d}`}
                           >+</button>
                         )}
@@ -198,16 +198,16 @@ export default function PlannerPage() {
       )}
 
       {picker && (
-        <div className="fixed inset-0 bg-ink-950/50 flex items-center justify-center p-4 z-50" onClick={() => setPicker(null)}>
-          <div className="bg-white-000 rounded-xl max-w-md w-full max-h-[70vh] overflow-y-auto p-6 space-y-3" onClick={e => e.stopPropagation()} aria-label="Select a recipe">
+        <div className="fixed inset-0 bg-kuali-950/50 flex items-center justify-center p-4 z-50" onClick={() => setPicker(null)}>
+          <div className="bg-white rounded-xl max-w-md w-full max-h-[70vh] overflow-y-auto p-6 space-y-3" onClick={e => e.stopPropagation()} aria-label="Select a recipe">
             <div className="flex justify-between items-center">
-              <h2 className="font-semibold text-ink-900">Pick a recipe for {picker.occasion} on {picker.date}</h2>
-              <button onClick={() => setPicker(null)} className="text-steel-400 hover:text-ink-700 text-sm">✕</button>
+              <h2 className="font-semibold text-kuali-950">Pick a recipe for {picker.occasion} on {picker.date}</h2>
+              <button onClick={() => setPicker(null)} className="text-bambu-300 hover:text-kuali-700 text-sm">✕</button>
             </div>
             <button
               type="button"
               onClick={() => { addEmptyMeal(picker.date, picker.occasion); setPicker(null); }}
-              className="w-full text-left text-sm text-ink-700 hover:bg-steel-200 rounded-lg px-3 py-2 transition-colors"
+              className="w-full text-left text-sm text-kuali-700 hover:bg-bambu-200 rounded-lg px-3 py-2 transition-colors"
             >
               Just reserve this slot (no recipe)
             </button>
@@ -220,10 +220,10 @@ export default function PlannerPage() {
                     key={r.id}
                     type="button"
                     onClick={() => pickRecipe(r)}
-                    className="w-full text-left bg-steel-200/50 hover:bg-steel-200 rounded-lg px-3 py-2 transition-colors"
+                    className="w-full text-left bg-bambu-200/50 hover:bg-bambu-200 rounded-lg px-3 py-2 transition-colors"
                   >
-                    <span className="font-medium text-ink-900 text-sm">{r.title}</span>
-                    <span className="text-xs text-ink-700 ml-2">{r.servings} servings</span>
+                    <span className="font-medium text-kuali-950 text-sm">{r.title}</span>
+                    <span className="text-xs text-kuali-700 ml-2">{r.servings} servings</span>
                   </button>
                 ))}
               </div>

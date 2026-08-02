@@ -81,38 +81,38 @@ export default function ShoppingPage() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-xl font-bold text-ink-900">Shopping</h1>
-        <button onClick={() => setCreate(!create)} className="bg-action-primary text-white-000 px-4 py-2 rounded-lg text-sm font-medium hover:bg-action-dark transition-colors focus:outline-none focus:ring-2 focus:ring-action-primary/50">
+        <h1 className="text-xl font-bold text-kuali-950">Shopping</h1>
+        <button onClick={() => setCreate(!create)} className="bg-rempah-500 text-white-000 px-4 py-2 rounded-lg text-sm font-medium hover:bg-rempah-700 transition-colors focus:outline-none focus:ring-2 focus:ring-rempah-500/50">
           + New list
         </button>
       </div>
 
       {create && (
-        <form onSubmit={createList} className="bg-white-000 border border-steel-200 rounded-lg p-4 space-y-3">
+        <form onSubmit={createList} className="bg-white border border-bambu-200 rounded-lg p-4 space-y-3">
           <label htmlFor="shopping-title" className="sr-only">List title</label>
           <input id="shopping-title" type="text" placeholder="List title" value={title} onChange={e => setTitle(e.target.value)} required className="w-full" />
-          <button type="submit" className="bg-action-primary text-white-000 px-4 py-2 rounded-lg text-sm font-medium hover:bg-action-dark transition-colors focus:outline-none focus:ring-2 focus:ring-action-primary/50">Create</button>
+          <button type="submit" className="bg-rempah-500 text-white-000 px-4 py-2 rounded-lg text-sm font-medium hover:bg-rempah-700 transition-colors focus:outline-none focus:ring-2 focus:ring-rempah-500/50">Create</button>
         </form>
       )}
 
       {!list && (
         <div>
           {lists.length === 0 && !loading && (
-            <div className="text-center py-12 text-ink-700 bg-white-000 border border-steel-200 rounded-xl">
+            <div className="text-center py-12 text-kuali-700 bg-white border border-bambu-200 rounded-xl">
               <p className="text-lg">No shopping lists yet.</p>
-              <p className="text-sm text-steel-400 mt-1">Create a list to start tracking your groceries.</p>
+              <p className="text-sm text-bambu-300 mt-1">Create a list to start tracking your groceries.</p>
             </div>
           )}
           {loading && lists.length === 0 && <ListSkeleton count={3} />}
           <div className="space-y-2">
             {lists.map(l => (
-              <div key={l.id} onClick={() => openList(l)} className="bg-white-000 border border-steel-200 rounded-lg p-4 cursor-pointer hover:border-action-primary/30 transition-colors">
+              <div key={l.id} onClick={() => openList(l)} className="bg-white border border-bambu-200 rounded-lg p-4 cursor-pointer hover:border-rempah-500/30 transition-colors">
                 <div className="flex justify-between items-center">
                   <div>
-                    <p className="font-semibold text-ink-900">{l.title}</p>
-                    <p className="text-xs text-ink-700">{l.item_counts.open} open · {l.item_counts.completed} done</p>
+                    <p className="font-semibold text-kuali-950">{l.title}</p>
+                    <p className="text-xs text-kuali-700">{l.item_counts.open} open · {l.item_counts.completed} done</p>
                   </div>
-                  <span className={`text-xs px-2 py-0.5 rounded ${l.status === "active" ? "bg-context-positive/20 text-context-positive-dark" : l.status === "completed" ? "bg-steel-200 text-steel-400" : "bg-feedback-info/10 text-feedback-info"}`}>{l.status}</span>
+                  <span className={`text-xs px-2 py-0.5 rounded ${l.status === "active" ? "bg-context-positive/20 text-context-positive-dark" : l.status === "completed" ? "bg-bambu-200 text-bambu-300" : "bg-feedback-info/10 text-feedback-info"}`}>{l.status}</span>
                 </div>
               </div>
             ))}
@@ -123,14 +123,14 @@ export default function ShoppingPage() {
       {list && (
         <div>
           <div className="flex items-center justify-between mb-4 gap-2 flex-wrap">
-            <button onClick={() => { setList(null); loadLists(); }} className="text-action-primary text-sm font-medium hover:underline">← Back</button>
-            <h2 className="text-lg font-semibold text-ink-900">{list.title}</h2>
+            <button onClick={() => { setList(null); loadLists(); }} className="text-rempah-500 text-sm font-medium hover:underline">← Back</button>
+            <h2 className="text-lg font-semibold text-kuali-950">{list.title}</h2>
             <div className="flex gap-2">
               {["draft", "generated", "reviewed"].includes(list.status) && (
                 <button onClick={activate} className="bg-context-positive text-context-positive-dark text-xs px-3 py-1 rounded font-medium hover:opacity-80">Activate</button>
               )}
               {list.status === "active" && (
-                <button onClick={complete} className="bg-action-primary text-white-000 text-xs px-3 py-1 rounded font-medium hover:bg-action-dark">Complete</button>
+                <button onClick={complete} className="bg-rempah-500 text-white-000 text-xs px-3 py-1 rounded font-medium hover:bg-rempah-700">Complete</button>
               )}
             </div>
           </div>
@@ -142,25 +142,25 @@ export default function ShoppingPage() {
             <input id="shop-item-qty" type="number" placeholder="Qty" value={itemQty} onChange={e => setItemQty(e.target.value)} className="w-16" min="1" />
             <label htmlFor="shop-item-unit" className="sr-only">Unit</label>
             <input id="shop-item-unit" type="text" placeholder="Unit" value={itemUnit} onChange={e => setItemUnit(e.target.value)} className="w-16" />
-            <button type="submit" className="bg-action-primary text-white-000 px-3 py-2 rounded-lg text-sm font-medium hover:bg-action-dark focus:outline-none focus:ring-2 focus:ring-action-primary/50">Add</button>
+            <button type="submit" className="bg-rempah-500 text-white-000 px-3 py-2 rounded-lg text-sm font-medium hover:bg-rempah-700 focus:outline-none focus:ring-2 focus:ring-rempah-500/50">Add</button>
           </form>
 
           {loading && <ListSkeleton count={3} />}
 
           {!loading && items.length === 0 && (
-            <div className="text-center py-8 text-ink-700 bg-white-000 border border-steel-200 rounded-lg">
+            <div className="text-center py-8 text-kuali-700 bg-white border border-bambu-200 rounded-lg">
               <p className="text-sm">List is empty. Add items above.</p>
             </div>
           )}
 
           <div className="space-y-1" role="list">
             {items.map(item => (
-              <div key={item.id} onClick={() => toggleItem(item)} className={`bg-white-000 border rounded-lg p-3 flex justify-between items-center cursor-pointer transition-colors ${item.status === "completed" ? "border-steel-200 opacity-50" : "border-steel-200 hover:border-action-primary/30"}`} role="listitem" aria-label={`${item.ingredient_name} — ${item.status}`}>
+              <div key={item.id} onClick={() => toggleItem(item)} className={`bg-white border rounded-lg p-3 flex justify-between items-center cursor-pointer transition-colors ${item.status === "completed" ? "border-bambu-200 opacity-50" : "border-bambu-200 hover:border-rempah-500/30"}`} role="listitem" aria-label={`${item.ingredient_name} — ${item.status}`}>
                 <div className="flex items-center gap-2">
-                  <span className={`text-sm ${item.status === "completed" ? "text-context-positive-dark line-through" : "text-ink-900"}`}>{item.ingredient_name}</span>
-                  <span className="text-xs text-steel-400">{item.quantity} {item.unit}</span>
+                  <span className={`text-sm ${item.status === "completed" ? "text-context-positive-dark line-through" : "text-kuali-950"}`}>{item.ingredient_name}</span>
+                  <span className="text-xs text-bambu-300">{item.quantity} {item.unit}</span>
                 </div>
-                <span className="text-xs text-steel-400">{item.status}</span>
+                <span className="text-xs text-bambu-300">{item.status}</span>
               </div>
             ))}
           </div>

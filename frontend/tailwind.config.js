@@ -4,17 +4,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        ink: { 950: "#101A2B", 900: "#17243A", 700: "#3D4B63" },
-        steel: { 400: "#8793A5", 200: "#D5DAE1" },
-        paper: { "050": "#F4F1E8", "000": "#FFFEFA" },
-        white: { "000": "#FFFFFF" },
-        action: { primary: "#F45B3C", dark: "#A52F1C" },
-        context: { positive: "#A7D46F", "positive-dark": "#5D7D36", attention: "#F3C969", "attention-dark": "#765816" },
-        feedback: { error: "#D64545", info: "#4C82C3" },
+        kuali: { 950: "#1a1410", 700: "#3d362e", 500: "#4a3f35" },
+        rempah: { 500: "#c75b2a", 400: "#e06a35", 700: "#8b3a1a" },
+        santan: { "050": "#fef9f0", "100": "#faf3e6", "200": "#f0e6d3" },
+        daun: { 600: "#3d5c3a", 400: "#5a8255" },
+        bambu: { 200: "#e8e0d2", 300: "#d4c9b5" },
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
+        display: ['"Playfair Display"', "Georgia", "serif"],
+        sans: ['"DM Sans"', "system-ui", "sans-serif"],
+        mono: ['"JetBrains Mono"', "monospace"],
       },
     },
   },

@@ -25,8 +25,8 @@ export default function PantryPage() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-xl font-bold text-ink-900" id="pantry-title">Pantry</h1>
-        <button onClick={() => setShowAdd(!showAdd)} className="bg-action-primary text-white-000 px-4 py-2 rounded-lg text-sm font-medium hover:bg-action-dark transition-colors focus:outline-none focus:ring-2 focus:ring-action-primary/50" aria-label={showAdd ? "Cancel" : "Add item"}>
+        <h1 className="text-xl font-bold text-kuali-950" id="pantry-title">Pantry</h1>
+        <button onClick={() => setShowAdd(!showAdd)} className="bg-rempah-500 text-white-000 px-4 py-2 rounded-lg text-sm font-medium hover:bg-rempah-700 transition-colors focus:outline-none focus:ring-2 focus:ring-rempah-500/50" aria-label={showAdd ? "Cancel" : "Add item"}>
           {showAdd ? "Cancel" : "+ Add item"}
         </button>
       </div>
@@ -34,20 +34,20 @@ export default function PantryPage() {
       {showAdd && <AddItemForm onAdded={() => { setShowAdd(false); toast("success", "Item added"); load(); }} existingNames={items.map(i => i.ingredient_name)} />}
 
       {loading ? <ListSkeleton count={4} /> : items.length === 0 && !showAdd ? (
-        <div className="text-center py-8 text-ink-700">
+        <div className="text-center py-8 text-kuali-700">
           <p className="text-lg">No ingredients yet.</p>
-          <p className="text-sm text-steel-400 mt-1">Add your first ingredient above.</p>
+          <p className="text-sm text-bambu-300 mt-1">Add your first ingredient above.</p>
         </div>
       ) : (
         <div className="grid gap-2" role="list" aria-labelledby="pantry-title">
           {items.map(item => (
-            <div key={item.id} className="bg-white-000 border border-steel-200 rounded-lg p-3 flex justify-between items-center" role="listitem">
+            <div key={item.id} className="bg-white border border-bambu-200 rounded-lg p-3 flex justify-between items-center" role="listitem">
               <div>
-                <p className="font-medium text-ink-900">{item.ingredient_name}</p>
-                <p className="text-xs text-ink-700">{item.quantity} {item.unit} · {item.category}</p>
+                <p className="font-medium text-kuali-950">{item.ingredient_name}</p>
+                <p className="text-xs text-kuali-700">{item.quantity} {item.unit} · {item.category}</p>
               </div>
               <div className="flex items-center gap-2">
-                {item.expiry_date && <span className="text-xs text-steel-400">{item.expiry_date}</span>}
+                {item.expiry_date && <span className="text-xs text-bambu-300">{item.expiry_date}</span>}
                 <span className={`text-xs px-2 py-0.5 rounded ${item.status === "expiring_soon" ? "bg-context-attention/20 text-context-attention-dark" : item.status === "running_low" ? "bg-feedback-info/10 text-feedback-info" : "bg-context-positive/20 text-context-positive-dark"}`}>{item.status}</span>
               </div>
             </div>
@@ -88,7 +88,7 @@ function AddItemForm({ onAdded, existingNames }: { onAdded: () => void; existing
   };
 
   return (
-    <form onSubmit={submit} className="bg-white-000 border border-steel-200 rounded-lg p-4 space-y-3" aria-label="Add pantry item">
+    <form onSubmit={submit} className="bg-white border border-bambu-200 rounded-lg p-4 space-y-3" aria-label="Add pantry item">
       <label htmlFor="ingredient-name" className="sr-only">Ingredient name</label>
       <input id="ingredient-name" type="text" placeholder="Ingredient name" value={name} onChange={e => handleNameChange(e.target.value)} required className="w-full" />
       {duplicate && <p className="text-context-attention-dark text-xs">This item may already be in your pantry.</p>}
@@ -102,7 +102,7 @@ function AddItemForm({ onAdded, existingNames }: { onAdded: () => void; existing
       </div>
       <label htmlFor="expiry" className="sr-only">Expiry date</label>
       <input id="expiry" type="date" value={expiry} onChange={e => setExpiry(e.target.value)} className="w-full" />
-      <button type="submit" className="bg-action-primary text-white-000 px-4 py-2 rounded-lg text-sm font-medium hover:bg-action-dark transition-colors focus:outline-none focus:ring-2 focus:ring-action-primary/50">
+      <button type="submit" className="bg-rempah-500 text-white-000 px-4 py-2 rounded-lg text-sm font-medium hover:bg-rempah-700 transition-colors focus:outline-none focus:ring-2 focus:ring-rempah-500/50">
         Save
       </button>
     </form>

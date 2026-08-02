@@ -47,12 +47,12 @@ export default function TodayPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-xl font-bold text-ink-900">Today</h1>
+      <h1 className="text-xl font-bold text-kuali-950">Today</h1>
 
       {!loadingData && loadError && (
-        <div className="text-center py-4 text-ink-700 bg-white-000 border border-steel-200 rounded-xl">
+        <div className="text-center py-4 text-kuali-700 bg-white border border-bambu-200 rounded-xl">
           <p className="text-sm">Failed to load pantry data.</p>
-          <button onClick={loadData} className="mt-2 text-action-primary text-sm font-medium hover:underline">Retry</button>
+          <button onClick={loadData} className="mt-2 text-rempah-500 text-sm font-medium hover:underline">Retry</button>
         </div>
       )}
 
@@ -70,13 +70,13 @@ export default function TodayPage() {
 
       {loadingData && expiring.length === 0 ? <ListSkeleton count={2} /> : expiring.length > 0 && (
         <section>
-          <h2 className="font-semibold text-ink-900 mb-3">Expiring soon</h2>
+          <h2 className="font-semibold text-kuali-950 mb-3">Expiring soon</h2>
           <div className="space-y-2">
             {expiring.map(item => (
-              <div key={item.id} className="bg-white-000 border border-steel-200 rounded-lg p-3 flex justify-between items-center">
+              <div key={item.id} className="bg-white border border-bambu-200 rounded-lg p-3 flex justify-between items-center">
                 <div>
-                  <p className="font-medium text-ink-900">{item.ingredient_name}</p>
-                  <p className="text-sm text-ink-700">{item.quantity} {item.unit}</p>
+                  <p className="font-medium text-kuali-950">{item.ingredient_name}</p>
+                  <p className="text-sm text-kuali-700">{item.quantity} {item.unit}</p>
                 </div>
                 {item.expiry_date && <span className="text-xs text-context-attention-dark bg-context-attention/20 px-2 py-1 rounded">{item.expiry_date}</span>}
               </div>
@@ -86,23 +86,23 @@ export default function TodayPage() {
       )}
 
       {!loadingData && summary && summary.total_items === 0 && (
-        <div className="text-center py-8 text-ink-700">
+        <div className="text-center py-8 text-kuali-700">
           <p className="text-lg">Pantry kamu kosong.</p>
-          <p className="text-sm text-steel-400 mt-1">Add ingredients to get started.</p>
+          <p className="text-sm text-bambu-300 mt-1">Add ingredients to get started.</p>
         </div>
       )}
 
-      <section className="bg-ink-900 text-white-000 rounded-xl p-5 space-y-4" aria-labelledby="analysis-title">
+      <section className="bg-kuali-700 text-white-000 rounded-xl p-5 space-y-4" aria-labelledby="analysis-title">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <h2 id="analysis-title" className="font-semibold">Kitchen read</h2>
-            <p className="text-sm text-steel-200 mt-1">See what to use first from your pantry.</p>
+            <p className="text-sm text-bambu-200 mt-1">See what to use first from your pantry.</p>
           </div>
           <button
             type="button"
             onClick={analyzePantry}
             disabled={analysisLoading}
-            className="bg-action-primary text-white-000 px-4 py-2 rounded-lg text-sm font-medium hover:bg-action-dark disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-action-primary/50"
+            className="bg-rempah-500 text-white-000 px-4 py-2 rounded-lg text-sm font-medium hover:bg-rempah-700 disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-rempah-500/50"
           >
             {analysisLoading ? "Analyzing..." : "Analyze pantry"}
           </button>
@@ -110,7 +110,7 @@ export default function TodayPage() {
 
         {analysisError && <p role="alert" className="text-sm text-red-200">{analysisError}</p>}
         {analysis && analysis.use_first_opportunities.length === 0 && analysis.optimization_suggestions.length === 0 && (
-          <p className="text-sm text-steel-200">No suggestions yet. Add pantry items or try again when AI is available.</p>
+          <p className="text-sm text-bambu-200">No suggestions yet. Add pantry items or try again when AI is available.</p>
         )}
         {analysis && analysis.use_first_opportunities.length > 0 && (
           <div>
@@ -119,7 +119,7 @@ export default function TodayPage() {
               {analysis.use_first_opportunities.map(item => (
                 <li key={item.pantry_item_id} className="text-sm">
                   <span className="font-medium">{item.ingredient_name}</span>
-                  <span className="text-steel-200"> · {item.reason}</span>
+                  <span className="text-bambu-200"> · {item.reason}</span>
                 </li>
               ))}
             </ul>
@@ -132,7 +132,7 @@ export default function TodayPage() {
               {analysis.optimization_suggestions.map((suggestion, index) => (
                 <li key={`${suggestion.title}-${index}`} className="text-sm">
                   <span className="font-medium">{suggestion.title}</span>
-                  <span className="text-steel-200"> · {suggestion.description}</span>
+                  <span className="text-bambu-200"> · {suggestion.description}</span>
                 </li>
               ))}
             </ul>
@@ -144,11 +144,11 @@ export default function TodayPage() {
 }
 
 function StatCard({ label, value, color }: { label: string; value: number | string; color: string }) {
-  const colors: Record<string, string> = { ink: "bg-ink-900", attention: "bg-context-attention", info: "bg-feedback-info" };
+  const colors: Record<string, string> = { ink: "bg-kuali-700", attention: "bg-context-attention", info: "bg-feedback-info" };
   return (
-    <div className="bg-white-000 border border-steel-200 rounded-xl p-4">
-      <p className="text-sm text-ink-700">{label}</p>
-      <p className={`text-3xl font-bold mt-1 ${color === "ink" ? "text-ink-900" : color === "attention" ? "text-context-attention-dark" : "text-feedback-info"}`}>{value}</p>
+    <div className="bg-white border border-bambu-200 rounded-xl p-4">
+      <p className="text-sm text-kuali-700">{label}</p>
+      <p className={`text-3xl font-bold mt-1 ${color === "ink" ? "text-kuali-950" : color === "attention" ? "text-context-attention-dark" : "text-feedback-info"}`}>{value}</p>
     </div>
   );
 }

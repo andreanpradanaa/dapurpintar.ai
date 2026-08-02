@@ -1,10 +1,10 @@
 export function Skeleton({ className = "" }: { className?: string }) {
-  return <div className={`animate-pulse bg-steel-200 rounded ${className}`} />;
+  return <div className={`animate-pulse bg-bambu-200 rounded ${className}`} />;
 }
 
 export function CardSkeleton() {
   return (
-    <div className="bg-white-000 border border-steel-200 rounded-lg p-4 space-y-3">
+    <div className="bg-white border border-bambu-200 rounded-lg p-4 space-y-3">
       <Skeleton className="h-5 w-3/4" />
       <Skeleton className="h-4 w-1/2" />
       <Skeleton className="h-3 w-full" />
@@ -24,7 +24,7 @@ export function ListSkeleton({ count = 3 }: { count?: number }) {
 
 export function StatSkeleton() {
   return (
-    <div className="bg-white-000 border border-steel-200 rounded-xl p-4 space-y-2">
+    <div className="bg-white border border-bambu-200 rounded-xl p-4 space-y-2">
       <Skeleton className="h-4 w-1/2" />
       <Skeleton className="h-8 w-1/3" />
     </div>
