@@ -4,10 +4,10 @@
 
 | Item | Status |
 |---|---|
-| Current milestone | M6 - API Design |
-| Current deliverable | M6-003 Contract Tests and Compatibility Policy |
+| Current milestone | M7 - Backend Foundation |
+| Current deliverable | M7-001 Go/Fiber Backend Foundation |
 | Current status | In Review |
-| Next action | Review M6 deliverables, then start M7 Backend Foundation (DP-FND-001) |
+| Next action | Review M7 foundation, then start M8 AI Foundation (DP-AI-001) |
 | Next implementation milestone | M10 - Frontend Development |
 
 Milestone approval tetap mengikuti proses review. Artifact yang sudah dibuat tidak otomatis berarti milestone telah disetujui atau ditutup.
@@ -23,6 +23,7 @@ Milestone approval tetap mengikuti proses review. Artifact yang sudah dibuat tid
 | M4 | Solution Architecture | Architecture refinement and implementation preparation | In Review |
 | M5 | Database Design | Schema, migrations, indexes, constraints, query design | In Review |
 | M6 | API Design | Detailed schemas, OpenAPI, contract validation | In Review |
+| M7 | Backend Foundation | Go, Fiber, Clean Architecture, module scaffolding | In Review |
 | M6 | API Design | Detailed schemas, OpenAPI, contract validation | Planned |
 | M7 | Backend Foundation | Go, Fiber, Clean Architecture, module scaffolding | Planned |
 | M8 | AI Foundation | AI Gateway implementation, prompts, evaluation foundation | Planned |
@@ -157,7 +158,13 @@ Scope:
 
 ## M7 - Backend Foundation
 
-Status: **Planned**
+Status: **In Review**
+
+| ID | Deliverable | Artifact | Status |
+|---|---|---|---|
+| M7-001 | Go/Fiber Backend Foundation | `backend/`, `docs/backend/m7-signoff.md` | In Review |
+
+Scope:
 
 - Go module and Fiber application.
 - Clean Architecture and module structure.

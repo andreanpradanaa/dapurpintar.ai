@@ -27,7 +27,7 @@ make docker-down
 make docker-logs
 
 Documentation
--------------
+--------------
 make docs
 
 OpenCode
@@ -40,3 +40,23 @@ Utilities
 make help
 
 make prompt
+
+# --- Backend targets ---------------------------------------------------------
+BACKEND_DIR := backend
+
+.PHONY: run build test lint fmt
+
+run:
+	cd $(BACKEND_DIR) && go run ./cmd/api
+
+build:
+	cd $(BACKEND_DIR) && go build ./...
+
+test:
+	cd $(BACKEND_DIR) && go test -race ./...
+
+lint:
+	cd $(BACKEND_DIR) && go vet ./...
+
+fmt:
+	cd $(BACKEND_DIR) && gofmt -w .

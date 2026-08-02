@@ -5,8 +5,8 @@
 - Cara membaca roadmap
 
 ## Current Status
-- Current Milestone: M6 - API Design
-- Progress: M6-003 Contract Tests and Compatibility Policy - In Review
+- Current Milestone: M7 - Backend Foundation
+- Progress: M7-001 Go/Fiber Backend Foundation - In Review
 
 ## Milestone 0
 - Foundation
@@ -48,6 +48,7 @@
 
 ## Milestone 7
 - Backend Foundation
+- M7-001 Go/Fiber Backend Foundation in review
 
 ## Milestone 8
 - AI Foundation
