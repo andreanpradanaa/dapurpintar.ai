@@ -6,7 +6,7 @@
 
 ## Current Status
 - Current Milestone: M8 - AI Foundation
-- Progress: M4-005 M8 Blocking Decision Records - In Review (blocks DP-AI-001..003)
+- Progress: M8-001 AI Gateway and OpenAI Adapter - In Review
 
 ## Milestone 0
 - Foundation
@@ -53,7 +53,7 @@
 
 ## Milestone 8
 - AI Foundation
-- M8-001 AI Gateway and OpenAI Adapter planned
+- M8-001 AI Gateway and OpenAI Adapter in review
 - M8-002 Prompt and Policy Versioning planned
 - M8-003 AI Evaluation Harness planned
 

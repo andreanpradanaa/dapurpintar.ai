@@ -10,9 +10,9 @@
 - **Project Name:** DapurPintar AI
 - **Project Type:** AI-powered Kitchen Management SaaS
 - **Current Phase:** Implementation
-- **Current Milestone:** M8 - AI Foundation (blocked by M4-DEC-010/011/012/016)
-- **Progress:** M4-005 M8 Blocking Decision Records - In Review
-- **Next:** DP-AI-001..003 (AI Gateway, prompt/policy versioning, evaluation harness) after decision approval
+- **Current Milestone:** M8 - AI Foundation
+- **Progress:** M8-001 AI Gateway and OpenAI Adapter - In Review
+- **Next:** M8-002 prompt/policy versioning, then M8-003 evaluation harness
 
 ---
 

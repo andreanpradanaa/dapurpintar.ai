@@ -57,13 +57,13 @@ These decisions should not be reopened during implementation without a new ADR o
 | M4-DEC-007 | MVP timezone policy | Product + Backend | M5 | Pending | Meal dates, expiry, and daily views may disagree |
 | M4-DEC-008 | Detailed API request/response schemas | API + Backend + Frontend | M6 | Pending | Client and server contract cannot be implemented reliably |
 | M4-DEC-009 | Public recipe access boundary | Product + Security | M6 | Pending | Public and authenticated UI/API behavior may diverge |
-| M4-DEC-010 | Initial OpenAI model and capability profile | AI Engineering + Product | M8 | Pending | Latency, cost, output, and evaluation targets remain uncertain |
-| M4-DEC-011 | Prompt, safety, and structured-output revisions | AI Engineering + Security | M8 | Pending | AI implementation cannot pass reliable safety and quality gates |
-| M4-DEC-012 | AI evaluation dataset and acceptance rubric | AI Engineering + Product | M8 | Pending | Recommendation quality cannot be measured consistently |
+| M4-DEC-010 | Initial OpenAI model and capability profile | AI Engineering + Product | M8 | Decided | Latency, cost, output, and evaluation targets remain uncertain |
+| M4-DEC-011 | Prompt, safety, and structured-output revisions | AI Engineering + Security | M8 | Decided | AI implementation cannot pass reliable safety and quality gates |
+| M4-DEC-012 | AI evaluation dataset and acceptance rubric | AI Engineering + Product | M8 | Decided | Recommendation quality cannot be measured consistently |
 | M4-DEC-013 | Raw prompt and conversation retention policy | Product + Security | M8/M15 | Pending | Privacy and reproducibility tradeoff remains unresolved |
 | M4-DEC-014 | Hosting provider and production environment | DevOps + Product | M15 | Pending | Deployment, secrets, and recovery cannot be finalized |
 | M4-DEC-015 | Production RPO and RTO | DevOps + Product | M15 | Pending | Backup and recovery readiness cannot be approved |
-| M4-DEC-016 | AI quota and cost budget | Product + Finance + AI | M8/M15 | Pending | Cost exhaustion and plan limits remain uncontrolled |
+| M4-DEC-016 | AI quota and cost budget | Product + Finance + AI | M8/M15 | Decided | Cost exhaustion and plan limits remain uncontrolled |
 | M4-DEC-017 | Incident response owners and runbooks | DevOps + Security + QA | M15 | Pending | Production failures lack accountable response |
 | M4-DEC-018 | Today default after onboarding | Product + Design | M3 validation | Validating | First-session flow may be revised |
 | M4-DEC-019 | Indonesian wording for option acceptance | Product + Design + Research | M3 validation | Validating | Users may misunderstand commitment boundaries |
@@ -152,6 +152,10 @@ The following are safe working assumptions for planning only. They are not final
 - Raw prompts and conversations should be minimized and retained only where evaluation or product value justifies it.
 - RPO and RTO should be based on tested restore behavior rather than an aspirational target.
 - UX wording and Planner layout should be validated with representative users before frontend lock-in.
+
+## Recently Decided
+
+- M4-DEC-010, M4-DEC-011, M4-DEC-012, M4-DEC-016 were approved via `docs/architecture/m8-blocking-decisions.md` (M4-005). Recommended directions: fixed default model profile with versioned alternatives; versioned prompt/safety/structured-output pipeline with layered validation; privacy-safe evaluation dataset with published rubric and pass gates; explicit per-user and global AI budgets with enforced limits and alerts.
 
 ## Review Protocol
 

@@ -38,6 +38,6 @@
 
 - M0, M1: Complete.
 - M2–M7: In Review (M7 Backend Foundation).
-- Current milestone: M8 AI Foundation.
-- Deliverable saat ini: M4-005 M8 Blocking Decision Records (In Review).
-- Berikutnya: DP-AI-001..003, diblokir oleh M4-DEC-010/011/012/016 (`docs/architecture/m8-blocking-decisions.md`).
+- Current milestone: M8 AI Foundation (M4-DEC-010/011/012/016 approved).
+- Deliverable saat ini: M8-001 AI Gateway + OpenAI Adapter (In Review).
+- Berikutnya: M8-002 prompt/policy versioning, lalu M8-003 evaluation harness.

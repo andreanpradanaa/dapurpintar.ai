@@ -7,6 +7,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/ai/openai"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/auth"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/config"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/http"
@@ -53,6 +54,24 @@ func main() {
 	if err != nil {
 		log.Error("token manager setup failed", "error", err)
 		os.Exit(1)
+	}
+
+	// The AI Gateway is an optional dependency (docs/architecture/ai-architecture.md).
+	// When AI is not configured, core non-AI operations remain fully usable and
+	// AI features fail closed with a bounded unavailable error.
+	if cfg.AIProvider != "" {
+		adapter, err := openai.New(openai.Config{
+			APIKey:     cfg.AIAPIKey,
+			Timeout:    cfg.AITimeout,
+			MaxRetries: cfg.AIMaxRetries,
+			Log:        log,
+		})
+		if err != nil {
+			log.Error("ai gateway setup failed", "error", err)
+			os.Exit(1)
+		}
+		log.Info("ai gateway configured", "provider", cfg.AIProvider, "model", cfg.AIModel)
+		_ = adapter
 	}
 
 	server := http.New(&cfg, log, tokens)
