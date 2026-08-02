@@ -31,6 +31,10 @@ export type MealPlan = { id: string; title: string; period_start: string; period
 export type PlannedMeal = { id: string; meal_plan_id: string; meal_date: string; meal_occasion: string; recipe_id?: string; recommendation_option_id?: string; status: string };
 export type ShoppingList = { id: string; title: string; status: string; item_counts: { open: number; completed: number }; created_at: string };
 export type ShoppingItem = { id: string; shopping_list_id: string; ingredient_name: string; quantity: number; unit: string; source: string; status: string };
+export type PantryAnalysis = {
+  use_first_opportunities: { pantry_item_id: string; ingredient_name: string; reason: string }[];
+  optimization_suggestions: { title: string; description: string }[];
+};
 
 export const api = {
   // Auth
@@ -55,6 +59,7 @@ export const api = {
     request<{ data: PantryItem }>("/pantry/items", { method: "POST", body }),
   expiringItems: (cursor?: string) =>
     request<Collection<PantryItem>>(`/pantry/expiry?limit=20&cursor=${cursor || ""}`),
+  analyzePantry: () => request<{ data: PantryAnalysis }>("/ai/pantry-analysis", { method: "POST" }),
 
   // Recipes
   recipes: (q?: string, cursor?: string) =>
