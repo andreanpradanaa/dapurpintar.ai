@@ -3,6 +3,7 @@ import { AuthProvider } from "@/lib/auth";
 import { ToastProvider } from "@/lib/toast";
 import { NetworkProvider } from "@/lib/network";
 import Shell from "@/components/shell";
+import { ErrorBoundary } from "@/components/error-boundary";
 import "./globals.css";
 
 export const metadata: Metadata = { title: "DapurPintar AI", description: "Decide dinner with what you have." };
@@ -14,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <NetworkProvider>
           <ToastProvider>
             <AuthProvider>
-              <Shell>{children}</Shell>
+              <Shell><ErrorBoundary>{children}</ErrorBoundary></Shell>
             </AuthProvider>
           </ToastProvider>
         </NetworkProvider>
