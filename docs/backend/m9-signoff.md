@@ -5,7 +5,7 @@
 | Item | Value |
 |---|---|
 | Milestone | M9 - MVP Features |
-| Deliverables | M9-001 Identity, M9-002 Pantry, M9-003 Recipes, M9-004 Meal Plans, M9-005 Shopping |
+| Deliverables | M9-001 Identity, M9-002 Pantry, M9-003 Recipes, M9-004 Meal Plans, M9-005 Shopping, M9-006 Recommendations |
 | Status | Ready for review |
 | Parent documents | `docs/architecture/m4-decision-register.md`, `docs/architecture/authentication-authorization.md`, `docs/api/m6-api-contract.md`, `docs/database/m5-schema.md` |
 
@@ -244,3 +244,19 @@ DP-FEAT-004 is complete when:
 ### Exit Criteria
 
 DP-FEAT-005 complete when all 14 endpoints return M6 schemas with lifecycle state guards and stable error codes.
+
+---
+
+## DP-FEAT-006 Kitchen Recommendation
+
+### Deliverables
+
+- Migration 00003: add `purpose` column to `kitchen_recommendations`.
+- 8 SQLC queries, 7 HTTP endpoints, state machine (requested→created→presented→accepted/rejected/superseded) with option acceptance guards.
+- 3 integration tests: CRUD, option management, state guards (cannot present requested, cannot supersede rejected).
+
+## Verified
+
+- `go build ./...`, `go vet ./...`, `gofmt -l .` clean.
+- 11 test packages pass (27 integration tests total).
+- AI Gateway integration deferred: recommendations are created with "requested" status; full AI processing wired in a future slice.
