@@ -1,6 +1,6 @@
 ---
-document_id: M1-003
-title: Problem Statement
+document_id: M1-004
+title: Target Users
 owner: Product Manager
 status: Draft
 version: 1.0.0
@@ -8,236 +8,322 @@ last_updated: 2026-08-02
 related_documents:
   - product-vision.md
   - product-mission.md
-  - target-users.md
+  - problem-statement.md
   - user-personas.md
-  - value-proposition.md
 ---
 
-# Problem Statement
+# Target Users
 
 ## Overview
 
 ### Purpose
 
-Dokumen ini menjelaskan permasalahan utama yang ingin diselesaikan oleh DapurPintar AI. Problem Statement menjadi dasar dalam menentukan arah pengembangan produk, prioritas fitur, dan keputusan bisnis.
+Dokumen ini mendefinisikan target pengguna DapurPintar AI secara terstruktur untuk memastikan seluruh keputusan produk, desain, pemasaran, dan pengembangan fitur selalu berpusat pada kebutuhan pengguna.
 
-Seluruh fitur yang dikembangkan harus mampu memberikan solusi terhadap masalah yang dijelaskan dalam dokumen ini.
-
----
-
-## Executive Summary
-
-Memasak merupakan aktivitas sehari-hari bagi jutaan rumah tangga. Namun proses sebelum memasak sering kali lebih sulit dibandingkan memasaknya sendiri.
-
-Pengguna harus menentukan menu, mengecek stok bahan makanan, membuat daftar belanja, mencari resep, menghitung kebutuhan nutrisi, hingga memastikan bahan makanan tidak terbuang.
-
-Saat ini proses tersebut masih dilakukan menggunakan banyak aplikasi yang tidak saling terhubung.
-
-DapurPintar AI hadir sebagai AI Kitchen Assistant yang menyatukan seluruh proses tersebut ke dalam satu platform yang cerdas dan personal.
+Dokumen ini akan menjadi referensi utama dalam penyusunan User Persona, UX Design, Feature Prioritization, Pricing Strategy, hingga Marketing Strategy.
 
 ---
 
-# Problem Background
+# Target Market Summary
 
-Perubahan gaya hidup modern menyebabkan semakin banyak keluarga mengalami kesulitan dalam mengelola aktivitas dapur.
+DapurPintar AI ditujukan bagi individu dan keluarga yang ingin mengelola aktivitas memasak dengan lebih mudah, efisien, sehat, dan hemat melalui bantuan Artificial Intelligence.
 
-Beberapa faktor yang memengaruhi antara lain:
-
-- Waktu memasak yang semakin terbatas.
-- Kesibukan pekerjaan.
-- Kurangnya perencanaan makanan.
-- Pembelian bahan makanan secara impulsif.
-- Sulit menjaga pola makan sehat.
-- Banyaknya bahan makanan yang terbuang.
-
-Walaupun informasi resep sangat mudah ditemukan di internet, pengguna tetap harus melakukan banyak pekerjaan secara manual sebelum dapat mulai memasak.
+Fokus utama produk bukan hanya menyediakan resep, tetapi menjadi AI Kitchen Companion yang memahami kondisi setiap pengguna.
 
 ---
 
-# Current Problems
+# Market Segmentation
 
-## 1. Daily Meal Decision Fatigue
+## Geographic Segmentation
 
-### Description
+### Phase 1
 
-Banyak orang menghabiskan waktu setiap hari hanya untuk menjawab pertanyaan sederhana:
+Indonesia
 
-> "Hari ini masak apa?"
+Alasan:
 
-Keputusan ini diulang setiap hari dan sering menimbulkan kebingungan.
-
-### Impact
-
-- Waktu terbuang.
-- Stres menentukan menu.
-- Menu menjadi monoton.
+- Pasar besar
+- Budaya memasak di rumah masih tinggi
+- Banyak variasi masakan lokal
+- Potensi digitalisasi rumah tangga terus meningkat
 
 ---
 
-## 2. Pantry Visibility
+### Phase 2
 
-### Description
+- Malaysia
+- Singapore
 
-Pengguna tidak mengetahui bahan makanan apa yang masih tersedia di rumah.
+Karena memiliki:
 
-Akibatnya mereka:
-
-- membeli bahan yang sudah ada,
-- lupa menggunakan bahan yang hampir kedaluwarsa,
-- atau tidak sadar bahwa mereka sebenarnya sudah memiliki semua bahan untuk memasak.
-
-### Impact
-
-- Belanja berlebihan.
-- Food waste meningkat.
-- Pengeluaran rumah tangga bertambah.
+- budaya makanan yang mirip
+- penetrasi internet tinggi
+- daya beli lebih baik
 
 ---
 
-## 3. Fragmented User Experience
+### Phase 3
 
-Saat ini pengguna menggunakan banyak aplikasi berbeda.
-
-Contoh:
-
-- Google untuk mencari resep.
-- YouTube untuk melihat tutorial.
-- Catatan untuk daftar belanja.
-- Spreadsheet untuk meal planning.
-- ChatGPT untuk bertanya resep.
-- Kalender untuk mengatur jadwal.
-
-Semua aplikasi tersebut berdiri sendiri.
-
-Tidak ada platform yang menghubungkan seluruh aktivitas dapur.
+- Southeast Asia
+- Global Market
 
 ---
 
-## 4. Generic Recommendations
+## Demographic Segmentation
 
-Sebagian besar aplikasi hanya memberikan rekomendasi resep populer.
+### Primary Age
 
-Rekomendasi tersebut tidak mempertimbangkan:
+25–45 Tahun
 
-- stok bahan pengguna,
-- alergi,
-- preferensi makanan,
-- tujuan diet,
-- anggaran,
-- waktu memasak.
+Karakteristik:
 
-Akibatnya rekomendasi sering tidak relevan.
+- Sudah bekerja
+- Memiliki penghasilan tetap
+- Bertanggung jawab terhadap konsumsi rumah tangga
+- Aktif menggunakan smartphone
 
 ---
 
-## 5. Poor Nutrition Planning
+### Secondary Age
 
-Banyak keluarga ingin hidup lebih sehat tetapi tidak tahu bagaimana menyusun meal plan yang seimbang.
+18–24 Tahun
 
-Mereka membutuhkan panduan yang sederhana namun personal.
+Karakteristik:
 
----
-
-## 6. Food Waste
-
-Sebagian besar rumah tangga pernah mengalami:
-
-- sayur membusuk,
-- buah kedaluwarsa,
-- bumbu tidak pernah dipakai,
-- makanan tersisa yang akhirnya dibuang.
-
-Masalah ini berdampak pada:
-
-- biaya,
-- lingkungan,
-- efisiensi rumah tangga.
+- Mahasiswa
+- Anak kos
+- Baru belajar memasak
+- Budget terbatas
 
 ---
 
-# Root Cause Analysis
+### Household Size
 
-| Problem | Root Cause |
-|----------|------------|
-| Bingung memilih menu | Tidak ada rekomendasi yang personal |
-| Belanja berlebihan | Tidak mengetahui stok pantry |
-| Food waste | Tidak ada pengingat penggunaan bahan |
-| Sulit diet | Tidak ada meal planning |
-| Banyak aplikasi | Solusi masih terpisah |
-| Rekomendasi tidak relevan | AI belum memahami konteks pengguna |
+- Tinggal sendiri
+- Pasangan
+- Keluarga kecil
+- Keluarga besar
 
 ---
 
-# Existing Solutions
+### Income Level
 
-Saat ini pengguna mengandalkan berbagai solusi.
+Primary
 
-| Solution | Strength | Limitation |
-|----------|----------|------------|
-| Google Search | Banyak informasi | Tidak personal |
-| YouTube | Tutorial lengkap | Tidak memahami pantry |
-| Aplikasi Resep | Banyak resep | Tidak mengetahui stok bahan |
-| ChatGPT | Fleksibel | Tidak menyimpan pantry pengguna |
-| Spreadsheet | Fleksibel | Manual |
-| Catatan | Mudah | Tidak otomatis |
+Middle Income
 
-Belum ada solusi yang menggabungkan seluruh kebutuhan pengguna dalam satu ekosistem.
+Secondary
+
+Upper Middle Income
 
 ---
 
-# Opportunity
+# Primary Target Users
 
-Perkembangan AI memungkinkan terciptanya platform yang mampu memahami konteks pengguna secara menyeluruh.
+## Young Families
 
-AI dapat memanfaatkan informasi seperti:
+Karakteristik
 
-- stok pantry,
-- histori memasak,
-- preferensi rasa,
-- tujuan nutrisi,
-- anggaran,
-- waktu memasak,
-- jumlah anggota keluarga.
+- Baru menikah
+- Memiliki anak kecil
+- Mulai mengatur kebutuhan rumah tangga
 
-Dengan informasi tersebut, AI dapat memberikan rekomendasi yang jauh lebih relevan dibandingkan solusi yang tersedia saat ini.
+Pain Points
 
----
+- Bingung menentukan menu
+- Sulit meal planning
+- Belanja berlebihan
 
-# Our Problem Statement
+Goals
 
-> Rumah tangga modern membutuhkan cara yang lebih cerdas untuk mengelola aktivitas memasak sehari-hari. Solusi yang ada masih terfragmentasi, tidak personal, dan belum memanfaatkan AI untuk memahami kondisi nyata pengguna. Akibatnya pengguna mengalami kebingungan menentukan menu, pemborosan bahan makanan, perencanaan belanja yang tidak efisien, dan kesulitan menjaga pola makan sehat.
-
-DapurPintar AI dibangun untuk menyelesaikan masalah tersebut melalui AI Kitchen Assistant yang mampu memahami konteks pengguna dan memberikan rekomendasi yang personal, praktis, dan terintegrasi.
+- Masakan sehat
+- Hemat biaya
+- Mengurangi food waste
 
 ---
 
-# Success Criteria
+## Busy Professionals
 
-Masalah dianggap berhasil diselesaikan apabila:
+Karakteristik
 
-- Pengguna tidak lagi bingung menentukan menu harian.
-- Pengguna mengetahui stok pantry secara real-time.
-- Food waste berkurang.
-- Pengeluaran belanja menjadi lebih efisien.
-- Pengguna lebih sering memasak di rumah.
-- Meal planning menjadi kebiasaan.
-- Pengguna merasa AI benar-benar membantu aktivitas dapur.
+- Waktu memasak terbatas
+- Jadwal padat
+- Ingin tetap memasak sendiri
+
+Pain Points
+
+- Tidak punya waktu mencari resep
+- Tidak sempat merencanakan menu
+
+Goals
+
+- Meal plan otomatis
+- Resep cepat
+- Shopping list instan
 
 ---
 
-# Non Goals
+## Health Conscious Users
+
+Karakteristik
+
+- Sedang diet
+- Gym enthusiast
+- Menjaga nutrisi
+
+Goals
+
+- Nutrisi seimbang
+- Meal prep
+- Kalori terkontrol
+
+---
+
+# Secondary Target Users
+
+## Students
+
+- Tinggal sendiri
+- Budget terbatas
+- Baru belajar memasak
+
+---
+
+## Home Cooks
+
+- Senang mencoba resep baru
+- Aktif memasak
+
+---
+
+## Parents
+
+- Memasak setiap hari
+- Mengatur menu keluarga
+
+---
+
+## Nutritionists
+
+Sebagai alat bantu membuat meal recommendation.
+
+---
+
+# User Needs
+
+Seluruh target pengguna memiliki kebutuhan yang hampir sama.
+
+## Functional Needs
+
+- Menentukan menu
+- Mengelola pantry
+- Shopping list
+- Meal planner
+- Recipe recommendation
+
+---
+
+## Emotional Needs
+
+- Tidak bingung memasak
+- Lebih percaya diri
+- Mengurangi stres
+
+---
+
+## Social Needs
+
+- Memasak bersama keluarga
+- Berbagi meal plan
+- Berbagi resep
+
+---
+
+# User Behaviors
+
+Mayoritas pengguna:
+
+- Menggunakan smartphone setiap hari.
+- Mencari resep melalui Google atau YouTube.
+- Berbelanja mingguan.
+- Menggunakan WhatsApp untuk berbagi daftar belanja.
+- Tidak memiliki pencatatan pantry yang baik.
+
+---
+
+# User Goals
+
+Target pengguna ingin:
+
+- Menghemat waktu.
+- Menghemat uang.
+- Mengurangi food waste.
+- Hidup lebih sehat.
+- Memasak lebih sering di rumah.
+
+---
+
+# User Frustrations
+
+Beberapa frustrasi utama:
+
+- Bingung memilih menu.
+- Kehabisan ide memasak.
+- Belanja terlalu banyak.
+- Makanan sering basi.
+- Terlalu banyak aplikasi yang harus digunakan.
+
+---
+
+# Customer Segments Priority
+
+| Segment | Priority | MVP |
+|----------|---------|-----|
+| Young Families | P0 | ✅ |
+| Busy Professionals | P0 | ✅ |
+| Health Conscious Users | P1 | ✅ |
+| Students | P2 | ❌ |
+| Home Cooks | P2 | ❌ |
+| Nutritionists | P3 | ❌ |
+
+---
+
+# Market Size (High-Level)
+
+Target awal:
+
+- Urban area di Indonesia.
+- Pengguna aktif smartphone.
+- Rumah tangga yang memasak minimal 3 kali per minggu.
+
+Estimasi ukuran pasar akan dianalisis lebih lanjut pada dokumen Business Research.
+
+---
+
+# Assumptions
+
+Dokumen ini dibuat berdasarkan asumsi berikut:
+
+- Pengguna bersedia menggunakan AI dalam aktivitas sehari-hari.
+- Pengguna ingin mengurangi food waste.
+- Pengguna membutuhkan solusi yang sederhana.
+- Smartphone menjadi perangkat utama.
+
+Semua asumsi akan divalidasi melalui riset pengguna pada milestone berikutnya.
+
+---
+
+# Out of Scope
 
 Dokumen ini tidak membahas:
 
-- Solusi teknis.
-- Arsitektur sistem.
-- Database.
-- API.
-- Teknologi AI.
-- UI/UX.
-- Strategi implementasi.
+- User Persona detail
+- Pricing
+- Marketing Strategy
+- UX Journey
+- Feature Design
 
-Semua akan dijelaskan pada dokumen berikutnya.
+Seluruhnya akan dibahas pada dokumen terpisah.
 
 ---
 
@@ -245,8 +331,6 @@ Semua akan dijelaskan pada dokumen berikutnya.
 
 - Product Vision
 - Product Mission
-- Target Users
+- Problem Statement
 - User Personas
 - Value Proposition
-- Product Scope
-- Feature Inventory
