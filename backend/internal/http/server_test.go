@@ -44,7 +44,7 @@ func newTestServer(t *testing.T) *Server {
 	svc := identity.NewService(&stubStore{accounts: map[string]*identity.Account{
 		"account-123": {ID: "account-123", Email: "test@example.com"},
 	}}, tokens)
-	return New(&cfg, log, tokens, svc)
+	return New(&cfg, log, tokens, svc, nil)
 }
 
 func TestHealth(t *testing.T) {

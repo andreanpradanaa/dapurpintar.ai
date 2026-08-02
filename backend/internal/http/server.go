@@ -11,6 +11,7 @@ import (
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/config"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/http/middleware"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/identity"
+	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/pantry"
 	apperr "github.com/andreanpradanaa/dapurpintar.ai/backend/internal/platform/errors"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/platform/response"
 )
@@ -32,12 +33,13 @@ type Handler struct {
 	log              *slog.Logger
 	tokens           *auth.TokenManager
 	identity         *identity.Service
+	pantry           *pantry.Service
 	sessionCookies   middleware.SessionCookies
 	refreshCookieTTL time.Duration
 }
 
 // New builds the Fiber application with global middleware and routes.
-func New(cfg *config.Config, log *slog.Logger, tokens *auth.TokenManager, identityService *identity.Service) *Server {
+func New(cfg *config.Config, log *slog.Logger, tokens *auth.TokenManager, identityService *identity.Service, pantryService *pantry.Service) *Server {
 	app := fiber.New(fiber.Config{
 		AppName:               cfg.AppName,
 		DisableStartupMessage: true,
@@ -65,6 +67,7 @@ func New(cfg *config.Config, log *slog.Logger, tokens *auth.TokenManager, identi
 			log:              log,
 			tokens:           tokens,
 			identity:         identityService,
+			pantry:           pantryService,
 			sessionCookies:   sessionCookies,
 			refreshCookieTTL: tokens.RefreshTTL(),
 		},
@@ -104,6 +107,14 @@ func (s *Server) registerRoutes() {
 	authed.Get("/profile", s.handler.getProfile)
 	authed.Patch("/profile", s.handler.updateProfile)
 	authed.Patch("/profile/preferences", s.handler.updatePreferences)
+
+	authed.Get("/pantry", s.handler.getPantrySummary)
+	authed.Get("/pantry/items", s.handler.listPantryItems)
+	authed.Post("/pantry/items", s.handler.addPantryItem)
+	authed.Get("/pantry/items/:itemId", s.handler.getPantryItem)
+	authed.Patch("/pantry/items/:itemId", s.handler.updatePantryItem)
+	authed.Delete("/pantry/items/:itemId", s.handler.removePantryItem)
+	authed.Get("/pantry/expiry", s.handler.listExpiringItems)
 }
 
 // health reports service liveness without exposing internals.

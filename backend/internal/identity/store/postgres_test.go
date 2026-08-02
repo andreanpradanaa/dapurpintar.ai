@@ -132,25 +132,29 @@ func TestPostgres_SessionLifecycle(t *testing.T) {
 	st := testStore(t)
 	ctx := context.Background()
 
+	sessionFamilyID := fmt.Sprintf("11111111-1111-1111-1111-%012d", time.Now().UnixNano()%1e12)
+	secret1 := fmt.Sprintf("secret-hash-1-%d", time.Now().UnixNano())
+	secret2 := fmt.Sprintf("secret-hash-2-%d", time.Now().UnixNano())
+
 	account, err := st.CreateAccount(ctx, fmt.Sprintf("session-%d@example.com", time.Now().UnixNano()), "hash", identity.AccountActive, "UTC")
 	if err != nil {
 		t.Fatalf("CreateAccount: %v", err)
 	}
 
-	created, err := st.CreateSession(ctx, account.ID, "secret-hash-1", "11111111-1111-1111-1111-111111111111", time.Now().Add(24*time.Hour))
+	created, err := st.CreateSession(ctx, account.ID, secret1, sessionFamilyID, time.Now().Add(24*time.Hour))
 	if err != nil {
 		t.Fatalf("CreateSession: %v", err)
 	}
 
-	got, err := st.GetSessionBySecretHash(ctx, "secret-hash-1")
+	got, err := st.GetSessionBySecretHash(ctx, secret1)
 	if err != nil {
 		t.Fatalf("GetSessionBySecretHash: %v", err)
 	}
-	if got.ID != created.ID || got.FamilyID != "11111111-1111-1111-1111-111111111111" {
+	if got.ID != created.ID || got.FamilyID != sessionFamilyID {
 		t.Fatalf("unexpected session: %+v", got)
 	}
 
-	replacement, err := st.CreateSession(ctx, account.ID, "secret-hash-2", "11111111-1111-1111-1111-111111111111", time.Now().Add(24*time.Hour))
+	replacement, err := st.CreateSession(ctx, account.ID, secret2, sessionFamilyID, time.Now().Add(24*time.Hour))
 	if err != nil {
 		t.Fatalf("CreateSession(replacement): %v", err)
 	}
@@ -171,7 +175,7 @@ func TestPostgres_SessionLifecycle(t *testing.T) {
 		t.Fatalf("RevokeSession did not set revoked_at")
 	}
 
-	if err := st.RevokeSessionFamily(ctx, "11111111-1111-1111-1111-111111111111"); err != nil {
+	if err := st.RevokeSessionFamily(ctx, sessionFamilyID); err != nil {
 		t.Fatalf("RevokeSessionFamily: %v", err)
 	}
 }
