@@ -5,7 +5,7 @@
 | Item | Status |
 |---|---|
 | Current milestone | M4 - Solution Architecture Refinement |
-| Current deliverable | M4-001 Implementation Readiness |
+| Current deliverable | M4-002 Architecture Decision Register |
 | Current status | In Review |
 | Next action | Resolve M2/M3 review gates and prepare M5/M6 contracts |
 | Next implementation milestone | M10 - Frontend Development |
@@ -109,6 +109,7 @@ Prototype:
 Status: **In Review**
 
 - M4-001 Implementation Readiness: `docs/architecture/implementation-readiness.md`
+- M4-002 Architecture Decision Register: `docs/architecture/m4-decision-register.md`
 - Resolve architecture decisions deferred from M2.
 - Refine implementation boundaries from M3 validation.
 - Confirm frontend, backend, database, and AI implementation contracts.
