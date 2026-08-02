@@ -61,6 +61,7 @@ export const api = {
     request<Collection<PantryItem>>(`/pantry/expiry?limit=20&cursor=${cursor || ""}`),
   analyzePantry: () => request<{ data: PantryAnalysis }>("/ai/pantry-analysis", { method: "POST" }),
   refreshPantryStatuses: () => request<void>("/pantry/refresh-statuses", { method: "POST" }),
+  removePantryItem: (id: string) => request<void>(`/pantry/items/${id}`, { method: "DELETE" }),
   suggestCategory: (name: string) => request<{ category: string }>(`/pantry/suggest-category?name=${encodeURIComponent(name)}`),
 
   // Recipes
