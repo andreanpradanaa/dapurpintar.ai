@@ -5,7 +5,7 @@
 | Item | Value |
 |---|---|
 | Milestone | M9 - MVP Features |
-| Deliverables | M9-001 Identity, M9-002 Pantry, M9-003 Recipes, M9-004 Meal Plans, M9-005 Shopping, M9-006 Recommendations |
+| Deliverables | M9-001 through M9-008: Identity, Pantry, Recipes, Meal Plans, Shopping, Recommendations, Conversation, AI Pantry Analysis |
 | Status | Ready for review |
 | Parent documents | `docs/architecture/m4-decision-register.md`, `docs/architecture/authentication-authorization.md`, `docs/api/m6-api-contract.md`, `docs/database/m5-schema.md` |
 
@@ -260,3 +260,22 @@ DP-FEAT-005 complete when all 14 endpoints return M6 schemas with lifecycle stat
 - `go build ./...`, `go vet ./...`, `gofmt -l .` clean.
 - 11 test packages pass (27 integration tests total).
 - AI Gateway integration deferred: recommendations are created with "requested" status; full AI processing wired in a future slice.
+
+---
+
+## DP-FEAT-007 Recommendation Conversation
+
+- 4 SQLC queries (create, get, snapshot-update, close), 4 HTTP endpoints.
+- Messages stored in `context_snapshot` JSONB as role+content+created_at array.
+- Idempotent start (get-or-create), continue appends user+assistant messages, close with state guard.
+
+## DP-FEAT-008 AI Pantry Analysis
+
+- Single `POST /ai/pantry-analysis` endpoint (stub). Returns empty `use_first_opportunities` and `optimization_suggestions` arrays. Full AI integration deferred.
+
+## Verified (M9 Complete)
+
+- `go build ./...`, `go vet ./...`, `gofmt -l .` clean.
+- 11 test packages pass (24 integration tests against PostgreSQL).
+- 3 schema migrations applied (00001 base, 00002 meal_plan title, 00003 recommendation purpose).
+- 55 HTTP endpoints across 7 bounded contexts.

@@ -6,8 +6,8 @@
 |---|---|
 | Current milestone | M9 - MVP Features |
 | Current deliverable | DP-FEAT-001 Identity and Access: registration, login, logout, refresh, profile, preferences |
-| Current status | Ready for review (`docs/backend/m9-signoff.md`) |
-| Next action | Review and approve DP-FEAT-001, then implement DP-FEAT-002 pantry |
+| Current status | Ready for review (all 8 M9 slices complete, `docs/backend/m9-signoff.md`) |
+| Next action | Review and approve M9, then proceed to M10 Frontend Development |
 | Next implementation milestone | M10 - Frontend Development |
 
 Milestone approval tetap mengikuti proses review. Artifact yang sudah dibuat tidak otomatis berarti milestone telah disetujui atau ditutup. M2 through M8 were reviewed and approved in the M8 sign-off review (2026-08-02).
@@ -195,7 +195,7 @@ Blocking decisions: `docs/architecture/m8-blocking-decisions.md` (M4-DEC-010, M4
 
 ## M9 - MVP Features
 
-Status: **In Progress** (vertical slices from `docs/architecture/implementation-backlog.md`; DP-FEAT-001 ready for review)
+Status: **In Progress** (all 8 vertical slices complete, Ready for review)
 
 | ID | Deliverable | Backlog item | Status |
 |---|---|---|---|
@@ -206,7 +206,7 @@ Status: **In Progress** (vertical slices from `docs/architecture/implementation-
 | M9-005 | Shopping List generation, review, activation, completion | DP-FEAT-005 | Ready for review |
 | M9-006 | Kitchen Recommendation request, present, accept, reject, supersede | DP-FEAT-006 | Ready for review |
 | M9-007 | Recommendation-scoped conversation | DP-FEAT-007 | Ready for review |
-| M9-008 | AI Pantry Analysis endpoint | DP-FEAT-008 | Planned |
+| M9-008 | AI Pantry Analysis endpoint | DP-FEAT-008 | Ready for review |
 
 Scope:
 
