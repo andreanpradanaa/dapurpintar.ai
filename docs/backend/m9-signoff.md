@@ -1,14 +1,13 @@
-# DapurPintar AI M9 DP-FEAT-001 Identity and Access - Sign-off
+# DapurPintar AI M9 Identity and Pantry - Sign-off
 
 ## Document Control
 
 | Item | Value |
 |---|---|
 | Milestone | M9 - MVP Features |
-| Deliverable | M9-001 DP-FEAT-001 Identity and Access: registration, login, logout, refresh, profile, preferences |
+| Deliverables | M9-001 DP-FEAT-001 Identity and Access: registration, login, logout, refresh, profile, preferences; M9-002 DP-FEAT-002 Pantry: CRUD and expiry attention view |
 | Status | Ready for review |
 | Parent documents | `docs/architecture/m4-decision-register.md`, `docs/architecture/authentication-authorization.md`, `docs/api/m6-api-contract.md`, `docs/database/m5-schema.md` |
-| Scope | Registration, login, logout, refresh with durable session rotation and revocation, current account, profile, and preferences over PostgreSQL |
 
 ## Purpose
 
@@ -88,3 +87,45 @@ DP-FEAT-001 is complete when:
 - `docs/database/m5-schema.md`
 - `docs/database/m5-sqlc.md`
 - `docs/project/milestone-list.md`
+
+---
+
+## DP-FEAT-002 Pantry and Pantry Item CRUD
+
+### Decisions Applied
+
+- M4-DEC-006: schema shape validated per M5 sign-off; pantry and pantry_item tables match the approved DDL.
+- M4-DEC-007: expiry_date stored as user-local `date`; expiry view computes a cutoff date and queries items with `expiry_date <= cutoff`.
+- M4-DEC-008: API contract follows openapi.yaml with 7 endpoints and 3 pantry error codes.
+
+### Deliverables
+
+**DP-FEAT-002-1 Schema and SQLC**
+- `backend/internal/database/queries/pantry.sql`: 10 named queries (GetPantryByProfileID, CreatePantry, GetPantryItemByID, CreatePantryItem, UpdatePantryItem, RemovePantryItem, UpdatePantryItemStatus, ListPantryItems with cursor+filters+sort, ListExpiringItems with cutoff date).
+- `backend/internal/gen/sqlc/pantry.sql.go`: generated params, query methods, and slice scanning for the PantryItem model with `pgtype.Numeric` quantity.
+
+**DP-FEAT-002-2 Domain and store**
+- `backend/internal/pantry/domain.go`: Pantry and PantryItem aggregates, ItemStatus lifecycle enum (available/running_low/expiring_soon/consumed/removed), ErrNotFound sentinel.
+- `backend/internal/pantry/store.go`: Store port (11 methods) — owned-pantry queries, item CRUD, paginated listing with optional category/status/sort filters, and expiry-ordered listing.
+- `backend/internal/pantry/service.go`: use cases GetSummary (counts), ListItems (cursor-based with filters), AddItem (validate + lazy pantry provision), GetItem (ownership check), UpdateItem, RemoveItem, ListExpiringItems.
+- `backend/internal/pantry/store/postgres.go`: SQLC adapter handling pgtype.Numeric quantity conversion and proper nullable-string coalesce for UpdatePantryItem.
+
+**DP-FEAT-002-3 HTTP handlers**
+- `backend/internal/http/handlers_pantry.go`: 7 route handlers with M6 PantryItemView, profile resolution through the identity service, and stable error codes (PANTRY_ITEM_NOT_FOUND, PANTRY_QUANTITY_NEGATIVE, PANTRY_EXPIRY_INVALID).
+- `backend/internal/http/server.go`: Handler struct and New() accept pantry.Service; routes registered under the authenticated group.
+- `backend/cmd/api/main.go`: constructs the pantry store adapter and service, injects into http.New.
+
+### Verified
+
+- `go build ./...`, `go vet ./...`, `gofmt -l .` clean.
+- 7 unit/integration tests pass (all packages).
+- 4 pantry integration tests (requiring Postgres): pantry lifecycle, item CRUD, paginated listing with expiry, and end-to-end service flow (add→sum→get→update→remove→verify gone→empty list).
+
+### Exit Criteria
+
+DP-FEAT-002 is complete when:
+- Pantry items can be created, listed (with filters/pagination), retrieved, updated, and removed over the owner's pantry.
+- Lazy pantry provisioning works transparently on first item access.
+- Ownership is enforced (item belongs to the user's pantry).
+- The expiry endpoint returns items approaching a configurable cutoff date.
+- All endpoints return the M6 PantryItemView schema with stable error codes.
