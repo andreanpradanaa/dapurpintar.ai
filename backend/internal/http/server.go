@@ -16,6 +16,7 @@ import (
 	apperr "github.com/andreanpradanaa/dapurpintar.ai/backend/internal/platform/errors"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/platform/response"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/recipes"
+	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/shopping"
 )
 
 // Server bundles the application's HTTP dependencies.
@@ -38,12 +39,13 @@ type Handler struct {
 	pantry           *pantry.Service
 	recipes          *recipes.Service
 	mealPlan         *mealplan.Service
+	shopping         *shopping.Service
 	sessionCookies   middleware.SessionCookies
 	refreshCookieTTL time.Duration
 }
 
 // New builds the Fiber application with global middleware and routes.
-func New(cfg *config.Config, log *slog.Logger, tokens *auth.TokenManager, identityService *identity.Service, pantryService *pantry.Service, recipesService *recipes.Service, mealPlanService *mealplan.Service) *Server {
+func New(cfg *config.Config, log *slog.Logger, tokens *auth.TokenManager, identityService *identity.Service, pantryService *pantry.Service, recipesService *recipes.Service, mealPlanService *mealplan.Service, shoppingService *shopping.Service) *Server {
 	app := fiber.New(fiber.Config{
 		AppName:               cfg.AppName,
 		DisableStartupMessage: true,
@@ -74,6 +76,7 @@ func New(cfg *config.Config, log *slog.Logger, tokens *auth.TokenManager, identi
 			pantry:           pantryService,
 			recipes:          recipesService,
 			mealPlan:         mealPlanService,
+			shopping:         shoppingService,
 			sessionCookies:   sessionCookies,
 			refreshCookieTTL: tokens.RefreshTTL(),
 		},
@@ -139,6 +142,21 @@ func (s *Server) registerRoutes() {
 	authed.Post("/meal-plans/:planId/meals", s.handler.planMeal)
 	authed.Patch("/meal-plans/:planId/meals/:plannedMealId", s.handler.updatePlannedMeal)
 	authed.Delete("/meal-plans/:planId/meals/:plannedMealId", s.handler.removePlannedMeal)
+
+	authed.Get("/shopping-lists", s.handler.listShoppingLists)
+	authed.Post("/shopping-lists", s.handler.createShoppingList)
+	authed.Post("/shopping-lists/generate", s.handler.generateShoppingList)
+	authed.Get("/shopping-lists/:listId", s.handler.getShoppingList)
+	authed.Patch("/shopping-lists/:listId", s.handler.updateShoppingList)
+	authed.Post("/shopping-lists/:listId/activate", s.handler.activateShoppingList)
+	authed.Post("/shopping-lists/:listId/complete", s.handler.completeShoppingList)
+	authed.Post("/shopping-lists/:listId/cancel", s.handler.cancelShoppingList)
+	authed.Post("/shopping-lists/:listId/archive", s.handler.archiveShoppingList)
+	authed.Get("/shopping-lists/:listId/items", s.handler.listShoppingItems)
+	authed.Post("/shopping-lists/:listId/items", s.handler.addShoppingItem)
+	authed.Patch("/shopping-lists/:listId/items/:itemId", s.handler.updateShoppingItem)
+	authed.Delete("/shopping-lists/:listId/items/:itemId", s.handler.removeShoppingItem)
+	authed.Post("/shopping-lists/:listId/items/:itemId/complete", s.handler.completeShoppingItem)
 }
 
 // health reports service liveness without exposing internals.
