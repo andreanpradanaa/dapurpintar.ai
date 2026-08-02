@@ -6,8 +6,8 @@
 |---|---|
 | Current milestone | M9 - MVP Features |
 | Current deliverable | DP-FEAT-001 Identity and Access: registration, login, logout, refresh, profile, preferences |
-| Current status | In Progress |
-| Next action | Implement DP-FEAT-001 vertical slice, then DP-FEAT-002 pantry |
+| Current status | Ready for review (`docs/backend/m9-signoff.md`) |
+| Next action | Review and approve DP-FEAT-001, then implement DP-FEAT-002 pantry |
 | Next implementation milestone | M10 - Frontend Development |
 
 Milestone approval tetap mengikuti proses review. Artifact yang sudah dibuat tidak otomatis berarti milestone telah disetujui atau ditutup. M2 through M8 were reviewed and approved in the M8 sign-off review (2026-08-02).
@@ -195,11 +195,11 @@ Blocking decisions: `docs/architecture/m8-blocking-decisions.md` (M4-DEC-010, M4
 
 ## M9 - MVP Features
 
-Status: **In Progress** (vertical slices from `docs/architecture/implementation-backlog.md`)
+Status: **In Progress** (vertical slices from `docs/architecture/implementation-backlog.md`; DP-FEAT-001 ready for review)
 
 | ID | Deliverable | Backlog item | Status |
 |---|---|---|---|
-| M9-001 | Registration, login, logout, refresh, profile, preferences | DP-FEAT-001 | In Progress |
+| M9-001 | Registration, login, logout, refresh, profile, preferences | DP-FEAT-001 | Ready for review |
 | M9-002 | Pantry and Pantry Item CRUD, expiry attention view | DP-FEAT-002 | Planned |
 | M9-003 | Recipe discovery, detail, favorites | DP-FEAT-003 | Planned |
 | M9-004 | Meal Plan and Planned Meal lifecycle | DP-FEAT-004 | Planned |
