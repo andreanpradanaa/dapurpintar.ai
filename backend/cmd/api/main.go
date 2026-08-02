@@ -7,6 +7,8 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/joho/godotenv"
+
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/ai"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/ai/openai"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/auth"
@@ -31,6 +33,7 @@ import (
 )
 
 func main() {
+	godotenv.Load()
 	cfg := config.Load()
 	log := logger.New(cfg.AppEnv)
 
