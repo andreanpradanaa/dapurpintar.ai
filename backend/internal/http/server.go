@@ -10,27 +10,34 @@ import (
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/auth"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/config"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/http/middleware"
+	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/identity"
+	apperr "github.com/andreanpradanaa/dapurpintar.ai/backend/internal/platform/errors"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/platform/response"
 )
 
 // Server bundles the application's HTTP dependencies.
 type Server struct {
-	app     *fiber.App
-	cfg     *config.Config
-	log     *slog.Logger
-	tokens  *auth.TokenManager
-	handler *Handler
+	app              *fiber.App
+	cfg              *config.Config
+	log              *slog.Logger
+	tokens           *auth.TokenManager
+	handler          *Handler
+	sessionCookies   middleware.SessionCookies
+	refreshCookieTTL time.Duration
 }
 
 // Handler carries application dependencies into route handlers.
 type Handler struct {
-	cfg    *config.Config
-	log    *slog.Logger
-	tokens *auth.TokenManager
+	cfg              *config.Config
+	log              *slog.Logger
+	tokens           *auth.TokenManager
+	identity         *identity.Service
+	sessionCookies   middleware.SessionCookies
+	refreshCookieTTL time.Duration
 }
 
 // New builds the Fiber application with global middleware and routes.
-func New(cfg *config.Config, log *slog.Logger, tokens *auth.TokenManager) *Server {
+func New(cfg *config.Config, log *slog.Logger, tokens *auth.TokenManager, identityService *identity.Service) *Server {
 	app := fiber.New(fiber.Config{
 		AppName:               cfg.AppName,
 		DisableStartupMessage: true,
@@ -42,16 +49,27 @@ func New(cfg *config.Config, log *slog.Logger, tokens *auth.TokenManager) *Serve
 	app.Use(middleware.RequestID())
 	app.Use(middleware.Recover())
 
+	sessionCookies := middleware.SessionCookies{
+		AccessCookieName:  cfg.SessionCookieName,
+		RefreshCookieName: "dp_refresh",
+		Secure:            cfg.AppEnv == "production",
+	}
+
 	s := &Server{
 		app:    app,
 		cfg:    cfg,
 		log:    log,
 		tokens: tokens,
 		handler: &Handler{
-			cfg:    cfg,
-			log:    log,
-			tokens: tokens,
+			cfg:              cfg,
+			log:              log,
+			tokens:           tokens,
+			identity:         identityService,
+			sessionCookies:   sessionCookies,
+			refreshCookieTTL: tokens.RefreshTTL(),
 		},
+		sessionCookies:   sessionCookies,
+		refreshCookieTTL: tokens.RefreshTTL(),
 	}
 	s.registerRoutes()
 
@@ -78,10 +96,14 @@ func (s *Server) registerRoutes() {
 
 	api.Post("/accounts", s.handler.register)
 	api.Post("/accounts/login", s.handler.login)
+	api.Post("/accounts/refresh", s.handler.refresh)
 
-	authed := api.Group("", middleware.Authenticated(s.tokens))
+	authed := api.Group("", middleware.Authenticated(s.tokens, s.cfg.SessionCookieName))
 	authed.Get("/accounts/me", s.handler.me)
 	authed.Post("/accounts/logout", s.handler.logout)
+	authed.Get("/profile", s.handler.getProfile)
+	authed.Patch("/profile", s.handler.updateProfile)
+	authed.Patch("/profile/preferences", s.handler.updatePreferences)
 }
 
 // health reports service liveness without exposing internals.
@@ -89,22 +111,13 @@ func (h *Handler) health(c *fiber.Ctx) error {
 	return response.OK(c, map[string]any{"status": "ok"})
 }
 
-// register is a placeholder for the Identity and Access registration use case.
-func (h *Handler) register(c *fiber.Ctx) error {
-	return response.Error(c, nil)
+// middlewareSubject returns the authenticated subject from the request.
+func middlewareSubject(c *fiber.Ctx) string {
+	return middleware.Subject(c)
 }
 
-// login is a placeholder for the Identity and Access login use case.
-func (h *Handler) login(c *fiber.Ctx) error {
-	return response.Error(c, nil)
-}
-
-// me returns the current account participation context.
-func (h *Handler) me(c *fiber.Ctx) error {
-	return response.OK(c, map[string]any{"subject": middleware.Subject(c)})
-}
-
-// logout revokes the current session.
-func (h *Handler) logout(c *fiber.Ctx) error {
-	return response.NoContent(c)
+// payloadError maps a body parsing failure to the stable M6 code.
+func payloadError(err error) *apperr.Error {
+	return apperr.New(apperr.CodePayloadMalformed, "The request body is invalid.").WithDetails(
+		apperr.Detail{Field: "body", Code: string(apperr.CodePayloadMalformed), Message: "The request body must be valid JSON."})
 }

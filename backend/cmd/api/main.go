@@ -11,6 +11,8 @@ import (
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/auth"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/config"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/http"
+	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/identity"
+	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/identity/store"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/platform/cache"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/platform/database"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/platform/logger"
@@ -56,6 +58,9 @@ func main() {
 		os.Exit(1)
 	}
 
+	identityStore := store.New(pool)
+	identityService := identity.NewService(identityStore, tokens)
+
 	// The AI Gateway is an optional dependency (docs/architecture/ai-architecture.md).
 	// When AI is not configured, core non-AI operations remain fully usable and
 	// AI features fail closed with a bounded unavailable error.
@@ -74,7 +79,7 @@ func main() {
 		_ = adapter
 	}
 
-	server := http.New(&cfg, log, tokens)
+	server := http.New(&cfg, log, tokens, identityService)
 
 	go func() {
 		log.Info("server listening", "port", cfg.AppPort)
