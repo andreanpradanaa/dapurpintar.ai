@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useAuth } from "@/lib/auth";
 import { api, type PantryAnalysis, type PantrySummary, type PantryItem } from "@/lib/api";
 import { useToast } from "@/lib/toast";
@@ -14,16 +14,20 @@ export default function TodayPage() {
   const [analysis, setAnalysis] = useState<PantryAnalysis | null>(null);
   const [analysisLoading, setAnalysisLoading] = useState(false);
   const [analysisError, setAnalysisError] = useState("");
+  const [loadError, setLoadError] = useState(false);
 
-  useEffect(() => {
+  const loadData = useCallback(() => {
     if (!account) return;
     setLoadingData(true);
+    setLoadError(false);
     api.refreshPantryStatuses().catch(() => {});
     Promise.all([
-      api.pantrySummary().then(r => setSummary(r.data)).catch(() => toast("error", "Failed to load pantry summary")),
+      api.pantrySummary().then(r => setSummary(r.data)).catch(() => { throw new Error(); }),
       api.expiringItems().then(r => setExpiring(r.data)).catch(() => {}),
-    ]).finally(() => setLoadingData(false));
+    ]).catch(() => setLoadError(true)).finally(() => setLoadingData(false));
   }, [account]);
+
+  useEffect(() => { loadData(); }, [loadData]);
 
   if (loading) return <div className="py-12 space-y-4">{Array.from({length:3}).map((_,i)=><StatSkeleton key={i}/>)}</div>;
   if (!account) return null;
@@ -44,6 +48,13 @@ export default function TodayPage() {
   return (
     <div className="space-y-6">
       <h1 className="text-xl font-bold text-ink-900">Today</h1>
+
+      {!loadingData && loadError && (
+        <div className="text-center py-4 text-ink-700 bg-white-000 border border-steel-200 rounded-xl">
+          <p className="text-sm">Failed to load pantry data.</p>
+          <button onClick={loadData} className="mt-2 text-action-primary text-sm font-medium hover:underline">Retry</button>
+        </div>
+      )}
 
       {loadingData ? (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
