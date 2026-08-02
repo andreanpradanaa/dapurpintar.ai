@@ -58,6 +58,7 @@ func New(cfg *config.Config, log *slog.Logger, tokens *auth.TokenManager, identi
 
 	app.Use(middleware.RequestID())
 	app.Use(middleware.Recover())
+	app.Use(corsMiddleware)
 
 	sessionCookies := middleware.SessionCookies{
 		AccessCookieName:  cfg.SessionCookieName,
@@ -196,3 +197,14 @@ func payloadError(err error) *apperr.Error {
 
 var errRecipeNotPublic = apperr.New(apperr.CodeRecipeNotPublic, "This recipe is not available in public scope.").
 	WithDetails(apperr.Detail{Field: "recipe_id", Code: string(apperr.CodeRecipeNotPublic), Message: "The recipe is not public."})
+
+func corsMiddleware(c *fiber.Ctx) error {
+	c.Set("Access-Control-Allow-Origin", c.Get("Origin", "http://localhost:3000"))
+	c.Set("Access-Control-Allow-Credentials", "true")
+	c.Set("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE,OPTIONS")
+	c.Set("Access-Control-Allow-Headers", "Content-Type,Authorization,Idempotency-Key")
+	if c.Method() == fiber.MethodOptions {
+		return c.SendStatus(fiber.StatusNoContent)
+	}
+	return c.Next()
+}
