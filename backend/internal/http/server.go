@@ -168,6 +168,10 @@ func (s *Server) registerRoutes() {
 	authed.Post("/recommendations/:recId/options/:optId/accept", s.handler.acceptOption)
 	authed.Post("/recommendations/:recId/reject", s.handler.rejectRecommendation)
 	authed.Post("/recommendations/:recId/supersede", s.handler.supersedeRecommendation)
+	authed.Post("/recommendations/:recId/conversation", s.handler.startConversation)
+	authed.Get("/recommendations/:recId/conversation", s.handler.getConversation)
+	authed.Post("/recommendations/:recId/conversation/messages", s.handler.continueConversation)
+	authed.Post("/recommendations/:recId/conversation/close", s.handler.closeConversation)
 }
 
 // health reports service liveness without exposing internals.

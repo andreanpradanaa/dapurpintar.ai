@@ -2,6 +2,8 @@ package recommendation
 
 import (
 	"context"
+	"encoding/json"
+	"time"
 
 	apperr "github.com/andreanpradanaa/dapurpintar.ai/backend/internal/platform/errors"
 )
@@ -114,4 +116,52 @@ func (s *Service) Supersede(ctx context.Context, id string) (*Recommendation, er
 			WithDetails(apperr.Detail{Field: "status", Code: string(apperr.CodeRecommendationStateInvalid), Message: "The recommendation cannot be superseded."})
 	}
 	return s.store.UpdateRecommendationStatus(ctx, id, StatusSuperseded)
+}
+
+func (s *Service) StartConversation(ctx context.Context, recID string) (*Conversation, error) {
+	if _, err := s.store.GetRecommendationByID(ctx, recID); err != nil {
+		return nil, err
+	}
+	conv, err := s.store.GetConversationByRecommendation(ctx, recID)
+	if err == nil {
+		return conv, nil
+	}
+	return s.store.CreateConversation(ctx, recID)
+}
+
+func (s *Service) GetConversation(ctx context.Context, recID string) (*Conversation, error) {
+	return s.store.GetConversationByRecommendation(ctx, recID)
+}
+
+func (s *Service) ContinueConversation(ctx context.Context, recID, message string) (*Conversation, error) {
+	conv, err := s.store.GetConversationByRecommendation(ctx, recID)
+	if err != nil {
+		return nil, err
+	}
+	if conv.Status != "open" {
+		return nil, apperr.New(apperr.CodeConversationStateInvalid, "Conversation is not open.").
+			WithDetails(apperr.Detail{Field: "status", Code: string(apperr.CodeConversationStateInvalid), Message: "Cannot continue a closed conversation."})
+	}
+
+	now := time.Now().UTC()
+	conv.Messages = append(conv.Messages, ConversationMessage{Role: "user", Content: message, CreatedAt: now})
+	conv.Messages = append(conv.Messages, ConversationMessage{Role: "assistant", Content: "Terima kasih atas pertanyaan Anda. Saya akan membantu.", CreatedAt: now})
+
+	snapshot, err := json.Marshal(conv.Messages)
+	if err != nil {
+		return nil, apperr.Internal(err)
+	}
+	return s.store.UpdateConversationSnapshot(ctx, recID, snapshot)
+}
+
+func (s *Service) CloseConversation(ctx context.Context, recID string) (*Conversation, error) {
+	conv, err := s.store.GetConversationByRecommendation(ctx, recID)
+	if err != nil {
+		return nil, err
+	}
+	if conv.Status != "open" {
+		return nil, apperr.New(apperr.CodeConversationStateInvalid, "Conversation is not open.").
+			WithDetails(apperr.Detail{Field: "status", Code: string(apperr.CodeConversationStateInvalid), Message: "Conversation is already closed."})
+	}
+	return s.store.CloseConversation(ctx, recID)
 }

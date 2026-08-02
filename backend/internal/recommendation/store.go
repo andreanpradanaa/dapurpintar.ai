@@ -12,4 +12,9 @@ type Store interface {
 	ListRecommendationOptions(ctx context.Context, recID string) ([]RecommendationOption, error)
 	GetRecommendationOptionByID(ctx context.Context, id string) (*RecommendationOption, error)
 	UpdateRecommendationOptionStatus(ctx context.Context, id string, status OptionStatus) (*RecommendationOption, error)
+
+	CreateConversation(ctx context.Context, recID string) (*Conversation, error)
+	GetConversationByRecommendation(ctx context.Context, recID string) (*Conversation, error)
+	UpdateConversationSnapshot(ctx context.Context, recID string, snapshot []byte) (*Conversation, error)
+	CloseConversation(ctx context.Context, recID string) (*Conversation, error)
 }

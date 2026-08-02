@@ -150,3 +150,49 @@ func TestRecommendation_StateGuards(t *testing.T) {
 		t.Fatal("expected state guard: cannot supersede rejected")
 	}
 }
+
+func TestConversation_StartAndContinue(t *testing.T) {
+	st, pool := testStore(t)
+	ctx := context.Background()
+	svc := recommendation.NewService(st)
+	testSeedRecProfile(t, pool, "81111111-1111-1111-1111-111111111104", "91111111-1111-1111-1111-111111111104")
+
+	rec, _ := svc.Request(ctx, "81111111-1111-1111-1111-111111111104", "test", nil, true)
+
+	conv, err := svc.StartConversation(ctx, rec.ID)
+	if err != nil {
+		t.Fatalf("StartConversation: %v", err)
+	}
+	if conv.Status != "open" {
+		t.Fatalf("status = %q", conv.Status)
+	}
+
+	got, err := svc.GetConversation(ctx, rec.ID)
+	if err != nil {
+		t.Fatalf("GetConversation: %v", err)
+	}
+	if got.ID != conv.ID {
+		t.Fatalf("id mismatch")
+	}
+
+	continued, err := svc.ContinueConversation(ctx, rec.ID, "Ada resep ayam?")
+	if err != nil {
+		t.Fatalf("ContinueConversation: %v", err)
+	}
+	if len(continued.Messages) != 2 {
+		t.Fatalf("expected 2 messages, got %d", len(continued.Messages))
+	}
+
+	closed, err := svc.CloseConversation(ctx, rec.ID)
+	if err != nil {
+		t.Fatalf("CloseConversation: %v", err)
+	}
+	if closed.Status != "completed" {
+		t.Fatalf("status = %q", closed.Status)
+	}
+
+	_, err = svc.ContinueConversation(ctx, rec.ID, "Lagi?")
+	if err == nil {
+		t.Fatal("expected state guard: cannot continue closed conversation")
+	}
+}

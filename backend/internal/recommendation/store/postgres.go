@@ -2,6 +2,7 @@ package store
 
 import (
 	"context"
+	"encoding/json"
 
 	"github.com/jackc/pgx/v5"
 
@@ -145,4 +146,57 @@ func mapErr(err error) error {
 		return recommendation.ErrNotFound
 	}
 	return err
+}
+
+func (p *Postgres) CreateConversation(ctx context.Context, recID string) (*recommendation.Conversation, error) {
+	row, err := p.db.CreateConversation(ctx, recID)
+	if err != nil {
+		return nil, mapErr(err)
+	}
+	return toConversation(row), nil
+}
+
+func (p *Postgres) GetConversationByRecommendation(ctx context.Context, recID string) (*recommendation.Conversation, error) {
+	row, err := p.db.GetConversationByRecommendation(ctx, recID)
+	if err != nil {
+		return nil, mapErr(err)
+	}
+	return toConversation(row), nil
+}
+
+func (p *Postgres) UpdateConversationSnapshot(ctx context.Context, recID string, snapshot []byte) (*recommendation.Conversation, error) {
+	row, err := p.db.UpdateConversationSnapshot(ctx, sqlc.UpdateConversationSnapshotParams{
+		RecommendationID: recID,
+		ContextSnapshot:  snapshot,
+	})
+	if err != nil {
+		return nil, mapErr(err)
+	}
+	return toConversation(row), nil
+}
+
+func (p *Postgres) CloseConversation(ctx context.Context, recID string) (*recommendation.Conversation, error) {
+	row, err := p.db.CloseConversation(ctx, recID)
+	if err != nil {
+		return nil, mapErr(err)
+	}
+	return toConversation(row), nil
+}
+
+func toConversation(r sqlc.RecommendationConversation) *recommendation.Conversation {
+	conv := &recommendation.Conversation{
+		ID:               r.ID,
+		RecommendationID: r.RecommendationID,
+		Status:           r.Status,
+		ExpiresAt:        r.ExpiresAt,
+		CreatedAt:        r.CreatedAt,
+		UpdatedAt:        r.UpdatedAt,
+	}
+	if r.ContextSnapshot != nil {
+		var msgs []recommendation.ConversationMessage
+		if err := json.Unmarshal(r.ContextSnapshot, &msgs); err == nil {
+			conv.Messages = msgs
+		}
+	}
+	return conv
 }

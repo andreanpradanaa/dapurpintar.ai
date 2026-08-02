@@ -158,3 +158,67 @@ func (h *Handler) supersedeRecommendation(c *fiber.Ctx) error {
 	_, opts, _ := h.rec.Get(c.Context(), rec.ID)
 	return response.OK(c, toRecDetailView(rec, opts))
 }
+
+type convView struct {
+	ID               string            `json:"id"`
+	RecommendationID string            `json:"recommendation_id"`
+	Status           string            `json:"status"`
+	Messages         []convMessageView `json:"messages"`
+}
+
+type convMessageView struct {
+	Role      string `json:"role"`
+	Content   string `json:"content"`
+	CreatedAt string `json:"created_at"`
+}
+
+func toConvView(c *recommendation.Conversation) convView {
+	msgs := make([]convMessageView, len(c.Messages))
+	for i, m := range c.Messages {
+		msgs[i] = convMessageView{Role: m.Role, Content: m.Content, CreatedAt: m.CreatedAt.UTC().Format(time.RFC3339)}
+	}
+	return convView{
+		ID:               c.ID,
+		RecommendationID: c.RecommendationID,
+		Status:           c.Status,
+		Messages:         msgs,
+	}
+}
+
+func (h *Handler) startConversation(c *fiber.Ctx) error {
+	conv, err := h.rec.StartConversation(c.Context(), c.Params("recId"))
+	if err != nil {
+		return response.Error(c, err)
+	}
+	return response.Created(c, toConvView(conv))
+}
+
+func (h *Handler) getConversation(c *fiber.Ctx) error {
+	conv, err := h.rec.GetConversation(c.Context(), c.Params("recId"))
+	if err != nil {
+		return response.Error(c, err)
+	}
+	return response.OK(c, toConvView(conv))
+}
+
+func (h *Handler) continueConversation(c *fiber.Ctx) error {
+	var req struct {
+		Message string `json:"message"`
+	}
+	if err := c.BodyParser(&req); err != nil {
+		return response.Error(c, payloadError(err))
+	}
+	conv, err := h.rec.ContinueConversation(c.Context(), c.Params("recId"), req.Message)
+	if err != nil {
+		return response.Error(c, err)
+	}
+	return response.OK(c, toConvView(conv))
+}
+
+func (h *Handler) closeConversation(c *fiber.Ctx) error {
+	conv, err := h.rec.CloseConversation(c.Context(), c.Params("recId"))
+	if err != nil {
+		return response.Error(c, err)
+	}
+	return response.OK(c, toConvView(conv))
+}

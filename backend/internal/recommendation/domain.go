@@ -28,6 +28,22 @@ const (
 
 var ErrNotFound = errors.New("recommendation not found")
 
+type Conversation struct {
+	ID               string
+	RecommendationID string
+	Status           string
+	Messages         []ConversationMessage
+	ExpiresAt        *time.Time
+	CreatedAt        time.Time
+	UpdatedAt        time.Time
+}
+
+type ConversationMessage struct {
+	Role      string    `json:"role"`
+	Content   string    `json:"content"`
+	CreatedAt time.Time `json:"created_at"`
+}
+
 type Recommendation struct {
 	ID                  string
 	UserProfileID       string
