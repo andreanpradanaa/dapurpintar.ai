@@ -4,10 +4,10 @@
 
 | Item | Status |
 |---|---|
-| Current milestone | M7 - Backend Foundation |
-| Current deliverable | M7-001 Go/Fiber Backend Foundation |
+| Current milestone | M8 - AI Foundation |
+| Current deliverable | M4-005 M8 Blocking Decision Records |
 | Current status | In Review |
-| Next action | Review M7 foundation, then start M8 AI Foundation (DP-AI-001) |
+| Next action | Approve M4-DEC-010/011/012/016, then start DP-AI-001 |
 | Next implementation milestone | M10 - Frontend Development |
 
 Milestone approval tetap mengikuti proses review. Artifact yang sudah dibuat tidak otomatis berarti milestone telah disetujui atau ditutup.
@@ -114,6 +114,7 @@ Status: **In Review**
 - M4-002 Architecture Decision Register: `docs/architecture/m4-decision-register.md`
 - M4-003 Implementation Backlog and Technical Spikes: `docs/architecture/implementation-backlog.md`
 - M4-004 M5 Blocking Decision Records: `docs/architecture/m4-m5-blocking-decisions.md`
+- M4-005 M8 Blocking Decision Records: `docs/architecture/m8-blocking-decisions.md`
 - Resolve architecture decisions deferred from M2.
 - Refine implementation boundaries from M3 validation.
 - Confirm frontend, backend, database, and AI implementation contracts.
@@ -175,7 +176,15 @@ Scope:
 
 ## M8 - AI Foundation
 
-Status: **Planned**
+Status: **In Review** (blocked by M4-DEC-010/011/012/016)
+
+| ID | Deliverable | Artifact | Status |
+|---|---|---|---|
+| M8-001 | AI Gateway port and OpenAI provider adapter | `backend/internal/ai/` | Planned |
+| M8-002 | Prompt, safety, and structured-output policy versioning | `backend/internal/ai/` | Planned |
+| M8-003 | AI evaluation harness and representative scenarios | `backend/internal/ai/` | Planned |
+
+Scope:
 
 - AI Gateway implementation.
 - OpenAI provider adapter.
@@ -183,6 +192,8 @@ Status: **Planned**
 - Structured output validation.
 - Safety, timeout, retry, quota, and cost controls.
 - AI evaluation harness.
+
+Blocking decisions: `docs/architecture/m8-blocking-decisions.md` (M4-DEC-010, M4-DEC-011, M4-DEC-012, M4-DEC-016).
 
 ## M9 - MVP Features
 

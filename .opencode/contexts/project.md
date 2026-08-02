@@ -37,6 +37,7 @@
 ## Status Saat Ini
 
 - M0, M1: Complete.
-- M2–M7: In Review (terakhir M7 Backend Foundation).
-- Deliverable saat ini: M7-001 (lihat `PROJECT_ROADMAP.md`).
-- Berikutnya: M8 AI Foundation (DP-AI-001..003), diblokir oleh M4-DEC-010/011/012/016.
+- M2–M7: In Review (M7 Backend Foundation).
+- Current milestone: M8 AI Foundation.
+- Deliverable saat ini: M4-005 M8 Blocking Decision Records (In Review).
+- Berikutnya: DP-AI-001..003, diblokir oleh M4-DEC-010/011/012/016 (`docs/architecture/m8-blocking-decisions.md`).

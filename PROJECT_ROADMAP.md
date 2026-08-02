@@ -5,8 +5,8 @@
 - Cara membaca roadmap
 
 ## Current Status
-- Current Milestone: M7 - Backend Foundation
-- Progress: M7-001 Go/Fiber Backend Foundation - In Review
+- Current Milestone: M8 - AI Foundation
+- Progress: M4-005 M8 Blocking Decision Records - In Review (blocks DP-AI-001..003)
 
 ## Milestone 0
 - Foundation
@@ -32,6 +32,7 @@
 - M4-002 Architecture Decision Register in review
 - M4-003 Implementation Backlog and Technical Spikes in review
 - M4-004 M5 Blocking Decision Records in review
+- M4-005 M8 Blocking Decision Records in review
 
 ## Milestone 5
 - Database Design
@@ -52,6 +53,9 @@
 
 ## Milestone 8
 - AI Foundation
+- M8-001 AI Gateway and OpenAI Adapter planned
+- M8-002 Prompt and Policy Versioning planned
+- M8-003 AI Evaluation Harness planned
 
 ## Milestone 9
 - MVP Backend Features
