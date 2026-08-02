@@ -1,11 +1,11 @@
-# DapurPintar AI M9 Identity, Pantry, and Recipes - Sign-off
+# DapurPintar AI M9 Identity, Pantry, Recipes, and Meal Plans - Sign-off
 
 ## Document Control
 
 | Item | Value |
 |---|---|
 | Milestone | M9 - MVP Features |
-| Deliverables | M9-001 DP-FEAT-001 Identity and Access; M9-002 DP-FEAT-002 Pantry; M9-003 DP-FEAT-003 Recipes and Favorites |
+| Deliverables | M9-001 DP-FEAT-001 Identity; M9-002 DP-FEAT-002 Pantry; M9-003 DP-FEAT-003 Recipes; M9-004 DP-FEAT-004 Meal Plans |
 | Status | Ready for review |
 | Parent documents | `docs/architecture/m4-decision-register.md`, `docs/architecture/authentication-authorization.md`, `docs/api/m6-api-contract.md`, `docs/database/m5-schema.md` |
 
@@ -170,3 +170,47 @@ DP-FEAT-003 is complete when:
 - Favoriting is idempotent (double-favorite succeeds with 204).
 - Unfavoriting is idempotent (unfavorite without active favorite succeeds with 204).
 - The `ListFavorites` endpoint returns paginated favorites with embedded `RecipeSummaryView`.
+
+---
+
+## DP-FEAT-004 Meal Plan and Planned Meal Lifecycle
+
+### Decisions Applied
+
+- M4-DEC-006: schema updated with `title` column on meal_plans (migration 00002).
+- M4-DEC-007: `period_start`, `period_end`, and `meal_date` are stored as user-local `date`; the service validates period boundaries and meal dates within plan ranges.
+- M4-DEC-008: API contract implemented with all 10 endpoints per openapi.yaml.
+
+### Deliverables
+
+**DP-FEAT-004-1 Schema and SQLC**
+
+- `backend/migrations/00002_meal_plan_title.sql`: adds the `title` column to `meal_plans`.
+- `backend/internal/database/queries/meal_plan.sql`: 11 named queries — plan lifecycle (create/get/list/update/status-transition), planned meal CRUD (create/get/list/update/remove), and slot-lookup for conflict detection.
+- `backend/internal/gen/sqlc/meal_plan.sql.go`: generated params and scan methods with nullable `*time.Time` and `*string` params for coalesce updates.
+
+**DP-FEAT-004-2 Domain and store**
+
+- `backend/internal/mealplan/domain.go`: `MealPlan` and `PlannedMeal` aggregates with `PlanStatus` (draft/planned/in_progress/completed/cancelled/revised) and `MealStatus` (proposed/planned/revised/removed/completed) enums.
+- `backend/internal/mealplan/store.go`: Store port (12 methods) — plan lifecycle, planned meal CRUD, slot-conflict lookup.
+- `backend/internal/mealplan/service.go`: use cases `CreateMealPlan` (period validation), `UpdateMealPlan`, `CancelMealPlan`/`CompleteMealPlan` (state guards), `PlanMeal` (period-range check + slot-conflict detection), `ListPlannedMeals`, `UpdatePlannedMeal`, `RemovePlannedMeal`.
+- `backend/internal/mealplan/store/postgres.go`: SQLC adapter with date column mapping and nullable coalesce params.
+
+**DP-FEAT-004-3 HTTP handlers**
+
+- `backend/internal/http/handlers_mealplan.go`: 10 route handlers — plan listing/creation/detail/update/cancel/complete, planned meal listing/creation/update/removal. Date parsing (`2006-01-02`), occasion validation (`breakfast`/`lunch`/`dinner`/`snack`), and M6 error codes.
+
+### Verified
+
+- `go build ./...`, `go vet ./...`, `gofmt -l .` clean.
+- 9 test packages pass (unit + integration).
+- 4 meal plan integration tests (requiring Postgres): plan CRUD and listing, lifecycle transitions (draft→cancelled), meal CRUD with slot-detection, service end-to-end (create→plan-meal→slot-conflict→update-status→complete→cancel-conflict).
+
+### Exit Criteria
+
+DP-FEAT-004 is complete when:
+- Meal plans can be created with validated period ranges and optional titles.
+- Meal plans support lifecycle transitions (cancel, complete) with state guards.
+- Planned meals can be added within the plan's date range with slot conflict detection.
+- Planned meals can be updated (occasion, recipe reference, status) and removed.
+- All 10 endpoints return the M6 MealPlanView/PlannedMealView schemas with stable error codes.
