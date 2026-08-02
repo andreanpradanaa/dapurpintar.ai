@@ -1,0 +1,49 @@
+stateDiagram-v2
+    [*] --> Loading
+    Loading --> Ready
+    Loading --> Empty
+    Loading --> Error
+
+    Ready --> Editing
+    Ready --> RequestingAI
+    Ready --> Navigating
+    Editing --> Saving
+    Saving --> Ready
+    Saving --> ValidationError
+    ValidationError --> Editing
+
+    RequestingAI --> AIResult
+    RequestingAI --> AIDegraded
+    AIDegraded --> RequestingAI: Retry
+    AIDegraded --> BrowseAlternative: Browse recipes or pantry
+    AIResult --> OptionReview
+    OptionReview --> Conversation
+    Conversation --> OptionReview
+    OptionReview --> AcceptedOption
+    AcceptedOption --> PlanCommitment
+    AcceptedOption --> ShoppingCommitment
+    AcceptedOption --> RecipeDetail
+
+    Empty --> Editing: Add context
+    Empty --> BrowseAlternative: Explore without AI
+    Error --> Ready: Retry succeeds
+    Error --> Empty: No data available
+
+    state "Loading data" as Loading
+    state "Ready view" as Ready
+    state "First-use empty" as Empty
+    state "Recoverable error" as Error
+    state "Editing form" as Editing
+    state "Saving user data" as Saving
+    state "Field validation" as ValidationError
+    state "Waiting for AI" as RequestingAI
+    state "AI result received" as AIResult
+    state "Review recommendation options" as OptionReview
+    state "Recommendation conversation" as Conversation
+    state "AI unavailable" as AIDegraded
+    state "Accepted option only" as AcceptedOption
+    state "Explicit meal plan action" as PlanCommitment
+    state "Explicit shopping action" as ShoppingCommitment
+    state "Recipe detail" as RecipeDetail
+    state "Non-AI alternative" as BrowseAlternative
+    state "Navigation" as Navigating
