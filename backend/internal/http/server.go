@@ -16,6 +16,7 @@ import (
 	apperr "github.com/andreanpradanaa/dapurpintar.ai/backend/internal/platform/errors"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/platform/response"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/recipes"
+	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/recommendation"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/shopping"
 )
 
@@ -40,12 +41,13 @@ type Handler struct {
 	recipes          *recipes.Service
 	mealPlan         *mealplan.Service
 	shopping         *shopping.Service
+	rec              *recommendation.Service
 	sessionCookies   middleware.SessionCookies
 	refreshCookieTTL time.Duration
 }
 
 // New builds the Fiber application with global middleware and routes.
-func New(cfg *config.Config, log *slog.Logger, tokens *auth.TokenManager, identityService *identity.Service, pantryService *pantry.Service, recipesService *recipes.Service, mealPlanService *mealplan.Service, shoppingService *shopping.Service) *Server {
+func New(cfg *config.Config, log *slog.Logger, tokens *auth.TokenManager, identityService *identity.Service, pantryService *pantry.Service, recipesService *recipes.Service, mealPlanService *mealplan.Service, shoppingService *shopping.Service, recService *recommendation.Service) *Server {
 	app := fiber.New(fiber.Config{
 		AppName:               cfg.AppName,
 		DisableStartupMessage: true,
@@ -77,6 +79,7 @@ func New(cfg *config.Config, log *slog.Logger, tokens *auth.TokenManager, identi
 			recipes:          recipesService,
 			mealPlan:         mealPlanService,
 			shopping:         shoppingService,
+			rec:              recService,
 			sessionCookies:   sessionCookies,
 			refreshCookieTTL: tokens.RefreshTTL(),
 		},
@@ -157,6 +160,14 @@ func (s *Server) registerRoutes() {
 	authed.Patch("/shopping-lists/:listId/items/:itemId", s.handler.updateShoppingItem)
 	authed.Delete("/shopping-lists/:listId/items/:itemId", s.handler.removeShoppingItem)
 	authed.Post("/shopping-lists/:listId/items/:itemId/complete", s.handler.completeShoppingItem)
+
+	authed.Get("/recommendations", s.handler.listRecommendations)
+	authed.Post("/recommendations", s.handler.requestRecommendation)
+	authed.Get("/recommendations/:recId", s.handler.getRecommendation)
+	authed.Post("/recommendations/:recId/present", s.handler.presentRecommendation)
+	authed.Post("/recommendations/:recId/options/:optId/accept", s.handler.acceptOption)
+	authed.Post("/recommendations/:recId/reject", s.handler.rejectRecommendation)
+	authed.Post("/recommendations/:recId/supersede", s.handler.supersedeRecommendation)
 }
 
 // health reports service liveness without exposing internals.
