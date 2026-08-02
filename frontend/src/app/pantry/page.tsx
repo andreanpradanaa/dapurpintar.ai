@@ -4,7 +4,6 @@ import { useAuth } from "@/lib/auth";
 import { api, type PantryItem } from "@/lib/api";
 import { useToast } from "@/lib/toast";
 import { ListSkeleton } from "@/components/skeleton";
-import { ConfirmDialog } from "@/components/confirm";
 
 export default function PantryPage() {
   const { account } = useAuth();
@@ -12,23 +11,14 @@ export default function PantryPage() {
   const [items, setItems] = useState<PantryItem[]>([]);
   const [showAdd, setShowAdd] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [removeTarget, setRemoveTarget] = useState<PantryItem | null>(null);
 
   const load = () => {
     setLoading(true);
-    api.pantryItems().then(r => setItems(r.data)).catch(() => toast("error", "Failed to load pantry")).finally(() => setLoading(false));
+    api.pantryItems().then(r => {
+      if (Array.isArray(r?.data)) setItems(r.data);
+    }).catch(() => toast("error", "Failed to load")).finally(() => setLoading(false));
   };
   useEffect(() => { if (account) load(); }, [account]);
-
-  const confirmRemove = async () => {
-    if (!removeTarget) return;
-    try {
-      await api.removePantryItem(removeTarget.id);
-      toast("success", `${removeTarget.ingredient_name} removed`);
-      setRemoveTarget(null);
-      load();
-    } catch { toast("error", "Failed to remove item"); }
-  };
 
   if (!account) return null;
 
@@ -51,7 +41,7 @@ export default function PantryPage() {
       ) : (
         <div className="grid gap-2" role="list" aria-labelledby="pantry-title">
           {items.map(item => (
-            <div key={item.id} className="bg-white-000 border border-steel-200 rounded-lg p-3 flex justify-between items-center group" role="listitem">
+            <div key={item.id} className="bg-white-000 border border-steel-200 rounded-lg p-3 flex justify-between items-center" role="listitem">
               <div>
                 <p className="font-medium text-ink-900">{item.ingredient_name}</p>
                 <p className="text-xs text-ink-700">{item.quantity} {item.unit} · {item.category}</p>
@@ -59,25 +49,11 @@ export default function PantryPage() {
               <div className="flex items-center gap-2">
                 {item.expiry_date && <span className="text-xs text-steel-400">{item.expiry_date}</span>}
                 <span className={`text-xs px-2 py-0.5 rounded ${item.status === "expiring_soon" ? "bg-context-attention/20 text-context-attention-dark" : item.status === "running_low" ? "bg-feedback-info/10 text-feedback-info" : "bg-context-positive/20 text-context-positive-dark"}`}>{item.status}</span>
-                <button
-                  onClick={() => setRemoveTarget(item)}
-                  className="opacity-0 group-hover:opacity-100 text-steel-400 hover:text-feedback-error transition-all text-xs"
-                  aria-label={`Remove ${item.ingredient_name}`}
-                >✕</button>
               </div>
             </div>
           ))}
         </div>
       )}
-
-      <ConfirmDialog
-        open={removeTarget !== null}
-        title="Remove item"
-        message={removeTarget ? `Remove "${removeTarget.ingredient_name}" from your pantry?` : ""}
-        confirmLabel="Remove"
-        onConfirm={confirmRemove}
-        onCancel={() => setRemoveTarget(null)}
-      />
     </div>
   );
 }

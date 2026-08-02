@@ -93,6 +93,16 @@ func (h *Handler) register(c *fiber.Ctx) error {
 		return response.Error(c, err)
 	}
 
+	session, loginErr := h.identity.Login(c.Context(), identity.LoginInput{
+		Email:    req.Email,
+		Password: req.Password,
+	})
+	if loginErr == nil {
+		h.setSessionCookies(c, session.AccessToken, session.RefreshToken, session.AccessExpiresAt, h.refreshCookieTTL)
+	} else {
+		h.log.Error("register: auto-login failed", "error", loginErr)
+	}
+
 	view := toAccountView(account)
 	if profile != nil {
 		view.Profile = &profile.ID

@@ -83,8 +83,8 @@ func (s SessionCookies) SetAccess(c *fiber.Ctx, token string, expires time.Time)
 		Path:     "/",
 		Expires:  expires,
 		HTTPOnly: true,
-		Secure:   s.Secure,
-		SameSite: fiber.CookieSameSiteLaxMode,
+		Secure:   true,
+		SameSite: "None",
 	})
 }
 
@@ -96,8 +96,8 @@ func (s SessionCookies) SetRefresh(c *fiber.Ctx, token string, expires time.Time
 		Path:     "/api/v1/accounts",
 		Expires:  expires,
 		HTTPOnly: true,
-		Secure:   s.Secure,
-		SameSite: fiber.CookieSameSiteLaxMode,
+		Secure:   true,
+		SameSite: "None",
 	})
 }
 
