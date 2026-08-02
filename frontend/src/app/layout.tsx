@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AuthProvider } from "@/lib/auth";
+import { ToastProvider } from "@/lib/toast";
 import Shell from "@/components/shell";
 import "./globals.css";
 
@@ -9,9 +10,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <AuthProvider>
-          <Shell>{children}</Shell>
-        </AuthProvider>
+        <ToastProvider>
+          <AuthProvider>
+            <Shell>{children}</Shell>
+          </AuthProvider>
+        </ToastProvider>
       </body>
     </html>
   );

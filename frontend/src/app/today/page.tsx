@@ -2,36 +2,47 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "@/lib/auth";
 import { api, type PantrySummary, type PantryItem } from "@/lib/api";
+import { useToast } from "@/lib/toast";
 import { useRouter } from "next/navigation";
+import { StatSkeleton, ListSkeleton } from "@/components/skeleton";
 
 export default function TodayPage() {
   const { account, loading } = useAuth();
   const router = useRouter();
+  const { toast } = useToast();
   const [summary, setSummary] = useState<PantrySummary | null>(null);
   const [expiring, setExpiring] = useState<PantryItem[]>([]);
-  const [err, setErr] = useState("");
+  const [loadingData, setLoadingData] = useState(true);
 
   useEffect(() => {
     if (!account) return;
-    api.pantrySummary().then(r => setSummary(r.data)).catch(() => setErr("Failed to load pantry"));
-    api.expiringItems().then(r => setExpiring(r.data)).catch(() => {});
+    setLoadingData(true);
+    Promise.all([
+      api.pantrySummary().then(r => setSummary(r.data)).catch(() => toast("error", "Failed to load pantry summary")),
+      api.expiringItems().then(r => setExpiring(r.data)).catch(() => {}),
+    ]).finally(() => setLoadingData(false));
   }, [account]);
 
-  if (loading) return <div className="py-12 text-center text-steel-400">Loading...</div>;
+  if (loading) return <div className="py-12 space-y-4">{Array.from({length:3}).map((_,i)=><StatSkeleton key={i}/>)}</div>;
   if (!account) { router.push("/login"); return null; }
 
   return (
     <div className="space-y-6">
       <h1 className="text-xl font-bold text-ink-900">Today</h1>
-      {err && <p className="text-feedback-error text-sm">{err}</p>}
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <StatCard label="Pantry items" value={summary?.total_items ?? "—"} color="ink" />
-        <StatCard label="Expiring soon" value={summary?.expiring_soon_count ?? "—"} color="attention" />
-        <StatCard label="Running low" value={summary?.running_low_count ?? "—"} color="info" />
-      </div>
+      {loadingData ? (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <StatSkeleton /><StatSkeleton /><StatSkeleton />
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <StatCard label="Pantry items" value={summary?.total_items ?? "—"} color="ink" />
+          <StatCard label="Expiring soon" value={summary?.expiring_soon_count ?? "—"} color="attention" />
+          <StatCard label="Running low" value={summary?.running_low_count ?? "—"} color="info" />
+        </div>
+      )}
 
-      {expiring.length > 0 && (
+      {loadingData && expiring.length === 0 ? <ListSkeleton count={2} /> : expiring.length > 0 && (
         <section>
           <h2 className="font-semibold text-ink-900 mb-3">Expiring soon</h2>
           <div className="space-y-2">
@@ -48,7 +59,7 @@ export default function TodayPage() {
         </section>
       )}
 
-      {summary && summary.total_items === 0 && (
+      {!loadingData && summary && summary.total_items === 0 && (
         <div className="text-center py-8 text-ink-700">
           <p className="text-lg">Pantry kamu kosong.</p>
           <p className="text-sm text-steel-400 mt-1">Add ingredients to get started.</p>
