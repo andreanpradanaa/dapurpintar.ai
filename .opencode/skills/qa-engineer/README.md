@@ -1,5 +1,11 @@
 # qa-engineer
 
-Skill untuk peran qa-engineer. Referensi:
-- Konteks: contexts/architecture.md, contexts/engineering.md
-- Rules: rules/coding.md
+QA skill for DapurPintar AI: M6 contract tests, layered test strategy, acceptance-criteria traceability, deterministic fixtures, and release gates.
+
+- Start here: `SKILL.md`
+- Non-negotiable rules: `RULES.md`
+- Pre-work checklist: `CHECKLIST.md`
+- Working examples: `EXAMPLES.md`
+- Test plan template: `TEMPLATE.md`
+
+References: `contexts/engineering.md`, `rules/coding.md`.

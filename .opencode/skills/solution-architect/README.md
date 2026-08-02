@@ -1,5 +1,11 @@
 # solution-architect
 
-Skill untuk peran solution-architect. Referensi:
-- Konteks: contexts/architecture.md, contexts/engineering.md
-- Rules: rules/coding.md
+Architecture skill for DapurPintar AI: ADR protocol, Decision Register (M4-DEC-*) workflow, cross-document consistency, bounded-context guidance, and milestone sign-off reviews.
+
+- Start here: `SKILL.md`
+- Non-negotiable rules: `RULES.md`
+- Pre-work checklist: `CHECKLIST.md`
+- Working examples: `EXAMPLES.md`
+- ADR template: `TEMPLATE.md`
+
+References: `contexts/architecture.md`, `rules/documentation.md`, `rules/repository.md`.
