@@ -5,14 +5,14 @@
 | Item | Value |
 |---|---|
 | Milestone | M8 - AI Foundation |
-| Deliverable | M8-001 AI Gateway port and OpenAI provider adapter |
+| Deliverable | M8-001 AI Gateway port and OpenAI provider adapter; M8-002 Prompt, safety, and structured-output policy versioning |
 | Status | Draft - Awaiting Cross-Functional Review |
 | Parent documents | `docs/architecture/ai-architecture.md`, `docs/architecture/m8-blocking-decisions.md`, `docs/architecture/m4-decision-register.md` |
-| Scope | AI Gateway port, model profile, structured output validation, and the OpenAI provider adapter |
+| Scope | AI Gateway port, model profile, structured output validation, OpenAI provider adapter, and versioned prompt/safety/policy registry |
 
 ## Purpose
 
-This document records the M8 AI Foundation deliverable M8-001. It establishes the AI Gateway boundary (ADR-010): a provider-neutral contract that business modules depend on, an OpenAI provider adapter that owns all provider SDK details, and the validation layer that keeps provider output from becoming a product commitment. Prompts, safety policy versioning (M8-002), and the evaluation harness (M8-003) land in later M8 deliverables.
+This document records the M8 AI Foundation deliverables M8-001 and M8-002. M8-001 establishes the AI Gateway boundary (ADR-010): a provider-neutral contract that business modules depend on, an OpenAI provider adapter that owns all provider SDK details, and the validation layer that keeps provider output from becoming a product commitment. M8-002 establishes the versioned prompt, safety, and structured-output policy registry (M4-DEC-011) so prompts and policies are governed artifacts that change only through review and promotion. The evaluation harness (M8-003) lands in a later M8 deliverable.
 
 ## Decisions Applied
 
@@ -49,6 +49,24 @@ This document records the M8 AI Foundation deliverable M8-001. It establishes th
 - `.env.example`: documented AI variables; empty `AI_PROVIDER` disables AI and core non-AI operations remain fully usable (fail-closed AI).
 - `backend/cmd/api/main.go`: constructs the adapter when `AI_PROVIDER` is set; startup fails if configured AI cannot be built.
 
+### M8-002-1 Versioned policy registry
+
+- `internal/ai/policy.go`: `PolicyBundle` (prompt text, safety policy, structured-output schema, and their revisions) and `RevisionStatus` (pending/promoted).
+- `internal/ai/registry.go`: `Registry` stores ordered revisions per purpose, rejects duplicate schema revisions, promotes exactly one active revision, and resolves the active or a pinned revision (for evaluation and rollback analysis).
+- The promotion gate enforces M4-DEC-011: only a `Promoted` revision is served to live requests; `Pending` revisions exist for review and regression evaluation.
+
+### M8-002-2 System prompt assembly and seed policies
+
+- `internal/ai/prompt.go`: `BuildSystemMessage` assembles the system message from the versioned safety policy, prompt text, and the injected authorized context snapshot (data minimization; no credentials or unrelated personal data).
+- `BuildKitchenRecommendationRequest` builds a complete `Request` (system + user message, revisions, profile) so business code never embeds prompt text or policy strings in handlers.
+- `SeedRegistry`/`SeedKitchenRecommendationPolicy` register the initial promoted bundle for the Kitchen Recommendation purpose.
+
+### M8-002-3 Policy hygiene
+
+- Prompts and safety policy are controlled artifacts, never arbitrary handler strings.
+- Every request carries `PromptRev`, `SafetyRev`, `SchemaRev` for reproducibility (M4-DEC-011) and regression evaluation (M4-DEC-012).
+- A future version is registered `Pending`, evaluated against representative scenarios, then promoted.
+
 ## Verified
 
 - `go build ./...` passes.
@@ -56,7 +74,7 @@ This document records the M8 AI Foundation deliverable M8-001. It establishes th
 - `gofmt -l .` clean.
 - `go test -race ./...` passes for the ai and ai/openai packages, plus existing packages.
 
-Test coverage in `internal/ai/openai/adapter_test.go` and `internal/ai/profile_test.go`:
+Test coverage in `internal/ai/openai/adapter_test.go`, `internal/ai/profile_test.go`, and `internal/ai/policy_test.go`:
 
 - Successful completion returns validated structured output and usage metadata.
 - Request body carries `json_schema` structured output for the purpose.
@@ -64,13 +82,16 @@ Test coverage in `internal/ai/openai/adapter_test.go` and `internal/ai/profile_t
 - Unsupported purposes fail before any provider call.
 - Adapter construction rejects a missing API key.
 - Profile validation rejects incomplete profiles; schema validation rejects empty, malformed, non-object, and missing-field output.
+- Registry seeds a promoted initial policy, resolves the active revision, rejects duplicate revisions, rejects invalid bundles and unknown purposes, and demotes the previous revision on promotion.
+- A pending revision does not leak into the active response until promoted.
+- System prompt assembly injects the safety policy, prompt text, and context; empty context is skipped.
+- Request building wires purpose, messages, profile, and all three revision identifiers.
 
 ## Dependencies on Pending Decisions
 
-- M8-002 (prompt, safety, and structured-output policy versioning) will introduce the versioned policy store and the system-prompt assembly that feeds `Request.Messages`.
-- M8-003 (AI evaluation harness) will consume the `Result` metadata (revisions, model, usage, latency) for regression evaluation per M4-DEC-012.
+- M8-003 (AI evaluation harness) will consume the `Result` metadata (revisions, model, usage, latency) and the `Registry` pending revisions for regression evaluation per M4-DEC-012.
 - M4-DEC-016 global/per-user budget enforcement and alert thresholds land with DP-SPK-009; the adapter already classifies quota failures and records usage.
-- The `pantry-analysis` purpose is registered in the vocabulary but its output schema is finalized with DP-FEAT-008.
+- The `pantry-analysis` purpose is registered in the vocabulary but its output schema and seed policy are finalized with DP-FEAT-008.
 
 ## Exit Criteria
 
@@ -82,6 +103,14 @@ M8-001 is complete when:
 - Structured output validation rejects invalid output with safe M6 errors.
 - Timeout, retry, and quota behavior are bounded and tested.
 - Config, wiring, and documentation are consistent with M8-001 scope.
+
+M8-002 is complete when:
+
+- Prompts, safety policy, and output schemas are versioned, immutable artifacts.
+- A promotion gate ensures only evaluated revisions serve live requests.
+- Requests carry prompt, safety, and schema revision identifiers.
+- System prompt assembly centralizes prompt and policy text outside handlers.
+- Registry, promotion, and assembly behavior are tested.
 
 ## Related Documents
 

@@ -11,8 +11,8 @@
 - **Project Type:** AI-powered Kitchen Management SaaS
 - **Current Phase:** Implementation
 - **Current Milestone:** M8 - AI Foundation
-- **Progress:** M8-001 AI Gateway and OpenAI Adapter - In Review
-- **Next:** M8-002 prompt/policy versioning, then M8-003 evaluation harness
+- **Progress:** M8-002 Prompt and Policy Versioning - In Review
+- **Next:** M8-003 evaluation harness
 
 ---
 

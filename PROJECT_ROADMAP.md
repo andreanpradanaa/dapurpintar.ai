@@ -6,7 +6,7 @@
 
 ## Current Status
 - Current Milestone: M8 - AI Foundation
-- Progress: M8-001 AI Gateway and OpenAI Adapter - In Review
+- Progress: M8-002 Prompt and Policy Versioning - In Review
 
 ## Milestone 0
 - Foundation
@@ -54,7 +54,7 @@
 ## Milestone 8
 - AI Foundation
 - M8-001 AI Gateway and OpenAI Adapter in review
-- M8-002 Prompt and Policy Versioning planned
+- M8-002 Prompt and Policy Versioning in review
 - M8-003 AI Evaluation Harness planned
 
 ## Milestone 9
