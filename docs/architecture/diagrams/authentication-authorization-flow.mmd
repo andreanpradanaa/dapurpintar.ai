@@ -1,0 +1,48 @@
+flowchart TD
+    Browser[Next.js Web Application]
+    Public[Public API<br/>/api/v1]
+    Protected[Protected API<br/>/api/v1]
+
+    subgraph Backend[Backend Modular Monolith]
+        Auth[Authentication Boundary<br/>Credential verification and session handling]
+        Identity[Identity and Access<br/>Account state and session policy]
+        Authorization[Authorization Policy<br/>Identity, ownership, and scope checks]
+        Application[Application Layer<br/>Use-case authorization and orchestration]
+        Domain[Owning Bounded Contexts<br/>Business rules and invariants]
+    end
+
+    PostgreSQL[(PostgreSQL<br/>Account and durable session authority)]
+    Redis[(Redis<br/>Rate limits and bounded coordination)]
+    Secrets[Secret Management<br/>Signing and credential secrets]
+    User[Authenticated or anonymous user]
+
+    User -->|Public registration, login, recipe reads| Public
+    User -->|Protected resource request| Protected
+    Public --> Auth
+    Protected --> Auth
+    Auth -->|Verify credentials or token| Identity
+    Auth -->|Issue or rotate session credentials| Identity
+    Identity -->|Read account and session authority| PostgreSQL
+    Identity -->|Use bounded abuse controls| Redis
+    Auth -->|Load signing and credential secrets| Secrets
+    Auth -->|Authenticated identity| Authorization
+    Authorization -->|Derive current User scope| Identity
+    Authorization -->|Authorize resource and business operation| Application
+    Application -->|Invoke owning use case| Domain
+    Domain -->|Persist business outcome| PostgreSQL
+
+    classDef actor fill:#dae8fc,stroke:#6c8ebf,color:#1a1a1a;
+    classDef public fill:#fff2cc,stroke:#d6b656,color:#1a1a1a;
+    classDef security fill:#f8cecc,stroke:#b85450,color:#1a1a1a;
+    classDef application fill:#d5e8d4,stroke:#82b366,color:#1a1a1a;
+    classDef domain fill:#c6e0b4,stroke:#548235,color:#1a1a1a,stroke-width:3px;
+    classDef store fill:#f4cccc,stroke:#cc0000,color:#1a1a1a;
+    classDef support fill:#e2f0d9,stroke:#70ad47,color:#1a1a1a;
+
+    class User actor;
+    class Public,Protected public;
+    class Auth,Identity,Authorization security;
+    class Application application;
+    class Domain domain;
+    class PostgreSQL store;
+    class Redis,Secrets support;

@@ -100,6 +100,10 @@ All endpoints involving a user's identity, profile, preferences, pantry, favorit
 
 Authorization is evaluated against the resource owner and future household scope. A valid identity alone does not grant access to another user's business context.
 
+### Session continuation endpoint
+
+`POST /api/v1/accounts/refresh` requires a valid refresh-session credential and does not require a valid access token. It rotates the refresh session and returns a new authenticated session. An absent, expired, revoked, or reused refresh credential is rejected without revealing session details.
+
 ### Future roles
 
 The following role boundaries are future and must not be treated as MVP access:
@@ -138,6 +142,7 @@ The endpoint catalog defines URI patterns and business purpose only. Request and
 |---|---|---|
 | POST | `/api/v1/accounts` | Register a new account. |
 | POST | `/api/v1/accounts/login` | Begin authenticated account participation. |
+| POST | `/api/v1/accounts/refresh` | Rotate a valid refresh session and continue account participation. |
 | POST | `/api/v1/accounts/logout` | End the current account participation session. |
 | GET | `/api/v1/accounts/me` | View the current account participation context. |
 
