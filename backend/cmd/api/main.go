@@ -7,6 +7,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/ai"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/ai/openai"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/auth"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/config"
@@ -83,12 +84,7 @@ func main() {
 	ss := shoppingStore.New(pool)
 	ssvc := shopping.NewService(ss)
 
-	rs := recStore.New(pool)
-	recSvc := recommendation.NewService(rs)
-
-	// The AI Gateway is an optional dependency (docs/architecture/ai-architecture.md).
-	// When AI is not configured, core non-AI operations remain fully usable and
-	// AI features fail closed with a bounded unavailable error.
+	var aiGateway ai.Gateway
 	if cfg.AIProvider != "" {
 		adapter, err := openai.New(openai.Config{
 			APIKey:     cfg.AIAPIKey,
@@ -101,7 +97,15 @@ func main() {
 			os.Exit(1)
 		}
 		log.Info("ai gateway configured", "provider", cfg.AIProvider, "model", cfg.AIModel)
-		_ = adapter
+		aiGateway = adapter
+	}
+
+	rs := recStore.New(pool)
+	var recSvc *recommendation.Service
+	if aiGateway != nil {
+		recSvc = recommendation.NewServiceWithAI(rs, aiGateway)
+	} else {
+		recSvc = recommendation.NewService(rs)
 	}
 
 	server := http.New(&cfg, log, tokens, identityService, pantryService, rsvc, mpsvc, ssvc, recSvc)

@@ -5,15 +5,21 @@ import (
 	"encoding/json"
 	"time"
 
+	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/ai"
 	apperr "github.com/andreanpradanaa/dapurpintar.ai/backend/internal/platform/errors"
 )
 
 type Service struct {
-	store Store
+	store   Store
+	gateway ai.Gateway
 }
 
 func NewService(store Store) *Service {
 	return &Service{store: store}
+}
+
+func NewServiceWithAI(store Store, gateway ai.Gateway) *Service {
+	return &Service{store: store, gateway: gateway}
 }
 
 const maxPageLimit = 100
@@ -25,7 +31,49 @@ type PageInfo struct {
 
 func (s *Service) Request(ctx context.Context, profileID, purpose string, maxPrep *int32, useExpiringFirst bool) (*Recommendation, error) {
 	contextRef := []byte("{}")
-	return s.store.CreateRecommendation(ctx, profileID, contextRef, purpose)
+	rec, err := s.store.CreateRecommendation(ctx, profileID, contextRef, purpose)
+	if err != nil {
+		return nil, err
+	}
+
+	if s.gateway == nil {
+		return rec, nil
+	}
+
+	profile := ai.DefaultProfile()
+	req := ai.Request{
+		Purpose:  ai.Purpose(purpose),
+		Messages: []ai.Message{{Role: ai.RoleUser, Content: "Sarankan resep masakan untuk hari ini."}},
+		Profile:  profile,
+	}
+	result, aiErr := s.gateway.Complete(ctx, req)
+	if aiErr != nil {
+		s.store.UpdateRecommendationStatus(ctx, rec.ID, StatusUnableToComplete)
+		return rec, nil
+	}
+
+	var output struct {
+		Summary string `json:"summary"`
+		Options []struct {
+			Title     string `json:"title"`
+			Rationale string `json:"rationale"`
+		} `json:"options"`
+	}
+	if err := json.Unmarshal(result.Content, &output); err != nil {
+		s.store.UpdateRecommendationStatus(ctx, rec.ID, StatusUnableToComplete)
+		return rec, nil
+	}
+
+	for i, opt := range output.Options {
+		s.store.CreateRecommendationOption(ctx, rec.ID, nil, int32(i+1), opt.Rationale)
+	}
+
+	updated, err := s.store.UpdateRecommendationStatus(ctx, rec.ID, StatusCreated)
+	if err == nil {
+		rec = updated
+	}
+
+	return rec, nil
 }
 
 func (s *Service) Get(ctx context.Context, id string) (*Recommendation, []RecommendationOption, error) {
