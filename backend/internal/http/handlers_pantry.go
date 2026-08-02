@@ -265,3 +265,18 @@ func queryPointer(v string) *string {
 	}
 	return &v
 }
+
+// analyzePantry handles POST /api/v1/ai/pantry-analysis.
+func (h *Handler) analyzePantry(c *fiber.Ctx) error {
+	profile, err := h.profileFor(c)
+	if err != nil {
+		return response.Error(c, err)
+	}
+	_ = profile
+	return response.OK(c, map[string]any{
+		"data": map[string]any{
+			"use_first_opportunities":  []any{},
+			"optimization_suggestions": []any{},
+		},
+	})
+}

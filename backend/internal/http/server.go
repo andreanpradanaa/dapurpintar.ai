@@ -172,6 +172,8 @@ func (s *Server) registerRoutes() {
 	authed.Get("/recommendations/:recId/conversation", s.handler.getConversation)
 	authed.Post("/recommendations/:recId/conversation/messages", s.handler.continueConversation)
 	authed.Post("/recommendations/:recId/conversation/close", s.handler.closeConversation)
+
+	authed.Post("/ai/pantry-analysis", s.handler.analyzePantry)
 }
 
 // health reports service liveness without exposing internals.
