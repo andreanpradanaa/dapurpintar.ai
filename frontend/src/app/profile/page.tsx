@@ -10,7 +10,7 @@ export default function ProfilePage() {
   const [name, setName] = useState(profile?.display_name || "");
   const [msg, setMsg] = useState("");
 
-  if (!account) { router.push("/login"); return null; }
+  if (!account) return null;
 
   const save = async () => {
     try {

@@ -2,14 +2,12 @@
 import { useEffect, useState, useCallback } from "react";
 import { useAuth } from "@/lib/auth";
 import { api, type MealPlan } from "@/lib/api";
-import { useRouter } from "next/navigation";
 
 const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const OCCASIONS = ["breakfast", "lunch", "dinner", "snack"] as const;
 
 export default function PlannerPage() {
   const { account } = useAuth();
-  const router = useRouter();
   const [plans, setPlans] = useState<MealPlan[]>([]);
   const [plan, setPlan] = useState<MealPlan | null>(null);
   const [meals, setMeals] = useState<Record<string, string[]>>({});
@@ -52,7 +50,7 @@ export default function PlannerPage() {
     } catch { setErr("Failed to create plan"); }
   };
 
-  if (!account) { router.push("/login"); return null; }
+  if (!account) return null;
 
   return (
     <div className="space-y-6">

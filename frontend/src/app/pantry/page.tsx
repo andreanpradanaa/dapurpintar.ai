@@ -3,12 +3,10 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/lib/auth";
 import { api, type PantryItem } from "@/lib/api";
 import { useToast } from "@/lib/toast";
-import { useRouter } from "next/navigation";
 import { ListSkeleton } from "@/components/skeleton";
 
 export default function PantryPage() {
   const { account } = useAuth();
-  const router = useRouter();
   const { toast } = useToast();
   const [items, setItems] = useState<PantryItem[]>([]);
   const [showAdd, setShowAdd] = useState(false);
@@ -20,7 +18,7 @@ export default function PantryPage() {
   };
   useEffect(() => { if (account) load(); }, [account]);
 
-  if (!account) { router.push("/login"); return null; }
+  if (!account) return null;
 
   return (
     <div className="space-y-6">

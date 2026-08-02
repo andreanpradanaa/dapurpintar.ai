@@ -2,11 +2,9 @@
 import { useEffect, useState, useCallback } from "react";
 import { useAuth } from "@/lib/auth";
 import { api, type ShoppingList, type ShoppingItem } from "@/lib/api";
-import { useRouter } from "next/navigation";
 
 export default function ShoppingPage() {
   const { account } = useAuth();
-  const router = useRouter();
   const [lists, setLists] = useState<ShoppingList[]>([]);
   const [list, setList] = useState<ShoppingList | null>(null);
   const [items, setItems] = useState<ShoppingItem[]>([]);
@@ -67,7 +65,7 @@ export default function ShoppingPage() {
   const activate = async () => { if (list) { const r = await api.activateShoppingList(list.id); setList(r.data); } };
   const complete = async () => { if (list) { const r = await api.completeShoppingList(list.id); setList(r.data); } };
 
-  if (!account) { router.push("/login"); return null; }
+  if (!account) return null;
 
   return (
     <div className="space-y-6">

@@ -3,12 +3,10 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/lib/auth";
 import { api, type PantrySummary, type PantryItem } from "@/lib/api";
 import { useToast } from "@/lib/toast";
-import { useRouter } from "next/navigation";
 import { StatSkeleton, ListSkeleton } from "@/components/skeleton";
 
 export default function TodayPage() {
   const { account, loading } = useAuth();
-  const router = useRouter();
   const { toast } = useToast();
   const [summary, setSummary] = useState<PantrySummary | null>(null);
   const [expiring, setExpiring] = useState<PantryItem[]>([]);
@@ -24,7 +22,7 @@ export default function TodayPage() {
   }, [account]);
 
   if (loading) return <div className="py-12 space-y-4">{Array.from({length:3}).map((_,i)=><StatSkeleton key={i}/>)}</div>;
-  if (!account) { router.push("/login"); return null; }
+  if (!account) return null;
 
   return (
     <div className="space-y-6">
