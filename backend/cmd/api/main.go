@@ -19,6 +19,8 @@ import (
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/platform/database"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/platform/logger"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/platform/telemetry"
+	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/recipes"
+	recipesStore "github.com/andreanpradanaa/dapurpintar.ai/backend/internal/recipes/store"
 )
 
 func main() {
@@ -66,6 +68,9 @@ func main() {
 	pantryStore := pantryStore.New(pool)
 	pantryService := pantry.NewService(pantryStore)
 
+	recipesStr := recipesStore.New(pool)
+	rsvc := recipes.NewService(recipesStr)
+
 	// The AI Gateway is an optional dependency (docs/architecture/ai-architecture.md).
 	// When AI is not configured, core non-AI operations remain fully usable and
 	// AI features fail closed with a bounded unavailable error.
@@ -84,7 +89,7 @@ func main() {
 		_ = adapter
 	}
 
-	server := http.New(&cfg, log, tokens, identityService, pantryService)
+	server := http.New(&cfg, log, tokens, identityService, pantryService, rsvc)
 
 	go func() {
 		log.Info("server listening", "port", cfg.AppPort)

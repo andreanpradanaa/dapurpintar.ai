@@ -14,6 +14,7 @@ import (
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/pantry"
 	apperr "github.com/andreanpradanaa/dapurpintar.ai/backend/internal/platform/errors"
 	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/platform/response"
+	"github.com/andreanpradanaa/dapurpintar.ai/backend/internal/recipes"
 )
 
 // Server bundles the application's HTTP dependencies.
@@ -34,12 +35,13 @@ type Handler struct {
 	tokens           *auth.TokenManager
 	identity         *identity.Service
 	pantry           *pantry.Service
+	recipes          *recipes.Service
 	sessionCookies   middleware.SessionCookies
 	refreshCookieTTL time.Duration
 }
 
 // New builds the Fiber application with global middleware and routes.
-func New(cfg *config.Config, log *slog.Logger, tokens *auth.TokenManager, identityService *identity.Service, pantryService *pantry.Service) *Server {
+func New(cfg *config.Config, log *slog.Logger, tokens *auth.TokenManager, identityService *identity.Service, pantryService *pantry.Service, recipesService *recipes.Service) *Server {
 	app := fiber.New(fiber.Config{
 		AppName:               cfg.AppName,
 		DisableStartupMessage: true,
@@ -68,6 +70,7 @@ func New(cfg *config.Config, log *slog.Logger, tokens *auth.TokenManager, identi
 			tokens:           tokens,
 			identity:         identityService,
 			pantry:           pantryService,
+			recipes:          recipesService,
 			sessionCookies:   sessionCookies,
 			refreshCookieTTL: tokens.RefreshTTL(),
 		},
@@ -115,6 +118,13 @@ func (s *Server) registerRoutes() {
 	authed.Patch("/pantry/items/:itemId", s.handler.updatePantryItem)
 	authed.Delete("/pantry/items/:itemId", s.handler.removePantryItem)
 	authed.Get("/pantry/expiry", s.handler.listExpiringItems)
+
+	api.Get("/recipes", s.handler.listRecipes)
+	api.Get("/recipes/:recipeId", s.handler.getRecipe)
+
+	authed.Get("/favorites", s.handler.listFavorites)
+	authed.Put("/favorites/recipes/:recipeId", s.handler.favoriteRecipe)
+	authed.Delete("/favorites/recipes/:recipeId", s.handler.unfavoriteRecipe)
 }
 
 // health reports service liveness without exposing internals.
@@ -132,3 +142,6 @@ func payloadError(err error) *apperr.Error {
 	return apperr.New(apperr.CodePayloadMalformed, "The request body is invalid.").WithDetails(
 		apperr.Detail{Field: "body", Code: string(apperr.CodePayloadMalformed), Message: "The request body must be valid JSON."})
 }
+
+var errRecipeNotPublic = apperr.New(apperr.CodeRecipeNotPublic, "This recipe is not available in public scope.").
+	WithDetails(apperr.Detail{Field: "recipe_id", Code: string(apperr.CodeRecipeNotPublic), Message: "The recipe is not public."})
