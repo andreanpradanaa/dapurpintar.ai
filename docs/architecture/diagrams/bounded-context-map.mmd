@@ -1,0 +1,45 @@
+flowchart LR
+    subgraph Generic[Generic Bounded Contexts]
+        ID[Identity and Access]
+        NT[Notifications and Reminders]
+        CO[SaaS Commercial Operations]
+    end
+
+    subgraph Supporting[Supporting Bounded Contexts]
+        UC[User Context and Preferences]
+        PM[Pantry Management]
+        RK[Culinary Knowledge and Recipe Experience]
+        MP[Meal Planning]
+        SO[Shopping Optimization]
+        FC[Family and Household Collaboration]
+        NG[Nutrition Guidance]
+    end
+
+    subgraph Core[Core Bounded Context]
+        AI[AI-Assisted Kitchen Decision Support]
+    end
+
+    ID -->|trusted identity and scope| UC
+    ID -->|trusted identity and scope| PM
+    ID -->|trusted identity and scope| RK
+    ID -->|trusted identity and scope| MP
+    ID -->|trusted identity and scope| SO
+    ID -->|trusted identity and scope| AI
+
+    UC -->|personal relevance and constraints| AI
+    PM -->|available and expiring ingredients| AI
+    RK -->|recipes and cooking guidance| AI
+    NG -.->|nutrition constraints - future| AI
+
+    AI -->|cooking decisions| MP
+    AI -->|purchase intent| SO
+    MP -->|planned meals| SO
+
+    FC -.->|shared household participation - future| PM
+    FC -.->|shared household participation - future| MP
+    FC -.->|shared household participation - future| SO
+
+    PM -.->|expiry situations| NT
+    MP -.->|planned meal situations| NT
+    AI -.->|decision situations| NT
+    CO -.->|participation rules - future| AI
