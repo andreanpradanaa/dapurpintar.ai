@@ -1,0 +1,47 @@
+C4Component
+title DapurPintar AI - Backend Modular Monolith Component Diagram
+
+Container_Ext(web, "Web Application", "Next.js, React, TypeScript", "Captures user intent and presents business views and outcomes.")
+Container_Ext(aiGateway, "AI Gateway", "AI provider abstraction", "Owns provider integration, prompt orchestration, and AI resilience policies.")
+ContainerDb_Ext(postgres, "PostgreSQL", "Authoritative data store", "System of record for business data.")
+ContainerDb_Ext(redis, "Redis", "Supporting data store", "Cache, session management, rate limiting, and temporary state only.")
+Container_Ext(observability, "Observability", "OpenTelemetry, Grafana", "Operational and business visibility.")
+
+Container_Boundary(backend, "Backend Modular Monolith") {
+    Component(api, "API Layer", "Application boundary", "Translates user-facing requests and business outcomes without owning business rules.")
+    Component(auth, "Authentication & Authorization Component", "Access boundary", "Establishes trusted identity and access scope for protected use cases.")
+    Component(application, "Application Layer", "Use-case orchestration", "Coordinates commands, queries, policies, aggregates, repositories, AI assistance, and domain events.")
+    Component(domain, "Domain Layer", "Core business model", "Owns aggregates, value objects, domain services, policies, domain events, and business invariants.")
+    Component(repository, "Repository Abstraction", "Business persistence boundary", "Defines business-facing contracts for owned aggregates and context.")
+    Component(readModels, "Read Model Component", "Business query views", "Prepares optimized business views without owning business truth.")
+    Component(aiIntegration, "AI Integration Component", "AI assistance boundary", "Translates approved business context and communicates only with the AI Gateway.")
+    Component(eventPublishing, "Event Publishing Component", "Internal business publication", "Publishes domain events inside the application boundary without a message broker.")
+    Component(infrastructure, "Infrastructure Layer", "Technical implementation boundary", "Implements repository and approved technical concerns for external stores and supporting services.")
+    Component(backendObservability, "Observability Component", "Cross-cutting operational concern", "Captures safe traces, metrics, and structured operational signals.")
+}
+
+Rel(web, api, "Submits user intent and receives business outcomes")
+Rel(api, auth, "Requests identity and access decision")
+Rel(api, application, "Invokes business use cases")
+Rel(api, readModels, "Requests business views")
+
+Rel(application, domain, "Executes aggregate and domain decisions")
+Rel(application, repository, "Reads and changes owned business context")
+Rel(domain, repository, "Defines business persistence needs")
+Rel(infrastructure, repository, "Implements repository contracts")
+Rel(application, aiIntegration, "Requests contextual AI assistance")
+Rel(aiIntegration, aiGateway, "Sends provider-independent AI assistance request")
+Rel(application, readModels, "Requests query-focused business views")
+Rel(application, eventPublishing, "Publishes completed domain facts")
+
+Rel(infrastructure, postgres, "Reads and writes authoritative business data")
+Rel(infrastructure, redis, "Uses cache, sessions, rate limits, and temporary state")
+
+Rel(api, backendObservability, "Emits boundary signals")
+Rel(application, backendObservability, "Emits use-case signals")
+Rel(aiIntegration, backendObservability, "Emits AI interaction signals")
+Rel(eventPublishing, backendObservability, "Emits event-publication signals")
+Rel(infrastructure, backendObservability, "Emits technical dependency signals")
+Rel(aiGateway, observability, "Emits AI provider signals")
+Rel(postgres, observability, "Emits data-store signals")
+Rel(redis, observability, "Emits supporting-store signals")
