@@ -5,9 +5,9 @@
 | Item | Status |
 |---|---|
 | Current milestone | M4 - Solution Architecture Refinement |
-| Current deliverable | M4-002 Architecture Decision Register |
+| Current deliverable | M4-003 Implementation Backlog and Technical Spikes |
 | Current status | In Review |
-| Next action | Resolve M2/M3 review gates and prepare M5/M6 contracts |
+| Next action | Review M4-003, then resolve blocking decisions (M4-DEC-006, M4-DEC-007, M4-DEC-008) before M5/M6 |
 | Next implementation milestone | M10 - Frontend Development |
 
 Milestone approval tetap mengikuti proses review. Artifact yang sudah dibuat tidak otomatis berarti milestone telah disetujui atau ditutup.
@@ -110,6 +110,7 @@ Status: **In Review**
 
 - M4-001 Implementation Readiness: `docs/architecture/implementation-readiness.md`
 - M4-002 Architecture Decision Register: `docs/architecture/m4-decision-register.md`
+- M4-003 Implementation Backlog and Technical Spikes: `docs/architecture/implementation-backlog.md`
 - Resolve architecture decisions deferred from M2.
 - Refine implementation boundaries from M3 validation.
 - Confirm frontend, backend, database, and AI implementation contracts.
