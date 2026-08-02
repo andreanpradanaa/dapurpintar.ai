@@ -1,0 +1,49 @@
+flowchart LR
+    subgraph Core[Core Domain]
+        C[AI-Assisted Kitchen<br/>Decision Support]
+    end
+
+    subgraph Supporting[Supporting Domains]
+        P[Pantry Management]
+        R[Culinary Knowledge<br/>and Recipe Experience]
+        M[Meal Planning]
+        S[Shopping Optimization]
+        U[User Context<br/>and Preferences]
+        F[Family and Household<br/>Collaboration - Future]
+        N[Nutrition Guidance - Future]
+    end
+
+    subgraph Generic[Generic Domains]
+        I[Identity and Access]
+        T[Notifications and Reminders]
+        O[Observability and<br/>Operational Insights]
+        B[SaaS Commercial<br/>Operations - Future]
+        X[External Provider<br/>Integration]
+    end
+
+    U --> C
+    P --> C
+    R --> C
+    C <--> M
+    C <--> S
+    C --> P
+    C --> M
+    C --> S
+    N --> C
+    F --> P
+    F --> M
+    F --> S
+    I --> C
+    I --> P
+    I --> R
+    I --> M
+    I --> S
+    P -. domain signals .-> T
+    M -. domain signals .-> T
+    C -. domain signals .-> T
+    C -. business and operational signals .-> O
+    P -. business and operational signals .-> O
+    M -. business and operational signals .-> O
+    S -. business and operational signals .-> O
+    C -. provider capability .-> X
+    B -. entitlements and usage .-> C
