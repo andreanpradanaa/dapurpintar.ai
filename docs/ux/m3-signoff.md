@@ -110,7 +110,7 @@ Supporting diagrams are maintained under `docs/ux/diagrams/`.
 | Participant profile | Defined |
 | Task scenarios | Defined |
 | Success metrics | Defined |
-| Prototype | Pending creation or assembly |
+| Prototype | Assembled in `design/prototype/` |
 | Participant sessions | Not started |
 | Findings | Not available |
 | Design revisions from evidence | Pending |
@@ -182,7 +182,7 @@ The artifacts are sufficient to assemble a clickable prototype and conduct usabi
 
 ## Next Action
 
-Assemble the prototype from the high-fidelity specification, run the usability scenarios, record evidence, revise affected screens, and then return to this sign-off for approval.
+Run the usability scenarios against the assembled prototype, record evidence, revise affected screens, and then return to this sign-off for approval.
 
 ## Related Documents
 
@@ -192,6 +192,8 @@ Assemble the prototype from the high-fidelity specification, run the usability s
 - `docs/ux/design-system.md`
 - `docs/ux/high-fidelity-screen-spec.md`
 - `docs/ux/usability-validation-plan.md`
+- `design/prototype/README.md`
+- `design/prototype/index.html`
 - `docs/architecture/m2-signoff.md`
 - `docs/architecture/api-design.md`
 - `docs/architecture/ai-architecture.md`

@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="DapurPintar AI M3 UX validation prototype">
+  <title>DapurPintar AI Prototype</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Primary navigation">
+      <a class="brand" href="#today" data-screen="today" aria-label="DapurPintar home">
+        <span class="brand-mark" aria-hidden="true">dp</span>
+        <span>Dapur<span>Pintar</span></span>
+      </a>
+      <p class="eyebrow sidebar-label">Your kitchen board</p>
+      <nav class="nav-list">
+        <button class="nav-item active" data-screen="today"><span class="nav-icon">+</span>Today</button>
+        <button class="nav-item" data-screen="pantry"><span class="nav-icon">:</span>Pantry</button>
+        <button class="nav-item" data-screen="discover"><span class="nav-icon">o</span>Discover</button>
+        <button class="nav-item" data-screen="planner"><span class="nav-icon">#</span>Planner</button>
+        <button class="nav-item" data-screen="shopping"><span class="nav-icon">=</span>Shopping</button>
+      </nav>
+      <div class="sidebar-note">
+        <span class="eyebrow">This week</span>
+        <strong>3 meals planned</strong>
+        <span>1 ingredient to use soon</span>
+      </div>
+      <button class="profile-link" data-screen="profile">
+        <span class="avatar">S</span>
+        <span><strong>Sarah</strong><small>Profile and preferences</small></span>
+      </button>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Open navigation">menu</button>
+        <span class="mobile-brand">Dapur<span>Pintar</span></span>
+        <button class="avatar top-avatar" data-screen="profile" aria-label="Open profile">S</button>
+      </header>
+
+      <div class="screen-wrap">
+        <section class="screen active" id="screen-today" aria-labelledby="today-title">
+          <div class="page-heading split-heading">
+            <div>
+              <p class="eyebrow">Tuesday, 13 August</p>
+              <h1 id="today-title">Good evening, Sarah.</h1>
+              <p class="lede">What are you cooking today?</p>
+            </div>
+            <button class="button button-secondary" data-screen="pantry">+ Add context</button>
+          </div>
+
+          <div class="context-strip" id="todayContext">
+            <span>3 ingredients available</span><i aria-hidden="true">·</i><span>1 use soon</span><i aria-hidden="true">·</i><span>25 min</span>
+          </div>
+
+          <div class="today-grid">
+            <article class="recommendation-card" id="recommendationCard">
+              <div class="card-topline">
+                <span class="eyebrow">Try this</span>
+                <span class="status-pill status-ai">AI suggestion</span>
+              </div>
+              <div class="dish-illustration" aria-hidden="true"><span>spinach</span><span>eggs</span><span>rice</span></div>
+              <h2>Tumis sayur telur</h2>
+              <p class="meta-line"><span>20 min</span><span>2 servings</span><span>Easy</span></p>
+              <p class="reason">Uses spinach first and fits your time preference.</p>
+              <div class="ingredient-line"><span class="available">Available: spinach, eggs</span><span class="missing">Missing: garlic</span></div>
+              <div class="card-actions">
+                <button class="button button-primary" id="acceptOption">Use this idea</button>
+                <button class="button button-quiet" data-screen="recommendation">Ask about it</button>
+              </div>
+              <div class="accepted-note" id="acceptedNote" hidden>
+                <strong>Option accepted.</strong> Choose what happens next.
+                <div class="inline-actions"><button class="text-button" data-screen="planner">Add to plan</button><button class="text-button" data-screen="shopping">Make a shopping list</button></div>
+              </div>
+            </article>
+
+            <aside class="today-aside">
+              <article class="quiet-card week-card">
+                <div class="card-topline"><span class="eyebrow">Your week</span><button class="icon-button" data-screen="planner" aria-label="Open planner">open</button></div>
+                <div class="mini-day"><span class="day-label">TUE 13</span><strong>Dinner</strong><span class="empty-action">+ Choose a meal</span></div>
+                <div class="mini-day planned"><span class="day-label">WED 14</span><strong>Nasi goreng sayur</strong><span class="meta-line">25 min · planned</span></div>
+                <button class="text-button" data-screen="planner">Open planner</button>
+              </article>
+              <article class="quiet-card pantry-note">
+                <span class="eyebrow">Pantry attention</span>
+                <strong>Spinach is best used soon.</strong>
+                <p>Keep it in the next suggestion or meal plan.</p>
+                <button class="text-button" data-screen="pantry">Open pantry</button>
+              </article>
+            </aside>
+          </div>
+
+          <div class="bottom-actions"><button class="button button-secondary" data-screen="pantry">+ Add pantry item</button><button class="button button-quiet" data-screen="discover">Browse recipes</button></div>
+          <div class="prototype-tools"><button class="text-button" id="toggleAi">Simulate AI unavailable</button></div>
+        </section>
+
+        <section class="screen" id="screen-pantry" aria-labelledby="pantry-title">
+          <div class="page-heading split-heading"><div><p class="eyebrow">Your ingredients</p><h1 id="pantry-title">Pantry</h1><p class="lede">Know what you have. Cook with less waste.</p></div><button class="button button-primary" id="openPantryForm">+ Add item</button></div>
+          <div class="pantry-stats"><div><strong id="itemCount">12</strong><span>items</span></div><div><strong>3</strong><span>categories</span></div><div class="attention-stat"><strong>1</strong><span>use soon</span></div></div>
+          <div class="toolbar"><label class="search-box"><span aria-hidden="true">search</span><input type="search" placeholder="Search ingredients..." aria-label="Search ingredients"></label><button class="filter-button">Category <span>v</span></button></div>
+          <div class="section-label"><span>Use soon</span><button class="text-button">See all</button></div>
+          <article class="pantry-item urgent"><div class="item-icon herb">S</div><div class="item-copy"><strong>Spinach</strong><span>1 bunch</span><small>Best used in the next suggestion</small></div><time>12 Aug</time><button class="icon-button" aria-label="Edit spinach">...</button></article>
+          <div class="section-label"><span>All items</span></div>
+          <div class="pantry-list" id="pantryList">
+            <article class="pantry-item"><div class="item-icon yellow">E</div><div class="item-copy"><strong>Eggs</strong><span>6 pcs</span></div><span class="item-category">Protein</span><button class="icon-button" aria-label="Edit eggs">...</button></article>
+            <article class="pantry-item"><div class="item-icon green">R</div><div class="item-copy"><strong>Rice</strong><span>2 kg</span></div><span class="item-category">Staples</span><button class="icon-button" aria-label="Edit rice">...</button></article>
+            <article class="pantry-item"><div class="item-icon orange">G</div><div class="item-copy"><strong>Garlic</strong><span>2 bulbs</span></div><span class="item-category">Produce</span><button class="icon-button" aria-label="Edit garlic">...</button></article>
+          </div>
+          <div class="empty-panel" id="pantryEmpty" hidden><div class="empty-mark">+</div><h2>Your pantry is empty.</h2><p>Add one ingredient and we can make the first suggestion more relevant.</p><button class="button button-primary" id="openPantryFormEmpty">Add first item</button></div>
+        </section>
+
+        <section class="screen" id="screen-discover" aria-labelledby="discover-title">
+          <div class="page-heading"><p class="eyebrow">Reliable cooking ideas</p><h1 id="discover-title">Discover recipes</h1><p class="lede">Find something good, with or without AI.</p></div>
+          <div class="search-large"><input type="search" placeholder="What do you want to cook?" aria-label="Search recipes"><button class="button button-primary">Search</button></div>
+          <div class="filter-row"><button class="filter-chip active">15 min</button><button class="filter-chip">Uses pantry</button><button class="filter-chip">Easy</button></div>
+          <div class="section-label"><span>Recommended for your pantry</span></div>
+          <div class="recipe-grid"><article class="recipe-card featured"><div class="recipe-art art-green"><span>20 min</span></div><div class="recipe-copy"><div class="card-topline"><span class="eyebrow">Uses 3 pantry items</span><button class="heart-button" aria-label="Favorite recipe">favorite</button></div><h2>Tumis sayur telur</h2><p>Quick, warm, and easy to adjust.</p><button class="text-button" data-screen="recipe">View recipe</button></div></article><article class="recipe-card"><div class="recipe-art art-yellow"><span>25 min</span></div><div class="recipe-copy"><div class="card-topline"><span class="eyebrow">Easy</span><button class="heart-button" aria-label="Favorite recipe">favorite</button></div><h2>Nasi goreng sayur</h2><p>A pantry staple for a busy evening.</p><button class="text-button" data-screen="recipe">View recipe</button></div></article></div>
+        </section>
+
+        <section class="screen" id="screen-recommendation" aria-labelledby="recommendation-title">
+          <div class="page-heading split-heading"><div><button class="back-link" data-screen="today">&lt; Back to Today</button><p class="eyebrow">Recommendation · Created</p><h1 id="recommendation-title">What fits your kitchen?</h1></div><button class="button button-quiet" data-screen="today">Close</button></div>
+          <div class="context-strip"><span>3 ingredients available</span><i aria-hidden="true">·</i><span>1 use soon</span><i aria-hidden="true">·</i><span>25 min</span></div>
+          <div class="option-grid"><article class="option-card selected"><span class="option-number">01</span><h2>Tumis sayur telur</h2><p class="meta-line"><span>20 min</span><span>Easy</span></p><p>Uses spinach first and stays within your time preference.</p><div class="ingredient-line"><span class="available">Available: spinach, eggs</span><span class="missing">Missing: garlic</span></div><button class="button button-primary option-accept">Accept option 01</button></article><article class="option-card"><span class="option-number">02</span><h2>Nasi goreng sayur</h2><p class="meta-line"><span>25 min</span><span>Easy</span></p><p>Uses pantry staples and is easy to portion.</p><div class="ingredient-line"><span class="available">Available: rice, eggs</span><span class="missing">Missing: carrot</span></div><button class="button button-secondary option-accept">Choose option 02</button></article></div>
+          <div class="conversation-callout"><div><span class="eyebrow">Need more context?</span><strong>Ask about this recommendation</strong><p>Keep the question focused on this cooking idea.</p></div><button class="button button-secondary" id="conversationButton">Ask a question</button></div>
+          <div class="accepted-banner" id="recommendationAccepted" hidden><strong>Option accepted.</strong><span>Now choose an explicit next action.</span><button class="text-button" data-screen="planner">Add to plan</button><button class="text-button" data-screen="shopping">Make a shopping list</button></div>
+        </section>
+
+        <section class="screen" id="screen-planner" aria-labelledby="planner-title">
+          <div class="page-heading split-heading"><div><p class="eyebrow">Your cooking intention</p><h1 id="planner-title">Planner</h1><p class="lede">Plan the meals you actually want to cook.</p></div><div class="period-control"><button class="icon-button">&lt;</button><strong>12 - 18 Aug</strong><button class="icon-button">&gt;</button><button class="filter-button">Week v</button></div></div>
+          <div class="planner-grid"><article class="meal-day"><span class="day-label">MON 12</span><div class="meal-slot empty"><span>Dinner</span><button class="slot-add">+ Add meal</button></div></article><article class="meal-day"><span class="day-label">TUE 13</span><div class="meal-slot empty"><span>Dinner</span><button class="slot-add">+ Add meal</button></div></article><article class="meal-day"><span class="day-label">WED 14</span><div class="meal-slot planned"><span>Dinner</span><strong>Nasi goreng sayur</strong><small>25 min · planned</small></div></article><article class="meal-day"><span class="day-label">THU 15</span><div class="meal-slot empty"><span>Dinner</span><button class="slot-add">+ Add meal</button></div></article><article class="meal-day"><span class="day-label">FRI 16</span><div class="meal-slot planned"><span>Dinner</span><strong>Tumis sayur telur</strong><small>20 min · planned</small></div></article></div>
+          <div class="planner-footer"><p><strong>Two meals planned.</strong> Add more or generate a list when you are ready.</p><button class="button button-primary" data-screen="shopping">Generate shopping list</button></div>
+        </section>
+
+        <section class="screen" id="screen-shopping" aria-labelledby="shopping-title">
+          <div class="page-heading split-heading"><div><p class="eyebrow">Purchase review</p><h1 id="shopping-title">Shopping list</h1><p class="lede">Week of 12 Aug · <span id="shoppingStatus">Draft</span></p></div><button class="button button-secondary">+ New list</button></div>
+          <div class="source-note"><span class="source-icon">i</span><span>Generated from weekly plan + pantry</span></div>
+          <div class="shopping-section"><div class="section-label"><span>Review before shopping</span><span class="utility">4 items</span></div><div class="shopping-list" id="shoppingList"><label class="shopping-item"><input type="checkbox"><span class="checkmark"></span><span class="shopping-copy"><strong>Garlic</strong><small>2 bulbs</small></span><button class="icon-button" aria-label="More garlic options">...</button></label><label class="shopping-item"><input type="checkbox"><span class="checkmark"></span><span class="shopping-copy"><strong>Eggs</strong><small>6 pcs</small></span><button class="icon-button" aria-label="More egg options">...</button></label><label class="shopping-item"><input type="checkbox"><span class="checkmark"></span><span class="shopping-copy"><strong>Carrot</strong><small>3 pcs</small></span><button class="icon-button" aria-label="More carrot options">...</button></label></div><button class="button button-primary" id="activateList">Activate list</button></div>
+          <div class="shopping-section completed-section"><div class="section-label"><span>Completed</span></div><label class="shopping-item completed"><input type="checkbox" checked><span class="checkmark"></span><span class="shopping-copy"><strong>Rice</strong><small>2 kg</small></span></label></div>
+        </section>
+
+        <section class="screen" id="screen-profile" aria-labelledby="profile-title">
+          <div class="page-heading"><p class="eyebrow">Your context</p><h1 id="profile-title">Profile and preferences</h1><p class="lede">Keep the suggestions useful to you.</p></div>
+          <div class="profile-card"><div class="profile-avatar">S</div><div><h2>Sarah</h2><p>Marketing Manager · Jakarta</p></div><button class="button button-secondary">Edit profile</button></div><div class="preference-card"><span class="eyebrow">Cooking goals</span><div class="preference-tags"><span>Quick meals</span><span>Use pantry</span><span>Save money</span></div><button class="text-button">Edit preferences</button></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="mobile-nav" aria-label="Mobile navigation"><button class="active" data-screen="today"><span>+</span>Today</button><button data-screen="pantry"><span>:</span>Pantry</button><button data-screen="planner"><span>#</span>Plan</button><button data-screen="shopping"><span>=</span>Shop</button></div>
+
+  <dialog class="modal" id="pantryModal"><form method="dialog" id="pantryForm"><div class="modal-heading"><div><p class="eyebrow">Add to your context</p><h2>Add pantry item</h2></div><button class="icon-button" value="cancel" aria-label="Close">x</button></div><label>Ingredient name<input id="ingredientName" required placeholder="e.g. spinach"></label><div class="form-row"><label>Quantity<input type="number" min="0" step="0.1" value="1" required></label><label>Unit<select><option>bunch</option><option>pcs</option><option>kg</option><option>bottle</option></select></label></div><label>Expiry <span class="optional">optional</span><input type="date"></label><button class="button button-primary" value="default">Save item</button></form></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
