@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { api, type Recipe } from "@/lib/api";
 
@@ -8,48 +8,39 @@ export default function LandingPage() {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [loading, setLoading] = useState(false);
   const [chips, setChips] = useState<string[]>([]);
-  const debounce = useRef<NodeJS.Timeout | null>(null);
 
-  const searchFromChips = (chipsList: string[]) => {
-    const q = chipsList.join(" ");
-    if (!q.trim()) { setRecipes([]); return; }
+  const handleSearch = () => {
+    let current = chips;
+    if (query.trim()) {
+      current = [...chips, query.trim().replace(/,$/, "")];
+      setChips(current);
+      setQuery("");
+    }
+    const q = current.join(" ");
+    if (!q.trim()) return;
     setLoading(true);
     api.recipes(q).then(r => setRecipes(r.data.slice(0, 6))).catch(() => {}).finally(() => setLoading(false));
   };
 
-  const addChip = (ingredient: string) => {
-    const cleaned = ingredient.trim().replace(/,$/, "");
-    if (!cleaned) return;
-    const newChips = [...chips, cleaned];
-    setChips(newChips);
-    setQuery("");
-    searchFromChips(newChips);
-  };
-
-  const removeChip = (index: number) => {
-    const newChips = chips.filter((_, i) => i !== index);
-    setChips(newChips);
-    searchFromChips(newChips);
-  };
+  const removeChip = (index: number) => setChips(chips.filter((_, i) => i !== index));
+  const addChip = (ingredient: string) => setChips([...chips, ingredient]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" || e.key === ",") {
+    if (e.key === "Enter") {
       e.preventDefault();
-      addChip(query);
+      handleSearch();
+    }
+    if (e.key === ",") {
+      e.preventDefault();
+      if (query.trim()) {
+        setChips([...chips, query.trim().replace(/,$/, "")]);
+        setQuery("");
+      }
     }
     if (e.key === "Backspace" && query === "" && chips.length > 0) {
       removeChip(chips.length - 1);
     }
   };
-
-  useEffect(() => {
-    if (debounce.current) clearTimeout(debounce.current);
-    if (!query.trim()) return;
-    debounce.current = setTimeout(() => {
-      api.recipes(query).then(r => setRecipes(r.data.slice(0, 4))).catch(() => {});
-    }, 400);
-    return () => { if (debounce.current) clearTimeout(debounce.current); };
-  }, [query]);
 
   return (
     <main className="min-h-screen">
@@ -82,12 +73,20 @@ export default function LandingPage() {
                 value={query}
                 onChange={e => setQuery(e.target.value)}
                 onKeyDown={handleKeyDown}
-                onBlur={() => query.trim() && addChip(query)}
                 placeholder={chips.length === 0 ? "e.g. ayam, bawang putih, santan, tahu" : "Add more ingredients..."}
                 className="w-full !border-0 !ring-0 !px-1 !py-1 text-kuali-950 placeholder:text-bambu-300 text-lg focus:!ring-0"
                 autoFocus
               />
             </div>
+
+            {(chips.length > 0 || query.trim()) && (
+              <button
+                onClick={handleSearch}
+                className="mt-4 w-full bg-rempah-500 text-white font-medium py-3 rounded-xl hover:bg-rempah-700 transition-colors text-sm tracking-wide"
+              >
+                Find recipes
+              </button>
+            )}
 
             {/* Quick suggestions */}
             {chips.length === 0 && query.length === 0 && (
