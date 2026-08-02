@@ -149,15 +149,22 @@ Completed
 - ADR
 - Domain Discovery
 - Bounded Context
-
-In Progress
-
 - Tactical DDD
-
-Upcoming
-
+- Event Storming
+- System Context Diagram
+- Container Diagram
+- Component Diagram
 - Database Design
 - API Design
-- Authentication
+- Authentication and Authorization
 - AI Architecture
-- Deployment
+- Observability Architecture
+- Deployment Architecture
+
+In Review
+
+- M2 Architecture Sign-off
+
+Next
+
+- M3 UX/UI Design

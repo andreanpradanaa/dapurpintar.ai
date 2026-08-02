@@ -5,19 +5,21 @@
 - Cara membaca roadmap
 
 ## Current Status
-- Current Milestone
-- Progress
+- Current Milestone: M2 - Solution Architecture
+- Progress: M2-016 Architecture Sign-off - In Review
 
 ## Milestone 0
-- Tujuan
-- Deliverables
-- Status
+- Foundation
+- Status: Complete
 
 ## Milestone 1
 - Product Planning
+- Status: Complete
 
 ## Milestone 2
-- Business Research
+- Solution Architecture
+- M2-001 through M2-015 complete
+- M2-016 Architecture Sign-off in review
 
 ## Milestone 3
 - UX & Product Design
