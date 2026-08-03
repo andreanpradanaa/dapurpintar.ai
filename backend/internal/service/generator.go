@@ -4,22 +4,22 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"log/slog"
 	"time"
 
 	"github.com/dapurpintar/backend/internal/model"
 	"github.com/dapurpintar/backend/internal/repo"
 	"github.com/dapurpintar/backend/internal/service/llm"
+	"github.com/rs/zerolog"
 )
 
 type Generator struct {
 	repo  repo.RecipeRepo
 	llm   llm.Client
-	log   *slog.Logger
+	log   *zerolog.Logger
 	limit int
 }
 
-func NewGenerator(r repo.RecipeRepo, l llm.Client, log *slog.Logger) *Generator {
+func NewGenerator(r repo.RecipeRepo, l llm.Client, log *zerolog.Logger) *Generator {
 	return &Generator{repo: r, llm: l, log: log, limit: 3}
 }
 
@@ -104,13 +104,13 @@ func (g *Generator) Generate(ctx context.Context, req GenerateRequest) (*Generat
 		Dietary:         req.Dietary,
 		Language:        langOrDefault(req.Language),
 		References:      references,
-		Timeout:         30 * time.Second,
+		Timeout:         120 * time.Second,
 	}
-	g.log.Info("calling llm",
-		"provider", g.llm.Name(),
-		"references", len(references),
-		"ingredients", len(req.Ingredients),
-	)
+	g.log.Info().
+		Str("provider", g.llm.Name()).
+		Int("references", len(references)).
+		Int("ingredients", len(req.Ingredients)).
+		Msg("calling llm")
 	recipe, err := g.llm.GenerateRecipe(ctx, llmReq)
 	if err != nil {
 		return nil, fmt.Errorf("llm: %w", err)

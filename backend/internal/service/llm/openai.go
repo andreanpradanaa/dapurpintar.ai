@@ -7,13 +7,13 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"log/slog"
 	"net/http"
 	"regexp"
 	"strings"
 	"time"
 
 	"github.com/dapurpintar/backend/internal/model"
+	"github.com/rs/zerolog"
 )
 
 const defaultBaseURL = "https://api.openai.com/v1"
@@ -27,10 +27,10 @@ type OpenAIClient struct {
 	model   string
 	baseURL string
 	client  *http.Client
-	log     *slog.Logger
+	log     *zerolog.Logger
 }
 
-func NewOpenAIClient(apiKey, modelName, baseURL string, log *slog.Logger) *OpenAIClient {
+func NewOpenAIClient(apiKey, modelName, baseURL string, log *zerolog.Logger) *OpenAIClient {
 	if baseURL == "" {
 		baseURL = defaultBaseURL
 	}
@@ -133,6 +133,9 @@ func (c *OpenAIClient) GenerateRecipe(ctx context.Context, req GenerateRequest) 
 	bodyBytes, _ := io.ReadAll(resp.Body)
 	if resp.StatusCode != http.StatusOK {
 		return nil, fmt.Errorf("llm %d: %s", resp.StatusCode, truncate(string(bodyBytes), 400))
+	}
+	if len(bodyBytes) == 0 {
+		return nil, fmt.Errorf("llm returned empty response (status %d)", resp.StatusCode)
 	}
 
 	var oa openaiResponse
