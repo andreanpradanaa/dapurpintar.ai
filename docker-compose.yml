@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: dapur-postgres
+    environment:
+      POSTGRES_USER: dapur
+      POSTGRES_PASSWORD: dapur_dev
+      POSTGRES_DB: dapur
+    ports:
+      - "5432:5432"
+    volumes:
+      - dapur_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dapur"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  backend:
+    build:
+      context: ./backend`
+      dockerfile: Dockerfile
+    container_name: dapur-backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - ./backend/.env
+    environment:
+      # Override DATABASE_URL to use the docker service hostname
+      DATABASE_URL: postgres://dapur:dapur_dev@postgres:5432/dapur?sslmode=disable
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend/data:/app/data
+      - ./backend/migrations:/app/migrations
+
+volumes:
+  dapur_pgdata:

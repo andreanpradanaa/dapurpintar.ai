@@ -8,8 +8,9 @@
 /coverage
 
 # next.js (frontend)
-/.next/
-/out/
+/frontend/.next/
+/frontend/out/
+/frontend/.swc/
 
 # production
 /build

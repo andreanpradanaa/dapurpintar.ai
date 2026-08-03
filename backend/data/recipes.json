@@ -1,0 +1,4226 @@
+[
+  {
+    "id": "r-001",
+    "slug": "nasi-goreng-ayam",
+    "title": "Nasi Goreng Ayam",
+    "titleId": "Nasi Goreng Ayam",
+    "description": "Indonesia's national dish. Wok-fried rice with chicken, sweet soy sauce, and aromatics — ready in 15 minutes.",
+    "descriptionId": "Hidangan nasional Indonesia. Nasi goreng dengan ayam, kecap manis, dan bumbu aromatik — siap dalam 15 menit.",
+    "image": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#7f1d1d",
+      "#1c1917"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "easy",
+    "prepTime": 5,
+    "cookTime": 10,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "Cooked rice (day-old)",
+        "nameId": "Nasi putih (sisa semalam)",
+        "amount": "2 cups",
+        "category": "grain"
+      },
+      {
+        "name": "Chicken breast, diced",
+        "nameId": "Dada ayam, potong dadu",
+        "amount": "150g",
+        "category": "protein"
+      },
+      {
+        "name": "Shallot, sliced",
+        "nameId": "Bawang merah, iris",
+        "amount": "3 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Garlic, minced",
+        "nameId": "Bawang putih, cincang",
+        "amount": "2 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Sweet soy sauce (kecap manis)",
+        "nameId": "Kecap manis",
+        "amount": "2 tbsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Egg",
+        "nameId": "Telur",
+        "amount": "1",
+        "category": "protein"
+      },
+      {
+        "name": "Bird's eye chili",
+        "nameId": "Cabai rawit",
+        "amount": "2",
+        "category": "spice",
+        "optional": true
+      },
+      {
+        "name": "Salt",
+        "nameId": "Garam",
+        "amount": "to taste",
+        "category": "sauce"
+      },
+      {
+        "name": "Cooking oil",
+        "nameId": "Minyak goreng",
+        "amount": "2 tbsp",
+        "category": "other"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Heat oil in a wok over high heat. Fry shallots and garlic until fragrant (30 sec).",
+        "textId": "Panaskan minyak di wajan dengan api besar. Tumis bawang merah dan putih hingga harum (30 detik).",
+        "durationSec": 30
+      },
+      {
+        "order": 2,
+        "text": "Add chicken, stir-fry until opaque (2 min).",
+        "textId": "Masukkan ayam, tumis hingga berubah warna (2 menit).",
+        "durationSec": 120
+      },
+      {
+        "order": 3,
+        "text": "Push everything to one side. Crack the egg, scramble quickly, then mix.",
+        "textId": "Geser ke pinggir. Pecahkan telur, orak-arik cepat, lalu campur.",
+        "durationSec": 45
+      },
+      {
+        "order": 4,
+        "text": "Add rice, break up clumps, stir-fry 2 min until heated through.",
+        "textId": "Masukkan nasi, pecah gumpalan, tumis 2 menit hingga panas merata.",
+        "durationSec": 120
+      },
+      {
+        "order": 5,
+        "text": "Pour kecap manis along the wok edge (this caramelizes it). Toss to coat evenly.",
+        "textId": "Tuang kecap manis di pinggir wajan (agar karamelisasi). Aduk rata.",
+        "durationSec": 30
+      },
+      {
+        "order": 6,
+        "text": "Add chili, season with salt. Plate, top with fried shallots and cucumber.",
+        "textId": "Tambah cabai, garam secukupnya. Sajikan dengan bawang goreng dan mentimun.",
+        "durationSec": 15
+      }
+    ],
+    "nutrition": {
+      "calories": 520,
+      "protein": 28,
+      "carbs": 72,
+      "fat": 14,
+      "fiber": 3
+    },
+    "tags": [
+      "rice",
+      "wok",
+      "quick",
+      "indonesian"
+    ],
+    "dietary": [
+      "halal"
+    ],
+    "rating": 4.9,
+    "reviews": 1247,
+    "createdAt": "2025-11-12"
+  },
+  {
+    "id": "r-002",
+    "slug": "soto-ayam",
+    "title": "Soto Ayam Bening",
+    "titleId": "Soto Ayam Bening",
+    "description": "Clear, aromatic chicken soup with turmeric, lemongrass, and glass noodles. A Sunday classic.",
+    "descriptionId": "Sup ayam bening aromatik dengan kunyit, serai, dan bihun. Klasik hari Minggu.",
+    "image": "https://images.unsplash.com/photo-1547592180-85f173990554?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#854d0e",
+      "#1c1917"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "medium",
+    "prepTime": 15,
+    "cookTime": 45,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Whole chicken",
+        "nameId": "Ayam utuh",
+        "amount": "1kg",
+        "category": "protein"
+      },
+      {
+        "name": "Vermicelli, soaked",
+        "nameId": "Bihun, rendam",
+        "amount": "100g",
+        "category": "grain"
+      },
+      {
+        "name": "Shallot",
+        "nameId": "Bawang merah",
+        "amount": "6",
+        "category": "vegetable"
+      },
+      {
+        "name": "Garlic",
+        "nameId": "Bawang putih",
+        "amount": "3 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Ginger",
+        "nameId": "Jahe",
+        "amount": "2cm",
+        "category": "spice"
+      },
+      {
+        "name": "Lemongrass",
+        "nameId": "Serai",
+        "amount": "2 stalks",
+        "category": "spice"
+      },
+      {
+        "name": "Turmeric",
+        "nameId": "Kunyit",
+        "amount": "1 tsp",
+        "category": "spice"
+      },
+      {
+        "name": "Lime leaf",
+        "nameId": "Daun jeruk",
+        "amount": "3",
+        "category": "spice"
+      },
+      {
+        "name": "Bean sprouts",
+        "nameId": "Tauge",
+        "amount": "100g",
+        "category": "vegetable"
+      },
+      {
+        "name": "Celery leaves",
+        "nameId": "Daun seledri",
+        "amount": "2 tbsp",
+        "category": "spice"
+      },
+      {
+        "name": "Fried shallot",
+        "nameId": "Bawang goreng",
+        "amount": "3 tbsp",
+        "category": "other"
+      },
+      {
+        "name": "Salt & pepper",
+        "nameId": "Garam & merica",
+        "amount": "to taste",
+        "category": "sauce"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Boil chicken with lemongrass, ginger, and 1L water for 30 min. Skim foam.",
+        "textId": "Rebus ayam dengan serai, jahe, dan 1L air selama 30 mnt. Buang buihnya.",
+        "durationSec": 1800,
+        "tip": "Skim foam aggressively for a clear broth."
+      },
+      {
+        "order": 2,
+        "text": "Sauté blended shallot, garlic, turmeric for 3 min until fragrant.",
+        "textId": "Tumis bawang merah, bawang putih, kunyit halus 3 mnt hingga harum.",
+        "durationSec": 180
+      },
+      {
+        "order": 3,
+        "text": "Add sautéed spices to the broth. Simmer 15 min.",
+        "textId": "Masukkan tumisan ke kaldu. Didihkan 15 mnt.",
+        "durationSec": 900
+      },
+      {
+        "order": 4,
+        "text": "Lift chicken, shred. Strain broth. Season with salt and pepper.",
+        "textId": "Angkat ayam, suwir. Saring kaldu. Beri garam dan merica.",
+        "durationSec": 60
+      },
+      {
+        "order": 5,
+        "text": "Cook vermicelli 2 min, rinse. Blanche bean sprouts 30 sec.",
+        "textId": "Masak bihun 2 mnt, tiriskan. Celup tauge 30 detik.",
+        "durationSec": 150
+      },
+      {
+        "order": 6,
+        "text": "Assemble bowls: noodles, sprouts, chicken, herbs. Pour hot broth. Top with fried shallot.",
+        "textId": "Susun mangkuk: bihun, tauge, ayam, seledri. Tuang kuah panas. Tabur bawang goreng.",
+        "durationSec": 30
+      }
+    ],
+    "nutrition": {
+      "calories": 380,
+      "protein": 32,
+      "carbs": 28,
+      "fat": 12,
+      "fiber": 2
+    },
+    "tags": [
+      "soup",
+      "chicken",
+      "indonesian",
+      "comfort"
+    ],
+    "dietary": [
+      "halal"
+    ],
+    "rating": 4.8,
+    "reviews": 892,
+    "createdAt": "2025-11-10"
+  },
+  {
+    "id": "r-003",
+    "slug": "rendang-sapi",
+    "title": "Rendang Sapi",
+    "titleId": "Rendang Sapi",
+    "description": "Slow-braised beef in coconut milk and 12-spice paste. West Sumatran legend, 4-hour simmer, worth every minute.",
+    "descriptionId": "Daging sapi direbus pelan dengan santan dan pasta 12 rempah. Legenda Minang, 4 jam, sebanding dengan rasanya.",
+    "image": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#7c2d12",
+      "#1c1917"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "hard",
+    "prepTime": 30,
+    "cookTime": 240,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Beef chuck, cubed",
+        "nameId": "Daging sapi, potong",
+        "amount": "1kg",
+        "category": "protein"
+      },
+      {
+        "name": "Coconut milk",
+        "nameId": "Santan",
+        "amount": "1.5L",
+        "category": "dairy"
+      },
+      {
+        "name": "Shallot",
+        "nameId": "Bawang merah",
+        "amount": "10",
+        "category": "vegetable"
+      },
+      {
+        "name": "Garlic",
+        "nameId": "Bawang putih",
+        "amount": "6 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Ginger",
+        "nameId": "Jahe",
+        "amount": "3cm",
+        "category": "spice"
+      },
+      {
+        "name": "Galangal",
+        "nameId": "Lengkuas",
+        "amount": "2cm",
+        "category": "spice"
+      },
+      {
+        "name": "Turmeric",
+        "nameId": "Kunyit",
+        "amount": "1 tsp",
+        "category": "spice"
+      },
+      {
+        "name": "Lemongrass",
+        "nameId": "Serai",
+        "amount": "3 stalks",
+        "category": "spice"
+      },
+      {
+        "name": "Lime leaf",
+        "nameId": "Daun jeruk",
+        "amount": "5",
+        "category": "spice"
+      },
+      {
+        "name": "Dried chili, soaked",
+        "nameId": "Cabai kering, rendam",
+        "amount": "10",
+        "category": "spice"
+      },
+      {
+        "name": "Coriander seed",
+        "nameId": "Ketumbar",
+        "amount": "1 tsp",
+        "category": "spice"
+      },
+      {
+        "name": "Cumin",
+        "nameId": "Jinten",
+        "amount": "1/2 tsp",
+        "category": "spice"
+      },
+      {
+        "name": "Cinnamon",
+        "nameId": "Kayu manis",
+        "amount": "1 stick",
+        "category": "spice"
+      },
+      {
+        "name": "Clove",
+        "nameId": "Cengkeh",
+        "amount": "3",
+        "category": "spice"
+      },
+      {
+        "name": "Tamarind paste",
+        "nameId": "Asam jawa",
+        "amount": "1 tsp",
+        "category": "sauce"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Blend shallot, garlic, ginger, galangal, turmeric, chili, coriander, cumin into a smooth paste.",
+        "textId": "Haluskan bawang merah, putih, jahe, lengkuas, kunyit, cabai, ketumbar, jinten.",
+        "durationSec": 120,
+        "tip": "Toast spices first for deeper flavor."
+      },
+      {
+        "order": 2,
+        "text": "In a heavy pot, cook paste with oil for 10 min until darkened and aromatic.",
+        "textId": "Di panci berat, masak pasta dengan minyak 10 mnt hingga gelap dan harum.",
+        "durationSec": 600
+      },
+      {
+        "order": 3,
+        "text": "Add beef, toss to coat. Pour coconut milk and 200ml water. Add lemongrass, lime leaves, cinnamon, clove, tamarind.",
+        "textId": "Masukkan daging, aduk rata. Tuang santan dan 200ml air. Tambah serai, daun jeruk, kayu manis, cengkeh, asam jawa.",
+        "durationSec": 180
+      },
+      {
+        "order": 4,
+        "text": "Bring to boil, then reduce to lowest simmer. Cook uncovered 3 hours, stirring every 30 min.",
+        "textId": "Didihkan, kecilkan api. Masak terbuka 3 jam, aduk tiap 30 mnt.",
+        "durationSec": 10800,
+        "tip": "Stir often in the last hour to prevent burning."
+      },
+      {
+        "order": 5,
+        "text": "Continue cooking until liquid is absorbed and beef is dark, dry, and tender.",
+        "textId": "Lanjutkan hingga kuah terserap dan daging berwarna gelap, kering, dan empuk.",
+        "durationSec": 3600
+      },
+      {
+        "order": 6,
+        "text": "Rest 10 min. Serve with steamed rice, cucumber, and sambal.",
+        "textId": "Diamkan 10 mnt. Sajikan dengan nasi panas, mentimun, dan sambal.",
+        "durationSec": 600
+      }
+    ],
+    "nutrition": {
+      "calories": 620,
+      "protein": 38,
+      "carbs": 14,
+      "fat": 48,
+      "fiber": 4
+    },
+    "tags": [
+      "beef",
+      "indonesian",
+      "celebration",
+      "slow-cook"
+    ],
+    "dietary": [
+      "halal",
+      "gluten-free"
+    ],
+    "rating": 5,
+    "reviews": 2103,
+    "createdAt": "2025-10-30"
+  },
+  {
+    "id": "r-004",
+    "slug": "gado-gado",
+    "title": "Gado-Gado Jakarta",
+    "titleId": "Gado-Gado Jakarta",
+    "description": "Steamed vegetables and eggs drenched in creamy peanut sauce. Healthy, hearty, and 100% vegetarian-friendly.",
+    "descriptionId": "Sayuran kukus dan telur disiram saus kacang kental. Sehat, kenyang, dan 100% vegetarian.",
+    "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#365314",
+      "#1c1917"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "easy",
+    "prepTime": 15,
+    "cookTime": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "Cabbage, sliced",
+        "nameId": "Kubis, iris",
+        "amount": "100g",
+        "category": "vegetable"
+      },
+      {
+        "name": "Long bean, cut",
+        "nameId": "Kacang panjang, potong",
+        "amount": "100g",
+        "category": "vegetable"
+      },
+      {
+        "name": "Carrot, julienned",
+        "nameId": "Wortel, korek api",
+        "amount": "1",
+        "category": "vegetable"
+      },
+      {
+        "name": "Bean sprouts",
+        "nameId": "Tauge",
+        "amount": "100g",
+        "category": "vegetable"
+      },
+      {
+        "name": "Spinach",
+        "nameId": "Bayam",
+        "amount": "100g",
+        "category": "vegetable"
+      },
+      {
+        "name": "Tofu, fried",
+        "nameId": "Tahu goreng",
+        "amount": "200g",
+        "category": "protein"
+      },
+      {
+        "name": "Egg, hard-boiled",
+        "nameId": "Telur rebus",
+        "amount": "2",
+        "category": "protein"
+      },
+      {
+        "name": "Cucumber, sliced",
+        "nameId": "Mentimun, iris",
+        "amount": "1",
+        "category": "vegetable"
+      },
+      {
+        "name": "Peanut sauce",
+        "nameId": "Saus kacang",
+        "amount": "200g",
+        "category": "sauce"
+      },
+      {
+        "name": "Fried shallot",
+        "nameId": "Bawang goreng",
+        "amount": "2 tbsp",
+        "category": "other"
+      },
+      {
+        "name": "Emping (melinjo crackers)",
+        "nameId": "Emping",
+        "amount": "1 handful",
+        "category": "other",
+        "optional": true
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Steam cabbage, long bean, carrot, and bean sprouts for 4 min. Blanch spinach 30 sec.",
+        "textId": "Kukus kubis, kacang panjang, wortel, tauge 4 mnt. Celup bayam 30 detik.",
+        "durationSec": 270
+      },
+      {
+        "order": 2,
+        "text": "Slice fried tofu. Halve boiled eggs. Arrange everything on a plate.",
+        "textId": "Iris tahu goreng. Belah telur. Tata semua di piring.",
+        "durationSec": 60
+      },
+      {
+        "order": 3,
+        "text": "Heat peanut sauce in a small pot with 2 tbsp water until loose and warm.",
+        "textId": "Panaskan saus kacang dengan 2 sdm air di panci kecil hingga encer dan hangat.",
+        "durationSec": 120
+      },
+      {
+        "order": 4,
+        "text": "Pour peanut sauce generously over vegetables. Top with fried shallots and emping.",
+        "textId": "Tuang saus kacang melimpah di atas sayuran. Tabur bawang goreng dan emping.",
+        "durationSec": 30
+      }
+    ],
+    "nutrition": {
+      "calories": 480,
+      "protein": 22,
+      "carbs": 32,
+      "fat": 28,
+      "fiber": 8
+    },
+    "tags": [
+      "vegetarian",
+      "healthy",
+      "peanut",
+      "indonesian"
+    ],
+    "dietary": [
+      "vegetarian",
+      "halal",
+      "vegan"
+    ],
+    "rating": 4.7,
+    "reviews": 642,
+    "createdAt": "2025-11-05"
+  },
+  {
+    "id": "r-005",
+    "slug": "mie-goreng-jawa",
+    "title": "Mie Goreng Jawa",
+    "titleId": "Mie Goreng Jawa",
+    "description": "Sweet-savory Javanese fried noodles with egg, vegetables, and a hit of kecap manis.",
+    "descriptionId": "Mie goreng Jawa manis-gurih dengan telur, sayuran, dan sentuhan kecap manis.",
+    "image": "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#7c2d12",
+      "#0c0a09"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "easy",
+    "prepTime": 10,
+    "cookTime": 12,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "Egg noodle, boiled",
+        "nameId": "Mie telur, rebus",
+        "amount": "200g",
+        "category": "grain"
+      },
+      {
+        "name": "Egg",
+        "nameId": "Telur",
+        "amount": "2",
+        "category": "protein"
+      },
+      {
+        "name": "Cabbage, sliced",
+        "nameId": "Kubis, iris",
+        "amount": "100g",
+        "category": "vegetable"
+      },
+      {
+        "name": "Carrot, julienned",
+        "nameId": "Wortel, korek",
+        "amount": "1",
+        "category": "vegetable"
+      },
+      {
+        "name": "Garlic, minced",
+        "nameId": "Bawang putih, cincang",
+        "amount": "3 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Shallot, sliced",
+        "nameId": "Bawang merah, iris",
+        "amount": "3",
+        "category": "vegetable"
+      },
+      {
+        "name": "Sweet soy sauce (kecap manis)",
+        "nameId": "Kecap manis",
+        "amount": "3 tbsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Oyster sauce",
+        "nameId": "Saus tiram",
+        "amount": "1 tbsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Salt & pepper",
+        "nameId": "Garam & merica",
+        "amount": "to taste",
+        "category": "sauce"
+      },
+      {
+        "name": "Cooking oil",
+        "nameId": "Minyak goreng",
+        "amount": "2 tbsp",
+        "category": "other"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Boil noodles 3 min, drain, toss with 1 tsp oil to prevent sticking.",
+        "textId": "Rebus mie 3 mnt, tiriskan, aduk dengan 1 sdt minyak agar tidak lengket.",
+        "durationSec": 180
+      },
+      {
+        "order": 2,
+        "text": "Heat oil, fry shallots and garlic 30 sec until fragrant.",
+        "textId": "Panaskan minyak, tumis bawang merah dan putih 30 detik hingga harum.",
+        "durationSec": 30
+      },
+      {
+        "order": 3,
+        "text": "Push aromatics aside, crack eggs, scramble, then mix in.",
+        "textId": "Geser bumbu, pecahkan telur, orak-arik, lalu campur.",
+        "durationSec": 45
+      },
+      {
+        "order": 4,
+        "text": "Add cabbage and carrot, stir-fry 1 min.",
+        "textId": "Masukkan kubis dan wortel, tumis 1 mnt.",
+        "durationSec": 60
+      },
+      {
+        "order": 5,
+        "text": "Add noodles, kecap manis, oyster sauce. Toss vigorously 2 min.",
+        "textId": "Masukkan mie, kecap manis, saus tiram. Aduk kuat 2 mnt.",
+        "durationSec": 120
+      },
+      {
+        "order": 6,
+        "text": "Season with salt and pepper. Plate, top with fried shallots and chili.",
+        "textId": "Beri garam dan merica. Sajikan dengan bawang goreng dan cabai.",
+        "durationSec": 15
+      }
+    ],
+    "nutrition": {
+      "calories": 560,
+      "protein": 18,
+      "carbs": 78,
+      "fat": 18,
+      "fiber": 4
+    },
+    "tags": [
+      "noodle",
+      "quick",
+      "indonesian",
+      "street-food"
+    ],
+    "dietary": [
+      "halal"
+    ],
+    "rating": 4.8,
+    "reviews": 1102,
+    "createdAt": "2025-11-08"
+  },
+  {
+    "id": "r-006",
+    "slug": "ayam-bakar-madu",
+    "title": "Ayam Bakar Madu",
+    "titleId": "Ayam Bakar Madu",
+    "description": "Honey-glazed grilled chicken with kecap, garlic, and lime. Sweet, smoky, sticky, perfect.",
+    "descriptionId": "Ayam bakar glazing madu dengan kecap, bawang putih, dan jeruk nipis. Manis, smoky, lengket, sempurna.",
+    "image": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#9a3412",
+      "#1c1917"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "medium",
+    "prepTime": 20,
+    "cookTime": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Chicken thigh, bone-in",
+        "nameId": "Paha ayam bertulang",
+        "amount": "8 pieces",
+        "category": "protein"
+      },
+      {
+        "name": "Honey",
+        "nameId": "Madu",
+        "amount": "3 tbsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Sweet soy sauce (kecap manis)",
+        "nameId": "Kecap manis",
+        "amount": "3 tbsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Garlic, minced",
+        "nameId": "Bawang putih, cincang",
+        "amount": "5 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Lime juice",
+        "nameId": "Air jeruk nipis",
+        "amount": "2 tbsp",
+        "category": "spice"
+      },
+      {
+        "name": "Ginger, grated",
+        "nameId": "Jahe, parut",
+        "amount": "1 tsp",
+        "category": "spice"
+      },
+      {
+        "name": "Salt & pepper",
+        "nameId": "Garam & merica",
+        "amount": "to taste",
+        "category": "sauce"
+      },
+      {
+        "name": "Cooking oil",
+        "nameId": "Minyak goreng",
+        "amount": "2 tbsp",
+        "category": "other"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Make marinade: mix honey, kecap, garlic, lime juice, ginger, salt, pepper.",
+        "textId": "Buat marinade: campur madu, kecap, bawang putih, jeruk nipis, jahe, garam, merica.",
+        "durationSec": 120
+      },
+      {
+        "order": 2,
+        "text": "Score chicken, coat in marinade. Marinate 30 min (or overnight).",
+        "textId": "Sayat ayam, lumuri marinade. Diamkan 30 mnt (atau semalaman).",
+        "durationSec": 1800
+      },
+      {
+        "order": 3,
+        "text": "Heat grill or grill pan to medium-high. Oil the grates.",
+        "textId": "Panaskan panggangan ke api sedang-tinggi. Olesi minyak.",
+        "durationSec": 300
+      },
+      {
+        "order": 4,
+        "text": "Grill chicken 6 min per side, basting with remaining marinade.",
+        "textId": "Panggang ayam 6 mnt per sisi, oles sisa marinade.",
+        "durationSec": 720,
+        "tip": "Don't move it too much — let the glaze caramelize."
+      },
+      {
+        "order": 5,
+        "text": "Rest 5 min. Serve with steamed rice, sambal, and cucumber.",
+        "textId": "Diamkan 5 mnt. Sajikan dengan nasi, sambal, mentimun.",
+        "durationSec": 300
+      }
+    ],
+    "nutrition": {
+      "calories": 480,
+      "protein": 36,
+      "carbs": 22,
+      "fat": 26,
+      "fiber": 1
+    },
+    "tags": [
+      "chicken",
+      "grilled",
+      "indonesian",
+      "honey"
+    ],
+    "dietary": [
+      "halal"
+    ],
+    "rating": 4.9,
+    "reviews": 856,
+    "createdAt": "2025-11-01"
+  },
+  {
+    "id": "r-007",
+    "slug": "sate-lilit-bali",
+    "title": "Sate Lilit Bali",
+    "titleId": "Sate Lilit Bali",
+    "description": "Balinese minced chicken satay on lemongrass skewers, fragrant with coconut and turmeric.",
+    "descriptionId": "Sate ayam cincang Bali di tusuk serai, wangi santan dan kunyit.",
+    "image": "https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#a16207",
+      "#1c1917"
+    ],
+    "cuisine": "Balinese",
+    "difficulty": "medium",
+    "prepTime": 25,
+    "cookTime": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Chicken thigh, minced",
+        "nameId": "Paha ayam, cincang halus",
+        "amount": "500g",
+        "category": "protein"
+      },
+      {
+        "name": "Coconut, grated",
+        "nameId": "Kelapa parut",
+        "amount": "100g",
+        "category": "dairy"
+      },
+      {
+        "name": "Coconut milk",
+        "nameId": "Santan",
+        "amount": "100ml",
+        "category": "dairy"
+      },
+      {
+        "name": "Lemongrass stalks (for skewers)",
+        "nameId": "Serai (tusukan)",
+        "amount": "12",
+        "category": "spice"
+      },
+      {
+        "name": "Shallot",
+        "nameId": "Bawang merah",
+        "amount": "4",
+        "category": "vegetable"
+      },
+      {
+        "name": "Garlic",
+        "nameId": "Bawang putih",
+        "amount": "2 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Turmeric",
+        "nameId": "Kunyit",
+        "amount": "1 tsp",
+        "category": "spice"
+      },
+      {
+        "name": "Ginger",
+        "nameId": "Jahe",
+        "amount": "1 tsp",
+        "category": "spice"
+      },
+      {
+        "name": "Lime leaf",
+        "nameId": "Daun jeruk",
+        "amount": "3",
+        "category": "spice"
+      },
+      {
+        "name": "Coriander seed, toasted",
+        "nameId": "Ketumbar, sangrai",
+        "amount": "1 tsp",
+        "category": "spice"
+      },
+      {
+        "name": "Salt",
+        "nameId": "Garam",
+        "amount": "1 tsp",
+        "category": "sauce"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Blend shallot, garlic, turmeric, ginger, lime leaf, coriander into a paste.",
+        "textId": "Haluskan bawang merah, putih, kunyit, jahe, daun jeruk, ketumbar.",
+        "durationSec": 60
+      },
+      {
+        "order": 2,
+        "text": "Mix chicken, paste, grated coconut, coconut milk, salt. Knead 5 min.",
+        "textId": "Campur ayam, pasta, kelapa parut, santan, garam. Uleni 5 mnt.",
+        "durationSec": 300
+      },
+      {
+        "order": 3,
+        "text": "Wrap 2 tbsp of mixture around each lemongrass skewer.",
+        "textId": "Bungkus 2 sdm adonan di setiap tusuk serai.",
+        "durationSec": 600
+      },
+      {
+        "order": 4,
+        "text": "Grill over charcoal 4 min per side until cooked and slightly charred.",
+        "textId": "Panggang di bara 4 mnt per sisi hingga matang dan sedikit gosong.",
+        "durationSec": 480,
+        "tip": "Charcoal gives the best flavor."
+      },
+      {
+        "order": 5,
+        "text": "Serve with sambal matah and steamed rice.",
+        "textId": "Sajikan dengan sambal matah dan nasi panas.",
+        "durationSec": 30
+      }
+    ],
+    "nutrition": {
+      "calories": 420,
+      "protein": 32,
+      "carbs": 12,
+      "fat": 28,
+      "fiber": 3
+    },
+    "tags": [
+      "satay",
+      "balinese",
+      "chicken",
+      "lemongrass"
+    ],
+    "dietary": [
+      "halal"
+    ],
+    "rating": 4.8,
+    "reviews": 478,
+    "createdAt": "2025-10-28"
+  },
+  {
+    "id": "r-008",
+    "slug": "cap-cay-seafood",
+    "title": "Cap Cay Seafood",
+    "titleId": "Cap Cay Seafood",
+    "description": "Stir-fried mixed vegetables and seafood in a thick, glossy sauce. 20 minutes, one wok.",
+    "descriptionId": "Tumis sayuran campur dan seafood dalam saus kental mengilap. 20 menit, satu wajan.",
+    "image": "https://images.unsplash.com/photo-1626804475297-41608ea09aeb?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#155e75",
+      "#0c0a09"
+    ],
+    "cuisine": "Indonesian-Chinese",
+    "difficulty": "easy",
+    "prepTime": 10,
+    "cookTime": 12,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Shrimp, peeled",
+        "nameId": "Udang, kupas",
+        "amount": "150g",
+        "category": "protein"
+      },
+      {
+        "name": "Squid, sliced",
+        "nameId": "Cumi, iris",
+        "amount": "100g",
+        "category": "protein"
+      },
+      {
+        "name": "Carrot, sliced",
+        "nameId": "Wortel, iris",
+        "amount": "1",
+        "category": "vegetable"
+      },
+      {
+        "name": "Cabbage, chopped",
+        "nameId": "Kubis, potong",
+        "amount": "100g",
+        "category": "vegetable"
+      },
+      {
+        "name": "Broccoli, florets",
+        "nameId": "Brokoli",
+        "amount": "100g",
+        "category": "vegetable"
+      },
+      {
+        "name": "Mushroom, sliced",
+        "nameId": "Jamur, iris",
+        "amount": "80g",
+        "category": "vegetable"
+      },
+      {
+        "name": "Garlic, minced",
+        "nameId": "Bawang putih, cincang",
+        "amount": "3 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Ginger, sliced",
+        "nameId": "Jahe, iris",
+        "amount": "1 tsp",
+        "category": "spice"
+      },
+      {
+        "name": "Cornstarch slurry",
+        "nameId": "Larutan maizena",
+        "amount": "1 tbsp",
+        "category": "other"
+      },
+      {
+        "name": "Oyster sauce",
+        "nameId": "Saus tiram",
+        "amount": "2 tbsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Soy sauce",
+        "nameId": "Kecap asin",
+        "amount": "1 tbsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Chicken stock",
+        "nameId": "Kaldu ayam",
+        "amount": "150ml",
+        "category": "other"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Blanch broccoli and carrot for 1 min. Set aside.",
+        "textId": "Celup brokoli dan wortel 1 mnt. Sisihkan.",
+        "durationSec": 60
+      },
+      {
+        "order": 2,
+        "text": "Heat oil, stir-fry garlic and ginger 20 sec.",
+        "textId": "Panaskan minyak, tumis bawang putih dan jahe 20 detik.",
+        "durationSec": 20
+      },
+      {
+        "order": 3,
+        "text": "Add shrimp and squid, cook 2 min until just opaque.",
+        "textId": "Masukkan udang dan cumi, masak 2 mnt hingga matang.",
+        "durationSec": 120
+      },
+      {
+        "order": 4,
+        "text": "Add mushrooms, cabbage, oyster sauce, soy sauce, stock. Stir 1 min.",
+        "textId": "Tambah jamur, kubis, saus tiram, kecap asin, kaldu. Aduk 1 mnt.",
+        "durationSec": 60
+      },
+      {
+        "order": 5,
+        "text": "Return broccoli and carrot. Pour cornstarch slurry, stir until glossy.",
+        "textId": "Kembalikan brokoli dan wortel. Tuang maizena, aduk hingga kental mengkilap.",
+        "durationSec": 60
+      },
+      {
+        "order": 6,
+        "text": "Serve immediately with steamed rice.",
+        "textId": "Sajikan langsung dengan nasi panas.",
+        "durationSec": 10
+      }
+    ],
+    "nutrition": {
+      "calories": 320,
+      "protein": 28,
+      "carbs": 24,
+      "fat": 12,
+      "fiber": 5
+    },
+    "tags": [
+      "seafood",
+      "stir-fry",
+      "vegetables",
+      "quick"
+    ],
+    "dietary": [
+      "halal"
+    ],
+    "rating": 4.6,
+    "reviews": 392,
+    "createdAt": "2025-11-04"
+  },
+  {
+    "id": "r-009",
+    "slug": "bakso-urat",
+    "title": "Bakso Urat Kuah Kaldu",
+    "titleId": "Bakso Urat Kuah Kaldu",
+    "description": "Beef tendon meatballs in clear, garlicky broth with noodles. Indonesian comfort in a bowl.",
+    "descriptionId": "Bakso urat dalam kuah kaldu bening bawang putih dengan mie. Kenyangan Indonesia dalam mangkuk.",
+    "image": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#831843",
+      "#1c1917"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "medium",
+    "prepTime": 15,
+    "cookTime": 30,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Beef meatballs (bakso urat)",
+        "nameId": "Bakso urat",
+        "amount": "400g",
+        "category": "protein"
+      },
+      {
+        "name": "Egg noodle",
+        "nameId": "Mie telur",
+        "amount": "200g",
+        "category": "grain"
+      },
+      {
+        "name": "Beef stock",
+        "nameId": "Kaldu sapi",
+        "amount": "1.5L",
+        "category": "other"
+      },
+      {
+        "name": "Garlic, smashed",
+        "nameId": "Bawang putih, geprek",
+        "amount": "5 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Shallot, halved",
+        "nameId": "Bawang merah, belah",
+        "amount": "3",
+        "category": "vegetable"
+      },
+      {
+        "name": "White pepper",
+        "nameId": "Merica putih",
+        "amount": "1 tsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Salt",
+        "nameId": "Garam",
+        "amount": "1 tsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Celery leaves",
+        "nameId": "Daun seledri",
+        "amount": "2 tbsp",
+        "category": "spice"
+      },
+      {
+        "name": "Fried shallot",
+        "nameId": "Bawang goreng",
+        "amount": "3 tbsp",
+        "category": "other"
+      },
+      {
+        "name": "Sambal",
+        "nameId": "Sambal",
+        "amount": "to taste",
+        "category": "sauce"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Simmer beef stock with garlic, shallot, salt, white pepper for 20 min.",
+        "textId": "Didihkan kaldu sapi dengan bawang putih, merah, garam, merica 20 mnt.",
+        "durationSec": 1200
+      },
+      {
+        "order": 2,
+        "text": "Cook noodles 3 min, drain. Blanche bean sprouts 30 sec.",
+        "textId": "Masak mie 3 mnt, tiriskan. Celup tauge 30 detik.",
+        "durationSec": 210
+      },
+      {
+        "order": 3,
+        "text": "Drop meatballs into simmering broth for 3 min until heated through.",
+        "textId": "Masukkan bakso ke kaldu mendidih 3 mnt hingga panas.",
+        "durationSec": 180
+      },
+      {
+        "order": 4,
+        "text": "Assemble bowls: noodles, bean sprouts, meatballs. Pour hot broth.",
+        "textId": "Susun mangkuk: mie, tauge, bakso. Tuang kuah panas.",
+        "durationSec": 30
+      },
+      {
+        "order": 5,
+        "text": "Top with celery, fried shallots, and a spoonful of sambal.",
+        "textId": "Tabur seledri, bawang goreng, dan sesendok sambal.",
+        "durationSec": 15
+      }
+    ],
+    "nutrition": {
+      "calories": 480,
+      "protein": 32,
+      "carbs": 52,
+      "fat": 14,
+      "fiber": 2
+    },
+    "tags": [
+      "soup",
+      "beef",
+      "comfort",
+      "indonesian"
+    ],
+    "dietary": [
+      "halal"
+    ],
+    "rating": 4.8,
+    "reviews": 743,
+    "createdAt": "2025-10-25"
+  },
+  {
+    "id": "r-010",
+    "slug": "tempe-orek",
+    "title": "Tempe Orek Manis",
+    "titleId": "Tempe Orek Manis",
+    "description": "Sweet-savory julienned tempe with chili and kecap. The side dish that disappears first.",
+    "descriptionId": "Tempe iris manis-gurih dengan cabai dan kecap. Lauk yang selalu habis duluan.",
+    "image": "https://images.unsplash.com/photo-1625938145744-533e82c1d29f?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#a16207",
+      "#0c0a09"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "easy",
+    "prepTime": 10,
+    "cookTime": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Tempeh, julienned",
+        "nameId": "Tempe, iris korek",
+        "amount": "200g",
+        "category": "protein"
+      },
+      {
+        "name": "Shallot, sliced",
+        "nameId": "Bawang merah, iris",
+        "amount": "4",
+        "category": "vegetable"
+      },
+      {
+        "name": "Garlic, sliced",
+        "nameId": "Bawang putih, iris",
+        "amount": "3 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Bird's eye chili",
+        "nameId": "Cabai rawit",
+        "amount": "3",
+        "category": "spice"
+      },
+      {
+        "name": "Sweet soy sauce (kecap manis)",
+        "nameId": "Kecap manis",
+        "amount": "3 tbsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Soy sauce",
+        "nameId": "Kecap asin",
+        "amount": "1 tsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Sugar",
+        "nameId": "Gula",
+        "amount": "1 tsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Lime leaf",
+        "nameId": "Daun jeruk",
+        "amount": "2",
+        "category": "spice"
+      },
+      {
+        "name": "Cooking oil",
+        "nameId": "Minyak goreng",
+        "amount": "3 tbsp",
+        "category": "other"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Heat oil, fry tempeh until golden and crispy (5 min). Set aside.",
+        "textId": "Panaskan minyak, goreng tempe hingga keemasan (5 mnt). Sisihkan.",
+        "durationSec": 300
+      },
+      {
+        "order": 2,
+        "text": "Sauté shallot, garlic, chili for 2 min until fragrant.",
+        "textId": "Tumis bawang merah, putih, cabai 2 mnt hingga harum.",
+        "durationSec": 120
+      },
+      {
+        "order": 3,
+        "text": "Add kecap manis, soy sauce, sugar, lime leaf. Simmer 2 min until syrupy.",
+        "textId": "Masukkan kecap manis, asin, gula, daun jeruk. Masak 2 mnt hingga kental.",
+        "durationSec": 120
+      },
+      {
+        "order": 4,
+        "text": "Return tempeh, toss to coat. Cook 1 min.",
+        "textId": "Kembalikan tempe, aduk rata. Masak 1 mnt.",
+        "durationSec": 60
+      },
+      {
+        "order": 5,
+        "text": "Serve as a side dish with rice and main protein.",
+        "textId": "Sajikan sebagai lauk pendamping nasi dan protein utama.",
+        "durationSec": 10
+      }
+    ],
+    "nutrition": {
+      "calories": 240,
+      "protein": 14,
+      "carbs": 18,
+      "fat": 12,
+      "fiber": 4
+    },
+    "tags": [
+      "tempeh",
+      "side-dish",
+      "vegan",
+      "indonesian"
+    ],
+    "dietary": [
+      "vegetarian",
+      "vegan",
+      "halal"
+    ],
+    "rating": 4.7,
+    "reviews": 521,
+    "createdAt": "2025-11-06"
+  },
+  {
+    "id": "r-011",
+    "slug": "ayam-pop",
+    "title": "Ayam Pop Padang",
+    "titleId": "Ayam Pop Padang",
+    "description": "West Sumatran poached chicken in coconut water, lightly fried. Deceptively simple, perfect with sambal.",
+    "descriptionId": "Ayam rebus Padang dalam air kelapa, digoreng ringan. Sederhana namun sempurna dengan sambal.",
+    "image": "https://images.unsplash.com/photo-1610057099443-fde9c4c50ce2?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#facc15",
+      "#0c0a09"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "easy",
+    "prepTime": 10,
+    "cookTime": 30,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Chicken (whole or parts)",
+        "nameId": "Ayam utuh/potong",
+        "amount": "1kg",
+        "category": "protein"
+      },
+      {
+        "name": "Coconut water",
+        "nameId": "Air kelapa",
+        "amount": "500ml",
+        "category": "dairy"
+      },
+      {
+        "name": "Lemongrass, bruised",
+        "nameId": "Serai, memarkan",
+        "amount": "2 stalks",
+        "category": "spice"
+      },
+      {
+        "name": "Lime leaf",
+        "nameId": "Daun jeruk",
+        "amount": "3",
+        "category": "spice"
+      },
+      {
+        "name": "Ginger, smashed",
+        "nameId": "Jahe, geprek",
+        "amount": "2cm",
+        "category": "spice"
+      },
+      {
+        "name": "Garlic, smashed",
+        "nameId": "Bawang putih, geprek",
+        "amount": "3 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Salt",
+        "nameId": "Garam",
+        "amount": "1 tsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Cooking oil",
+        "nameId": "Minyak goreng",
+        "amount": "for frying",
+        "category": "other"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Place chicken in a pot with coconut water, aromatics, and salt.",
+        "textId": "Masukkan ayam ke panci dengan air kelapa, bumbu, dan garam.",
+        "durationSec": 60
+      },
+      {
+        "order": 2,
+        "text": "Bring to boil, then simmer covered for 25 min. Turn off heat, rest 10 min in broth.",
+        "textId": "Didihkan, kecilkan api, masak tertutup 25 mnt. Matikan api, diamkan 10 mnt.",
+        "durationSec": 2100,
+        "tip": "Resting in hot broth keeps it juicy."
+      },
+      {
+        "order": 3,
+        "text": "Lift chicken, pat dry. Heat oil to 170°C.",
+        "textId": "Angkat ayam, keringkan. Panaskan minyak ke 170°C.",
+        "durationSec": 300
+      },
+      {
+        "order": 4,
+        "text": "Fry chicken 2 min per side until lightly golden — just a kiss of color.",
+        "textId": "Goreng ayam 2 mnt per sisi hingga kuning keemasan ringan.",
+        "durationSec": 240
+      },
+      {
+        "order": 5,
+        "text": "Serve with sambal hijau and warm steamed rice.",
+        "textId": "Sajikan dengan sambal hijau dan nasi hangat.",
+        "durationSec": 15
+      }
+    ],
+    "nutrition": {
+      "calories": 380,
+      "protein": 38,
+      "carbs": 4,
+      "fat": 22,
+      "fiber": 0
+    },
+    "tags": [
+      "chicken",
+      "padang",
+      "indonesian",
+      "simple"
+    ],
+    "dietary": [
+      "halal"
+    ],
+    "rating": 4.8,
+    "reviews": 412,
+    "createdAt": "2025-10-22"
+  },
+  {
+    "id": "r-012",
+    "slug": "rawon-jakarta",
+    "title": "Rawon Surabaya",
+    "titleId": "Rawon Surabaya",
+    "description": "East Javanese beef soup with keluak nuts — deep, dark, almost black, with an earthy complexity.",
+    "descriptionId": "Sup daging Jawa Timur dengan buah keluak — dalam, gelap, nyaris hitam, kompleks.",
+    "image": "https://images.unsplash.com/photo-1583224944844-5a6c7d3da7c1?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#1c1917",
+      "#0c0a09"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "hard",
+    "prepTime": 30,
+    "cookTime": 90,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Beef shank",
+        "nameId": "Daging sapi",
+        "amount": "800g",
+        "category": "protein"
+      },
+      {
+        "name": "Keluak nut, soaked",
+        "nameId": "Kluwek, rendam",
+        "amount": "4",
+        "category": "spice"
+      },
+      {
+        "name": "Shallot",
+        "nameId": "Bawang merah",
+        "amount": "8",
+        "category": "vegetable"
+      },
+      {
+        "name": "Garlic",
+        "nameId": "Bawang putih",
+        "amount": "5 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Ginger",
+        "nameId": "Jahe",
+        "amount": "2cm",
+        "category": "spice"
+      },
+      {
+        "name": "Turmeric",
+        "nameId": "Kunyit",
+        "amount": "1 tsp",
+        "category": "spice"
+      },
+      {
+        "name": "Lemongrass",
+        "nameId": "Serai",
+        "amount": "2 stalks",
+        "category": "spice"
+      },
+      {
+        "name": "Lime leaf",
+        "nameId": "Daun jeruk",
+        "amount": "4",
+        "category": "spice"
+      },
+      {
+        "name": "Coriander seed",
+        "nameId": "Ketumbar",
+        "amount": "1 tsp",
+        "category": "spice"
+      },
+      {
+        "name": "Bean sprouts",
+        "nameId": "Tauge",
+        "amount": "200g",
+        "category": "vegetable"
+      },
+      {
+        "name": "Lime",
+        "nameId": "Jeruk nipis",
+        "amount": "1",
+        "category": "spice"
+      },
+      {
+        "name": "Sambal terasi",
+        "nameId": "Sambal terasi",
+        "amount": "to taste",
+        "category": "sauce"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Boil beef with lemongrass, ginger for 60 min until tender. Reserve broth.",
+        "textId": "Rebus daging dengan serai, jahe 60 mnt hingga empuk. Sisihkan kaldu.",
+        "durationSec": 3600
+      },
+      {
+        "order": 2,
+        "text": "Blend keluak, shallot, garlic, turmeric, coriander into a paste.",
+        "textId": "Haluskan kluwek, bawang merah, putih, kunyit, ketumbar.",
+        "durationSec": 60
+      },
+      {
+        "order": 3,
+        "text": "Sauté paste with oil 10 min until very dark and aromatic.",
+        "textId": "Tumis pasta dengan minyak 10 mnt hingga sangat gelap dan harum.",
+        "durationSec": 600
+      },
+      {
+        "order": 4,
+        "text": "Add paste to broth. Add beef. Simmer 20 min. Add lime leaves last 2 min.",
+        "textId": "Masukkan pasta ke kaldu. Tambah daging. Didihkan 20 mnt. Daun jeruk 2 mnt terakhir.",
+        "durationSec": 1320
+      },
+      {
+        "order": 5,
+        "text": "Blanche bean sprouts 30 sec. Serve rawon over sprouts, with lime and sambal.",
+        "textId": "Celup tauge 30 detik. Sajikan rawon di atas tauge, dengan jeruk dan sambal.",
+        "durationSec": 30
+      }
+    ],
+    "nutrition": {
+      "calories": 480,
+      "protein": 36,
+      "carbs": 18,
+      "fat": 28,
+      "fiber": 4
+    },
+    "tags": [
+      "beef",
+      "soup",
+      "indonesian",
+      "traditional"
+    ],
+    "dietary": [
+      "halal"
+    ],
+    "rating": 4.9,
+    "reviews": 318,
+    "createdAt": "2025-10-18"
+  },
+  {
+    "id": "r-013",
+    "slug": "tumis-kangkung",
+    "title": "Tumis Kangkung Belacan",
+    "titleId": "Tumis Kangkung Belacan",
+    "description": "5-minute stir-fried water spinach with shrimp paste. Punchy, garlicky, gone before you sit down.",
+    "descriptionId": "Tumis kangkung belacan 5 menit. Berani, bawangi, habis sebelum duduk.",
+    "image": "https://images.unsplash.com/photo-1627662235936-94c54c2a5183?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#15803d",
+      "#0c0a09"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "easy",
+    "prepTime": 5,
+    "cookTime": 5,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "Water spinach (kangkung)",
+        "nameId": "Kangkung",
+        "amount": "1 bunch",
+        "category": "vegetable"
+      },
+      {
+        "name": "Garlic, sliced",
+        "nameId": "Bawang putih, iris",
+        "amount": "4 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Shallot, sliced",
+        "nameId": "Bawang merah, iris",
+        "amount": "3",
+        "category": "vegetable"
+      },
+      {
+        "name": "Bird's eye chili",
+        "nameId": "Cabai rawit",
+        "amount": "3",
+        "category": "spice"
+      },
+      {
+        "name": "Shrimp paste (terasi)",
+        "nameId": "Terasi",
+        "amount": "1 tsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Oyster sauce",
+        "nameId": "Saus tiram",
+        "amount": "1 tsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Cooking oil",
+        "nameId": "Minyak goreng",
+        "amount": "2 tbsp",
+        "category": "other"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Toast shrimp paste in dry pan 30 sec. Crush with garlic and chili.",
+        "textId": "Sangrai terasi di wajan kering 30 detik. Ulek dengan bawang putih dan cabai.",
+        "durationSec": 30
+      },
+      {
+        "order": 2,
+        "text": "Heat oil, fry paste mixture 30 sec until very fragrant.",
+        "textId": "Panaskan minyak, tumis campuran 30 detik hingga sangat harum.",
+        "durationSec": 30
+      },
+      {
+        "order": 3,
+        "text": "Add kangkung, oyster sauce. Stir-fry 90 sec over high heat — just until wilted.",
+        "textId": "Masukkan kangkung, saus tiram. Tumis 90 detik api besar — hingga layu.",
+        "durationSec": 90
+      },
+      {
+        "order": 4,
+        "text": "Plate immediately. Serve with rice.",
+        "textId": "Sajikan langsung dengan nasi.",
+        "durationSec": 10
+      }
+    ],
+    "nutrition": {
+      "calories": 180,
+      "protein": 8,
+      "carbs": 12,
+      "fat": 12,
+      "fiber": 5
+    },
+    "tags": [
+      "vegetable",
+      "quick",
+      "indonesian",
+      "stir-fry"
+    ],
+    "dietary": [
+      "halal"
+    ],
+    "rating": 4.6,
+    "reviews": 287,
+    "createdAt": "2025-11-09"
+  },
+  {
+    "id": "r-014",
+    "slug": "opor-ayam",
+    "title": "Opor Ayam Lebaran",
+    "titleId": "Opor Ayam Lebaran",
+    "description": "Creamy coconut-braised chicken with warm spices. The heart of every Indonesian Eid table.",
+    "descriptionId": "Ayam rebus santan kental dengan rempah hangat. Hati meja Lebaran Indonesia.",
+    "image": "https://images.unsplash.com/photo-1604908554027-1c2e0e8c8b3a?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#fde68a",
+      "#1c1917"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "medium",
+    "prepTime": 20,
+    "cookTime": 45,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Chicken, cut into pieces",
+        "nameId": "Ayam, potong",
+        "amount": "1.2kg",
+        "category": "protein"
+      },
+      {
+        "name": "Coconut milk",
+        "nameId": "Santan",
+        "amount": "1L",
+        "category": "dairy"
+      },
+      {
+        "name": "Lemongrass, bruised",
+        "nameId": "Serai, memarkan",
+        "amount": "3 stalks",
+        "category": "spice"
+      },
+      {
+        "name": "Lime leaf",
+        "nameId": "Daun jeruk",
+        "amount": "5",
+        "category": "spice"
+      },
+      {
+        "name": "Cinnamon",
+        "nameId": "Kayu manis",
+        "amount": "2 sticks",
+        "category": "spice"
+      },
+      {
+        "name": "Clove",
+        "nameId": "Cengkeh",
+        "amount": "3",
+        "category": "spice"
+      },
+      {
+        "name": "Cardamom",
+        "nameId": "Kapulaga",
+        "amount": "2",
+        "category": "spice"
+      },
+      {
+        "name": "Galangal, smashed",
+        "nameId": "Lengkuas, geprek",
+        "amount": "3cm",
+        "category": "spice"
+      },
+      {
+        "name": "Coriander, ground",
+        "nameId": "Ketumbar bubuk",
+        "amount": "1 tsp",
+        "category": "spice"
+      },
+      {
+        "name": "Garlic, minced",
+        "nameId": "Bawang putih, cincang",
+        "amount": "4 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Shallot, sliced",
+        "nameId": "Bawang merah, iris",
+        "amount": "6",
+        "category": "vegetable"
+      },
+      {
+        "name": "Fried shallot",
+        "nameId": "Bawang goreng",
+        "amount": "3 tbsp",
+        "category": "other"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Sauté shallot and garlic 3 min. Add dry spices and aromatics, toast 2 min.",
+        "textId": "Tumis bawang merah dan putih 3 mnt. Tambah rempah kering, sangrai 2 mnt.",
+        "durationSec": 300
+      },
+      {
+        "order": 2,
+        "text": "Add chicken, toss to coat. Pour coconut milk. Add lime leaves.",
+        "textId": "Masukkan ayam, aduk rata. Tuang santan. Tambah daun jeruk.",
+        "durationSec": 120
+      },
+      {
+        "order": 3,
+        "text": "Simmer 35 min, stirring occasionally. Season to taste.",
+        "textId": "Didihkan 35 mnt, aduk sesekali. Beri garam secukupnya.",
+        "durationSec": 2100
+      },
+      {
+        "order": 4,
+        "text": "Rest 5 min. Serve with ketupat, sambal, and fried shallots.",
+        "textId": "Diamkan 5 mnt. Sajikan dengan ketupat, sambal, bawang goreng.",
+        "durationSec": 300
+      }
+    ],
+    "nutrition": {
+      "calories": 520,
+      "protein": 32,
+      "carbs": 14,
+      "fat": 38,
+      "fiber": 2
+    },
+    "tags": [
+      "chicken",
+      "celebration",
+      "coconut",
+      "indonesian"
+    ],
+    "dietary": [
+      "halal",
+      "gluten-free"
+    ],
+    "rating": 4.9,
+    "reviews": 967,
+    "createdAt": "2025-10-15"
+  },
+  {
+    "id": "r-015",
+    "slug": "pempek-palembang",
+    "title": "Pempek Palembang",
+    "titleId": "Pempek Palembang",
+    "description": "South Sumatran fish cakes made with tapioca, served with sweet-sour cuko sauce.",
+    "descriptionId": "Otak-otak ikan Sumatera Selatan dari tapioka, disajikan dengan saus cuko asam-manis.",
+    "image": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#0891b2",
+      "#0c0a09"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "medium",
+    "prepTime": 30,
+    "cookTime": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Mackerel fillet",
+        "nameId": "Ikan tenggiri",
+        "amount": "300g",
+        "category": "protein"
+      },
+      {
+        "name": "Tapioca flour",
+        "nameId": "Tepung tapioka",
+        "amount": "250g",
+        "category": "grain"
+      },
+      {
+        "name": "Egg",
+        "nameId": "Telur",
+        "amount": "2",
+        "category": "protein"
+      },
+      {
+        "name": "Garlic, minced",
+        "nameId": "Bawang putih, cincang",
+        "amount": "2 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Salt",
+        "nameId": "Garam",
+        "amount": "1 tsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Ice water",
+        "nameId": "Air es",
+        "amount": "200ml",
+        "category": "other"
+      },
+      {
+        "name": "Palm sugar",
+        "nameId": "Gula merah",
+        "amount": "100g",
+        "category": "sauce"
+      },
+      {
+        "name": "Vinegar",
+        "nameId": "Cuka",
+        "amount": "3 tbsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Chili, sliced",
+        "nameId": "Cabai, iris",
+        "amount": "5",
+        "category": "spice"
+      },
+      {
+        "name": "Garlic for cuko",
+        "nameId": "Bawang putih untuk cuko",
+        "amount": "3 cloves",
+        "category": "vegetable"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Blend fish, egg, garlic, salt. Add ice water. Pour in tapioca, mix gently.",
+        "textId": "Haluskan ikan, telur, bawang putih, garam. Tambah air es. Masukkan tapioka, aduk pelan.",
+        "durationSec": 180
+      },
+      {
+        "order": 2,
+        "text": "Form into logs (lenjer) or balls (bulat) or stuffed with egg (kapal selam).",
+        "textId": "Bentuk memanjang (lenjer) atau bulat atau isi telur (kapal selam).",
+        "durationSec": 600
+      },
+      {
+        "order": 3,
+        "text": "Boil pempek in water for 5 min until they float. Drain.",
+        "textId": "Rebus pempek 5 mnt hingga mengapung. Tiriskan.",
+        "durationSec": 300
+      },
+      {
+        "order": 4,
+        "text": "Fry in oil until golden and crispy (3 min).",
+        "textId": "Goreng hingga kuning keemasan dan renyah (3 mnt).",
+        "durationSec": 180
+      },
+      {
+        "order": 5,
+        "text": "Make cuko: boil 300ml water with palm sugar, garlic, chili, vinegar, salt. Strain.",
+        "textId": "Buat cuko: rebus 300ml air dengan gula merah, bawang putih, cabai, cuka, garam. Saring.",
+        "durationSec": 600
+      },
+      {
+        "order": 6,
+        "text": "Serve pempek with cuko sauce and cucumber.",
+        "textId": "Sajikan pempek dengan saus cuko dan mentimun.",
+        "durationSec": 10
+      }
+    ],
+    "nutrition": {
+      "calories": 380,
+      "protein": 22,
+      "carbs": 48,
+      "fat": 10,
+      "fiber": 1
+    },
+    "tags": [
+      "fish",
+      "snack",
+      "palembang",
+      "indonesian"
+    ],
+    "dietary": [
+      "halal"
+    ],
+    "rating": 4.7,
+    "reviews": 388,
+    "createdAt": "2025-11-02"
+  },
+  {
+    "id": "r-016",
+    "slug": "nasi-uduk",
+    "title": "Nasi Uduk Betawi",
+    "titleId": "Nasi Uduk Betawi",
+    "description": "Coconut rice cooked in coconut milk with lemongrass and pandan. Aroma alone is worth it.",
+    "descriptionId": "Nasi santan dengan serai dan pandan. Aromanya saja sudah worth it.",
+    "image": "https://images.unsplash.com/photo-1596797038530-2c107229654b?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#fde047",
+      "#0c0a09"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "easy",
+    "prepTime": 10,
+    "cookTime": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Rice",
+        "nameId": "Beras",
+        "amount": "2 cups",
+        "category": "grain"
+      },
+      {
+        "name": "Coconut milk",
+        "nameId": "Santan",
+        "amount": "400ml",
+        "category": "dairy"
+      },
+      {
+        "name": "Water",
+        "nameId": "Air",
+        "amount": "200ml",
+        "category": "other"
+      },
+      {
+        "name": "Lemongrass",
+        "nameId": "Serai",
+        "amount": "2 stalks",
+        "category": "spice"
+      },
+      {
+        "name": "Pandan leaf",
+        "nameId": "Daun pandan",
+        "amount": "2",
+        "category": "spice"
+      },
+      {
+        "name": "Lime leaf",
+        "nameId": "Daun jeruk",
+        "amount": "2",
+        "category": "spice"
+      },
+      {
+        "name": "Salt",
+        "nameId": "Garam",
+        "amount": "1 tsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Fried chicken (ayam goreng)",
+        "nameId": "Ayam goreng",
+        "amount": "as side",
+        "category": "protein"
+      },
+      {
+        "name": "Sambal",
+        "nameId": "Sambal",
+        "amount": "to taste",
+        "category": "sauce"
+      },
+      {
+        "name": "Tempe orek",
+        "nameId": "Tempe orek",
+        "amount": "as side",
+        "category": "protein"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Rinse rice, drain. Combine with coconut milk, water, all aromatics, salt.",
+        "textId": "Cuci beras, tiriskan. Campur dengan santan, air, semua bumbu, garam.",
+        "durationSec": 120
+      },
+      {
+        "order": 2,
+        "text": "Cook in rice cooker or pot 20 min until done. Let rest 10 min.",
+        "textId": "Masak di rice cooker atau panci 20 mnt. Diamkan 10 mnt.",
+        "durationSec": 1800
+      },
+      {
+        "order": 3,
+        "text": "Fluff with chopsticks, removing lemongrass and pandan. Serve with sides.",
+        "textId": "Gemburkan dengan sumpit, ambil serai dan pandan. Sajikan dengan lauk.",
+        "durationSec": 30
+      }
+    ],
+    "nutrition": {
+      "calories": 420,
+      "protein": 14,
+      "carbs": 62,
+      "fat": 14,
+      "fiber": 1
+    },
+    "tags": [
+      "rice",
+      "coconut",
+      "betawi",
+      "indonesian"
+    ],
+    "dietary": [
+      "halal",
+      "vegetarian"
+    ],
+    "rating": 4.8,
+    "reviews": 612,
+    "createdAt": "2025-10-20"
+  },
+  {
+    "id": "r-017",
+    "slug": "sambal-tempe",
+    "title": "Sambal Tempe Krispi",
+    "titleId": "Sambal Tempe Krispi",
+    "description": "Crunchy tempe tossed in spicy sambal balado. Snack, side, or midnight bite.",
+    "descriptionId": "Tempe renyah dalam sambal balado pedas. Camilan, lauk, atau kudapan tengah malam.",
+    "image": "https://images.unsplash.com/photo-1604908554144-79f00b8e6b13?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#dc2626",
+      "#0c0a09"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "easy",
+    "prepTime": 10,
+    "cookTime": 12,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Tempeh, cubed",
+        "nameId": "Tempe, potong dadu",
+        "amount": "200g",
+        "category": "protein"
+      },
+      {
+        "name": "Red chili",
+        "nameId": "Cabai merah",
+        "amount": "10",
+        "category": "spice"
+      },
+      {
+        "name": "Bird's eye chili",
+        "nameId": "Cabai rawit",
+        "amount": "5",
+        "category": "spice"
+      },
+      {
+        "name": "Shallot",
+        "nameId": "Bawang merah",
+        "amount": "5",
+        "category": "vegetable"
+      },
+      {
+        "name": "Garlic",
+        "nameId": "Bawang putih",
+        "amount": "3 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Tomato",
+        "nameId": "Tomat",
+        "amount": "1",
+        "category": "vegetable"
+      },
+      {
+        "name": "Sugar",
+        "nameId": "Gula",
+        "amount": "1 tsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Salt",
+        "nameId": "Garam",
+        "amount": "to taste",
+        "category": "sauce"
+      },
+      {
+        "name": "Cooking oil",
+        "nameId": "Minyak goreng",
+        "amount": "for frying",
+        "category": "other"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Fry tempeh until deep golden and crispy (8 min). Drain.",
+        "textId": "Goreng tempe hingga cokelat keemasan (8 mnt). Tiriskan.",
+        "durationSec": 480
+      },
+      {
+        "order": 2,
+        "text": "Blend chili, shallot, garlic, tomato into a coarse paste.",
+        "textId": "Haluskan kasar cabai, bawang merah, putih, tomat.",
+        "durationSec": 60
+      },
+      {
+        "order": 3,
+        "text": "Sauté paste 5 min until oil separates. Season with sugar and salt.",
+        "textId": "Tumis pasta 5 mnt hingga minyak terpisah. Beri gula dan garam.",
+        "durationSec": 300
+      },
+      {
+        "order": 4,
+        "text": "Add tempeh, toss to coat. Cook 1 min.",
+        "textId": "Masukkan tempe, aduk rata. Masak 1 mnt.",
+        "durationSec": 60
+      }
+    ],
+    "nutrition": {
+      "calories": 280,
+      "protein": 14,
+      "carbs": 18,
+      "fat": 18,
+      "fiber": 4
+    },
+    "tags": [
+      "tempeh",
+      "spicy",
+      "sambal",
+      "indonesian"
+    ],
+    "dietary": [
+      "vegetarian",
+      "vegan",
+      "halal"
+    ],
+    "rating": 4.7,
+    "reviews": 451,
+    "createdAt": "2025-11-07"
+  },
+  {
+    "id": "r-018",
+    "slug": "es-teler",
+    "title": "Es Teler",
+    "titleId": "Es Teler",
+    "description": "Iconic Indonesian shaved ice with avocado, jackfruit, coconut, and condensed milk.",
+    "descriptionId": "Es serut ikonik Indonesia dengan alpukat, nangka, kelapa, dan susu kental manis.",
+    "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#22d3ee",
+      "#0c0a09"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "easy",
+    "prepTime": 15,
+    "cookTime": 0,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "Avocado, cubed",
+        "nameId": "Alpukat, potong",
+        "amount": "1",
+        "category": "vegetable"
+      },
+      {
+        "name": "Jackfruit, sliced",
+        "nameId": "Nangka, iris",
+        "amount": "150g",
+        "category": "vegetable"
+      },
+      {
+        "name": "Young coconut meat",
+        "nameId": "Daging kelapa muda",
+        "amount": "100g",
+        "category": "dairy"
+      },
+      {
+        "name": "Condensed milk",
+        "nameId": "Susu kental manis",
+        "amount": "3 tbsp",
+        "category": "dairy"
+      },
+      {
+        "name": "Coconut milk",
+        "nameId": "Santan",
+        "amount": "200ml",
+        "category": "dairy"
+      },
+      {
+        "name": "Simple syrup",
+        "nameId": "Sirup gula",
+        "amount": "2 tbsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Shaved ice",
+        "nameId": "Es serut",
+        "amount": "2 cups",
+        "category": "other"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Chill all fruits. Cube avocado, slice jackfruit and coconut meat.",
+        "textId": "Dinginkan semua buah. Potong dadu alpukat, iris nangka dan kelapa.",
+        "durationSec": 300
+      },
+      {
+        "order": 2,
+        "text": "Whisk coconut milk with condensed milk and simple syrup.",
+        "textId": "Kocok santan dengan susu kental manis dan sirup gula.",
+        "durationSec": 60
+      },
+      {
+        "order": 3,
+        "text": "Layer fruit in a glass, top with shaved ice, pour milk mixture over.",
+        "textId": "Tata buah di gelas, tutup es serut, tuang campuran susu.",
+        "durationSec": 60
+      },
+      {
+        "order": 4,
+        "text": "Serve immediately with a long spoon.",
+        "textId": "Sajikan langsung dengan sendok panjang.",
+        "durationSec": 5
+      }
+    ],
+    "nutrition": {
+      "calories": 320,
+      "protein": 4,
+      "carbs": 38,
+      "fat": 18,
+      "fiber": 5
+    },
+    "tags": [
+      "dessert",
+      "cold",
+      "indonesian",
+      "fruit"
+    ],
+    "dietary": [
+      "vegetarian",
+      "halal",
+      "vegan"
+    ],
+    "rating": 4.9,
+    "reviews": 1124,
+    "createdAt": "2025-10-12"
+  },
+  {
+    "id": "r-019",
+    "slug": "tahu-gejrot",
+    "title": "Tahu Gejrot Cirebon",
+    "titleId": "Tahu Gejrot Cirebon",
+    "description": "Crispy fried tofu drowned in hot, sweet-sour-spicy palm sugar sauce. Cirebon street food legend.",
+    "descriptionId": "Tahu goreng crispy disiram saus gula merah panas asam-manis-pedas. Legenda jalanan Cirebon.",
+    "image": "https://images.unsplash.com/photo-1625938144755-652e08e359b7?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#f97316",
+      "#0c0a09"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "easy",
+    "prepTime": 5,
+    "cookTime": 10,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "Tofu, cubed",
+        "nameId": "Tahu, potong dadu",
+        "amount": "200g",
+        "category": "protein"
+      },
+      {
+        "name": "Palm sugar",
+        "nameId": "Gula merah",
+        "amount": "50g",
+        "category": "sauce"
+      },
+      {
+        "name": "Vinegar",
+        "nameId": "Cuka",
+        "amount": "2 tbsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Bird's eye chili",
+        "nameId": "Cabai rawit",
+        "amount": "3",
+        "category": "spice"
+      },
+      {
+        "name": "Garlic, smashed",
+        "nameId": "Bawang putih, geprek",
+        "amount": "2 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Shallot, sliced",
+        "nameId": "Bawang merah, iris",
+        "amount": "2",
+        "category": "vegetable"
+      },
+      {
+        "name": "Water",
+        "nameId": "Air",
+        "amount": "100ml",
+        "category": "other"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Fry tofu until crispy outside, hollow center (8 min). Drain.",
+        "textId": "Goreng tahu hingga renyah luar, kopong tengah (8 mnt). Tiriskan.",
+        "durationSec": 480
+      },
+      {
+        "order": 2,
+        "text": "Boil palm sugar with water until dissolved. Add vinegar, garlic, shallot, chili.",
+        "textId": "Rebus gula merah dengan air hingga larut. Tambah cuka, bawang putih, merah, cabai.",
+        "durationSec": 240
+      },
+      {
+        "order": 3,
+        "text": "Smash tofu lightly, place in bowl. Pour hot sauce over. The tofu should 'crack'.",
+        "textId": "Geprek tahu ringan, taruh di mangkuk. Tuang saus panas. Tahu akan 'meletus'.",
+        "durationSec": 30
+      },
+      {
+        "order": 4,
+        "text": "Eat immediately while crackling.",
+        "textId": "Makan selagi hangat dan berderak.",
+        "durationSec": 5
+      }
+    ],
+    "nutrition": {
+      "calories": 220,
+      "protein": 12,
+      "carbs": 22,
+      "fat": 10,
+      "fiber": 2
+    },
+    "tags": [
+      "tofu",
+      "street-food",
+      "spicy",
+      "cirebon"
+    ],
+    "dietary": [
+      "vegetarian",
+      "vegan",
+      "halal"
+    ],
+    "rating": 4.6,
+    "reviews": 287,
+    "createdAt": "2025-10-08"
+  },
+  {
+    "id": "r-020",
+    "slug": "ikan-bakar-rica",
+    "title": "Ikan Bakar Rica Manado",
+    "titleId": "Ikan Bakar Rica Manado",
+    "description": "Grilled fish with fiery Manado Rica-Rica paste. Spicy, herby, citrusy. The North Sulawesi way.",
+    "descriptionId": "Ikan bakar dengan pasta Rica-Rica Manado. Pedas, herba, citrus. Cara Sulawesi Utara.",
+    "image": "https://images.unsplash.com/photo-1532980193133-95f4c0d5f6e9?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#dc2626",
+      "#0c0a09"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "medium",
+    "prepTime": 20,
+    "cookTime": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Fish fillet (snapper or mackerel)",
+        "nameId": "Fillet ikan",
+        "amount": "600g",
+        "category": "protein"
+      },
+      {
+        "name": "Red chili",
+        "nameId": "Cabai merah",
+        "amount": "15",
+        "category": "spice"
+      },
+      {
+        "name": "Bird's eye chili",
+        "nameId": "Cabai rawit",
+        "amount": "8",
+        "category": "spice"
+      },
+      {
+        "name": "Shallot",
+        "nameId": "Bawang merah",
+        "amount": "6",
+        "category": "vegetable"
+      },
+      {
+        "name": "Garlic",
+        "nameId": "Bawang putih",
+        "amount": "4 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Ginger",
+        "nameId": "Jahe",
+        "amount": "2cm",
+        "category": "spice"
+      },
+      {
+        "name": "Lime leaf",
+        "nameId": "Daun jeruk",
+        "amount": "3",
+        "category": "spice"
+      },
+      {
+        "name": "Lemongrass",
+        "nameId": "Serai",
+        "amount": "2 stalks",
+        "category": "spice"
+      },
+      {
+        "name": "Lime juice",
+        "nameId": "Air jeruk nipis",
+        "amount": "2 tbsp",
+        "category": "spice"
+      },
+      {
+        "name": "Salt & sugar",
+        "nameId": "Garam & gula",
+        "amount": "to taste",
+        "category": "sauce"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Blend chili, shallot, garlic, ginger, lemongrass, lime leaf into a paste.",
+        "textId": "Haluskan cabai, bawang merah, putih, jahe, serai, daun jeruk.",
+        "durationSec": 60
+      },
+      {
+        "order": 2,
+        "text": "Sauté paste with oil 5 min. Add lime juice, salt, sugar. Cool.",
+        "textId": "Tumis pasta dengan minyak 5 mnt. Tambah jeruk nipis, garam, gula. Dinginkan.",
+        "durationSec": 300
+      },
+      {
+        "order": 3,
+        "text": "Score fish. Marinate in half the paste for 15 min.",
+        "textId": "Sayat ikan. Marinasi dengan setengah pasta 15 mnt.",
+        "durationSec": 900
+      },
+      {
+        "order": 4,
+        "text": "Grill fish 4 min per side, basting with remaining paste.",
+        "textId": "Panggang ikan 4 mnt per sisi, oles sisa pasta.",
+        "durationSec": 480,
+        "tip": "Get grill marks but don't overcook — fish should be just flaky."
+      },
+      {
+        "order": 5,
+        "text": "Serve with steamed rice and fresh vegetables.",
+        "textId": "Sajikan dengan nasi panas dan sayuran segar.",
+        "durationSec": 10
+      }
+    ],
+    "nutrition": {
+      "calories": 320,
+      "protein": 38,
+      "carbs": 14,
+      "fat": 12,
+      "fiber": 3
+    },
+    "tags": [
+      "fish",
+      "spicy",
+      "grilled",
+      "manado"
+    ],
+    "dietary": [
+      "halal",
+      "gluten-free"
+    ],
+    "rating": 4.8,
+    "reviews": 522,
+    "createdAt": "2025-10-05"
+  },
+  {
+    "id": "r-021",
+    "slug": "martabak-manis",
+    "title": "Martabak Manis",
+    "titleId": "Martabak Manis",
+    "description": "Thick, sweet, fluffy stuffed pancake with cheese, chocolate, and condensed milk.",
+    "descriptionId": "Pancake tebal manis berisi keju, cokelat, dan susu kental manis.",
+    "image": "https://images.unsplash.com/photo-1606756790138-261d2b21cd75?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#92400e",
+      "#0c0a09"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "medium",
+    "prepTime": 15,
+    "cookTime": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Flour",
+        "nameId": "Tepung terigu",
+        "amount": "250g",
+        "category": "grain"
+      },
+      {
+        "name": "Sugar",
+        "nameId": "Gula",
+        "amount": "50g",
+        "category": "sauce"
+      },
+      {
+        "name": "Instant yeast",
+        "nameId": "Ragi instan",
+        "amount": "1 tsp",
+        "category": "other"
+      },
+      {
+        "name": "Egg",
+        "nameId": "Telur",
+        "amount": "2",
+        "category": "protein"
+      },
+      {
+        "name": "Warm milk",
+        "nameId": "Susu hangat",
+        "amount": "300ml",
+        "category": "dairy"
+      },
+      {
+        "name": "Baking powder",
+        "nameId": "Baking powder",
+        "amount": "1/2 tsp",
+        "category": "other"
+      },
+      {
+        "name": "Salt",
+        "nameId": "Garam",
+        "amount": "1/4 tsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Butter",
+        "nameId": "Mentega",
+        "amount": "for cooking",
+        "category": "dairy"
+      },
+      {
+        "name": "Condensed milk",
+        "nameId": "Susu kental manis",
+        "amount": "to drizzle",
+        "category": "dairy"
+      },
+      {
+        "name": "Cheddar cheese, grated",
+        "nameId": "Keju cheddar parut",
+        "amount": "100g",
+        "category": "dairy"
+      },
+      {
+        "name": "Chocolate sprinkles",
+        "nameId": "Meses",
+        "amount": "to taste",
+        "category": "other"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Mix flour, sugar, yeast, salt. Add warm milk and egg, whisk smooth.",
+        "textId": "Campur tepung, gula, ragi, garam. Tambah susu hangat dan telur, kocok halus.",
+        "durationSec": 180
+      },
+      {
+        "order": 2,
+        "text": "Rest batter 1 hour. Stir in baking powder just before cooking.",
+        "textId": "Diamkan adonan 1 jam. Aduk baking powder tepat sebelum masak.",
+        "durationSec": 3600
+      },
+      {
+        "order": 3,
+        "text": "Heat pan with butter, pour batter (1 cm thick). Cover, cook 6 min until holes form.",
+        "textId": "Panaskan panci dengan mentega, tuang adonan (1 cm). Tutup, masak 6 mnt hingga berlubang.",
+        "durationSec": 360,
+        "tip": "The holes mean it's ready to flip."
+      },
+      {
+        "order": 4,
+        "text": "Flip, cook 2 min more. Remove, drizzle condensed milk, add cheese and chocolate.",
+        "textId": "Balik, masak 2 mnt. Angkat, tuang susu kental manis, keju, meses.",
+        "durationSec": 120
+      },
+      {
+        "order": 5,
+        "text": "Fold into a square, cut into 4 pieces. Eat warm.",
+        "textId": "Lipat jadi kotak, potong 4 bagian. Makan hangat.",
+        "durationSec": 30
+      }
+    ],
+    "nutrition": {
+      "calories": 520,
+      "protein": 16,
+      "carbs": 68,
+      "fat": 20,
+      "fiber": 2
+    },
+    "tags": [
+      "dessert",
+      "sweet",
+      "street-food",
+      "indonesian"
+    ],
+    "dietary": [
+      "vegetarian",
+      "halal"
+    ],
+    "rating": 4.9,
+    "reviews": 1567,
+    "createdAt": "2025-10-02"
+  },
+  {
+    "id": "r-022",
+    "slug": "bihun-goreng",
+    "title": "Bihun Goreng Spesial",
+    "titleId": "Bihun Goreng Spesial",
+    "description": "Wok-fried vermicelli with shrimp, chicken, and a medley of vegetables. Light, savory, fast.",
+    "descriptionId": "Bihun tumis dengan udang, ayam, dan sayuran. Ringan, gurih, cepat.",
+    "image": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#a3e635",
+      "#0c0a09"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "easy",
+    "prepTime": 10,
+    "cookTime": 12,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Vermicelli, soaked",
+        "nameId": "Bihun, rendam",
+        "amount": "200g",
+        "category": "grain"
+      },
+      {
+        "name": "Shrimp, peeled",
+        "nameId": "Udang, kupas",
+        "amount": "100g",
+        "category": "protein"
+      },
+      {
+        "name": "Chicken, julienned",
+        "nameId": "Ayam, korek",
+        "amount": "100g",
+        "category": "protein"
+      },
+      {
+        "name": "Egg",
+        "nameId": "Telur",
+        "amount": "2",
+        "category": "protein"
+      },
+      {
+        "name": "Carrot, julienned",
+        "nameId": "Wortel, korek",
+        "amount": "1",
+        "category": "vegetable"
+      },
+      {
+        "name": "Cabbage, sliced",
+        "nameId": "Kubis, iris",
+        "amount": "100g",
+        "category": "vegetable"
+      },
+      {
+        "name": "Garlic, minced",
+        "nameId": "Bawang putih, cincang",
+        "amount": "3 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Sweet soy sauce (kecap manis)",
+        "nameId": "Kecap manis",
+        "amount": "2 tbsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Soy sauce",
+        "nameId": "Kecap asin",
+        "amount": "1 tbsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Salt & pepper",
+        "nameId": "Garam & merica",
+        "amount": "to taste",
+        "category": "sauce"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Soak vermicelli in hot water 5 min. Drain.",
+        "textId": "Rendam bihun dalam air panas 5 mnt. Tiriskan.",
+        "durationSec": 300
+      },
+      {
+        "order": 2,
+        "text": "Heat oil, fry garlic 20 sec. Add chicken and shrimp, cook 2 min.",
+        "textId": "Panaskan minyak, tumis bawang putih 20 detik. Tambah ayam dan udang, masak 2 mnt.",
+        "durationSec": 140
+      },
+      {
+        "order": 3,
+        "text": "Push aside, scramble eggs. Add carrot and cabbage, stir-fry 1 min.",
+        "textId": "Geser, orak-arik telur. Tambah wortel dan kubis, tumis 1 mnt.",
+        "durationSec": 60
+      },
+      {
+        "order": 4,
+        "text": "Add vermicelli, kecap manis, soy sauce. Toss for 2 min.",
+        "textId": "Masukkan bihun, kecap manis, kecap asin. Aduk 2 mnt.",
+        "durationSec": 120
+      },
+      {
+        "order": 5,
+        "text": "Season and serve.",
+        "textId": "Bumbu dan sajikan.",
+        "durationSec": 5
+      }
+    ],
+    "nutrition": {
+      "calories": 420,
+      "protein": 22,
+      "carbs": 58,
+      "fat": 10,
+      "fiber": 3
+    },
+    "tags": [
+      "vermicelli",
+      "quick",
+      "indonesian",
+      "wok"
+    ],
+    "dietary": [
+      "halal"
+    ],
+    "rating": 4.7,
+    "reviews": 487,
+    "createdAt": "2025-10-10"
+  },
+  {
+    "id": "r-023",
+    "slug": "gado-gado-bali",
+    "title": "Lawar Bali",
+    "titleId": "Lawar Bali",
+    "description": "Balinese minced coconut salad with jackfruit, long bean, and aromatic spices. Texturally complex.",
+    "descriptionId": "Salad kelapa parut Bali dengan nangka, kacang panjang, dan rempah. Kompleks teksturnya.",
+    "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#65a30d",
+      "#0c0a09"
+    ],
+    "cuisine": "Balinese",
+    "difficulty": "medium",
+    "prepTime": 30,
+    "cookTime": 10,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Young jackfruit, boiled",
+        "nameId": "Nangka muda, rebus",
+        "amount": "200g",
+        "category": "vegetable"
+      },
+      {
+        "name": "Long bean, finely sliced",
+        "nameId": "Kacang panjang, iris halus",
+        "amount": "100g",
+        "category": "vegetable"
+      },
+      {
+        "name": "Grated coconut",
+        "nameId": "Kelapa parut",
+        "amount": "150g",
+        "category": "dairy"
+      },
+      {
+        "name": "Shallot, sliced",
+        "nameId": "Bawang merah, iris",
+        "amount": "4",
+        "category": "vegetable"
+      },
+      {
+        "name": "Garlic, sliced",
+        "nameId": "Bawang putih, iris",
+        "amount": "3 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Galangal, sliced",
+        "nameId": "Lengkuas, iris",
+        "amount": "1 tsp",
+        "category": "spice"
+      },
+      {
+        "name": "Lime leaf, sliced",
+        "nameId": "Daun jeruk, iris",
+        "amount": "3",
+        "category": "spice"
+      },
+      {
+        "name": "Lemongrass, sliced",
+        "nameId": "Serai, iris",
+        "amount": "1 stalk",
+        "category": "spice"
+      },
+      {
+        "name": "Coconut oil",
+        "nameId": "Minyak kelapa",
+        "amount": "2 tbsp",
+        "category": "other"
+      },
+      {
+        "name": "Lime juice",
+        "nameId": "Air jeruk nipis",
+        "amount": "2 tbsp",
+        "category": "spice"
+      },
+      {
+        "name": "Salt",
+        "nameId": "Garam",
+        "amount": "1 tsp",
+        "category": "sauce"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Finely mince jackfruit and long bean. Combine with grated coconut.",
+        "textId": "Cincang halus nangka dan kacang panjang. Campur dengan kelapa parut.",
+        "durationSec": 300
+      },
+      {
+        "order": 2,
+        "text": "Sauté shallot, garlic, galangal, lime leaf, lemongrass in coconut oil 5 min.",
+        "textId": "Tumis bawang merah, putih, lengkuas, daun jeruk, serai dengan minyak kelapa 5 mnt.",
+        "durationSec": 300
+      },
+      {
+        "order": 3,
+        "text": "Pour hot spice oil over the coconut mixture. Add lime juice and salt.",
+        "textId": "Tuang minyak panas ke campuran kelapa. Tambah jeruk nipis dan garam.",
+        "durationSec": 30
+      },
+      {
+        "order": 4,
+        "text": "Mix well. Let sit 10 min for flavors to meld.",
+        "textId": "Aduk rata. Diamkan 10 mnt agar rasa tercampur.",
+        "durationSec": 600
+      },
+      {
+        "order": 5,
+        "text": "Serve at room temperature with steamed rice.",
+        "textId": "Sajikan suhu ruang dengan nasi panas.",
+        "durationSec": 5
+      }
+    ],
+    "nutrition": {
+      "calories": 280,
+      "protein": 6,
+      "carbs": 18,
+      "fat": 22,
+      "fiber": 7
+    },
+    "tags": [
+      "salad",
+      "coconut",
+      "balinese",
+      "vegetarian"
+    ],
+    "dietary": [
+      "vegetarian",
+      "vegan",
+      "halal"
+    ],
+    "rating": 4.6,
+    "reviews": 198,
+    "createdAt": "2025-10-04"
+  },
+  {
+    "id": "r-024",
+    "slug": "tumis-tahu-cah-sawi",
+    "title": "Tumis Tahu Cah Sawi",
+    "titleId": "Tumis Tahu Cah Sawi",
+    "description": "Light tofu and bok choy stir-fry with ginger. 10 minutes, 4 ingredients, infinite comfort.",
+    "descriptionId": "Tumis tahu dan sawi dengan jahe. 10 menit, 4 bahan, kenyamanan tanpa batas.",
+    "image": "https://images.unsplash.com/photo-1627662235936-94c54c2a5183?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#84cc16",
+      "#0c0a09"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "easy",
+    "prepTime": 5,
+    "cookTime": 8,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "Firm tofu, cubed",
+        "nameId": "Tahu putih, potong",
+        "amount": "200g",
+        "category": "protein"
+      },
+      {
+        "name": "Bok choy (sawi hijau)",
+        "nameId": "Sawi hijau",
+        "amount": "200g",
+        "category": "vegetable"
+      },
+      {
+        "name": "Garlic, sliced",
+        "nameId": "Bawang putih, iris",
+        "amount": "3 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Ginger, sliced",
+        "nameId": "Jahe, iris",
+        "amount": "1 tsp",
+        "category": "spice"
+      },
+      {
+        "name": "Oyster sauce",
+        "nameId": "Saus tiram",
+        "amount": "1 tbsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Soy sauce",
+        "nameId": "Kecap asin",
+        "amount": "1 tsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Salt & pepper",
+        "nameId": "Garam & merica",
+        "amount": "to taste",
+        "category": "sauce"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Lightly pan-fry tofu until golden (3 min). Set aside.",
+        "textId": "Goreng tahu ringan hingga kuning (3 mnt). Sisihkan.",
+        "durationSec": 180
+      },
+      {
+        "order": 2,
+        "text": "Sauté garlic and ginger 30 sec.",
+        "textId": "Tumis bawang putih dan jahe 30 detik.",
+        "durationSec": 30
+      },
+      {
+        "order": 3,
+        "text": "Add bok choy stems first, 1 min. Then leaves, oyster sauce, soy sauce. 1 min.",
+        "textId": "Masukkan batang sawi dulu, 1 mnt. Lalu daun, saus tiram, kecap asin. 1 mnt.",
+        "durationSec": 120
+      },
+      {
+        "order": 4,
+        "text": "Return tofu, toss gently. Season. Serve with rice.",
+        "textId": "Kembalikan tahu, aduk pelan. Bumbu. Sajikan dengan nasi.",
+        "durationSec": 30
+      }
+    ],
+    "nutrition": {
+      "calories": 220,
+      "protein": 18,
+      "carbs": 12,
+      "fat": 12,
+      "fiber": 4
+    },
+    "tags": [
+      "vegetarian",
+      "tofu",
+      "quick",
+      "healthy"
+    ],
+    "dietary": [
+      "vegetarian",
+      "halal",
+      "vegan"
+    ],
+    "rating": 4.5,
+    "reviews": 312,
+    "createdAt": "2025-11-03"
+  },
+  {
+    "id": "r-025",
+    "slug": "rendang-jamur",
+    "title": "Rendang Jamur",
+    "titleId": "Rendang Jamur",
+    "description": "Mushroom rendang — all the deep, spicy, slow-cooked flavor, none of the meat. Vegan-friendly.",
+    "descriptionId": "Rendang jamur — semua rasa dalam, pedas, dimasak lama, tanpa daging. Ramah vegan.",
+    "image": "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#7c2d12",
+      "#0c0a09"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "hard",
+    "prepTime": 20,
+    "cookTime": 60,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "King oyster mushroom, torn",
+        "nameId": "Jamur king oyster, suwir",
+        "amount": "400g",
+        "category": "vegetable"
+      },
+      {
+        "name": "Coconut milk",
+        "nameId": "Santan",
+        "amount": "800ml",
+        "category": "dairy"
+      },
+      {
+        "name": "Shallot",
+        "nameId": "Bawang merah",
+        "amount": "8",
+        "category": "vegetable"
+      },
+      {
+        "name": "Garlic",
+        "nameId": "Bawang putih",
+        "amount": "4 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Ginger",
+        "nameId": "Jahe",
+        "amount": "2cm",
+        "category": "spice"
+      },
+      {
+        "name": "Galangal",
+        "nameId": "Lengkuas",
+        "amount": "2cm",
+        "category": "spice"
+      },
+      {
+        "name": "Lemongrass",
+        "nameId": "Serai",
+        "amount": "2 stalks",
+        "category": "spice"
+      },
+      {
+        "name": "Lime leaf",
+        "nameId": "Daun jeruk",
+        "amount": "4",
+        "category": "spice"
+      },
+      {
+        "name": "Dried chili, soaked",
+        "nameId": "Cabai kering, rendam",
+        "amount": "8",
+        "category": "spice"
+      },
+      {
+        "name": "Coriander seed",
+        "nameId": "Ketumbar",
+        "amount": "1 tsp",
+        "category": "spice"
+      },
+      {
+        "name": "Cumin",
+        "nameId": "Jinten",
+        "amount": "1/2 tsp",
+        "category": "spice"
+      },
+      {
+        "name": "Cinnamon",
+        "nameId": "Kayu manis",
+        "amount": "1 stick",
+        "category": "spice"
+      },
+      {
+        "name": "Tamarind paste",
+        "nameId": "Asam jawa",
+        "amount": "1 tsp",
+        "category": "sauce"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Blend shallot, garlic, ginger, galangal, chili, coriander, cumin into a paste.",
+        "textId": "Haluskan bawang merah, putih, jahe, lengkuas, cabai, ketumbar, jinten.",
+        "durationSec": 120
+      },
+      {
+        "order": 2,
+        "text": "Sauté paste 10 min until darkened and oil separates.",
+        "textId": "Tumis pasta 10 mnt hingga gelap dan minyak terpisah.",
+        "durationSec": 600
+      },
+      {
+        "order": 3,
+        "text": "Add mushrooms, coat. Pour coconut milk, add aromatics, tamarind.",
+        "textId": "Masukkan jamur, aduk rata. Tuang santan, tambah bumbu, asam jawa.",
+        "durationSec": 180
+      },
+      {
+        "order": 4,
+        "text": "Simmer 40 min until liquid reduces to a thick, dark coating.",
+        "textId": "Didihkan 40 mnt hingga kuah mengental dan menjadi lapisan gelap.",
+        "durationSec": 2400
+      },
+      {
+        "order": 5,
+        "text": "Serve with steamed rice and sambal.",
+        "textId": "Sajikan dengan nasi dan sambal.",
+        "durationSec": 10
+      }
+    ],
+    "nutrition": {
+      "calories": 320,
+      "protein": 10,
+      "carbs": 22,
+      "fat": 22,
+      "fiber": 6
+    },
+    "tags": [
+      "vegan",
+      "mushroom",
+      "rendang",
+      "indonesian"
+    ],
+    "dietary": [
+      "vegan",
+      "vegetarian",
+      "halal"
+    ],
+    "rating": 4.8,
+    "reviews": 422,
+    "createdAt": "2025-10-26"
+  },
+  {
+    "id": "r-026",
+    "slug": "pempek-kapal-selam",
+    "title": "Pempek Kapal Selam",
+    "titleId": "Pempek Kapal Selam",
+    "description": "Fish cake with a whole quail egg inside — a Palembang favorite. Cuko dipping sauce mandatory.",
+    "descriptionId": "Pempek dengan telur puyuh utuh di dalam — favorit Palembang. Saus cuko wajib.",
+    "image": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#0891b2",
+      "#0c0a09"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "medium",
+    "prepTime": 30,
+    "cookTime": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Mackerel fillet",
+        "nameId": "Ikan tenggiri",
+        "amount": "300g",
+        "category": "protein"
+      },
+      {
+        "name": "Tapioca flour",
+        "nameId": "Tepung tapioka",
+        "amount": "250g",
+        "category": "grain"
+      },
+      {
+        "name": "Quail egg, hard-boiled",
+        "nameId": "Telur puyuh rebus",
+        "amount": "12",
+        "category": "protein"
+      },
+      {
+        "name": "Garlic, minced",
+        "nameId": "Bawang putih, cincang",
+        "amount": "2 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Salt",
+        "nameId": "Garam",
+        "amount": "1 tsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Ice water",
+        "nameId": "Air es",
+        "amount": "200ml",
+        "category": "other"
+      },
+      {
+        "name": "Cuko: palm sugar",
+        "nameId": "Cuko: gula merah",
+        "amount": "100g",
+        "category": "sauce"
+      },
+      {
+        "name": "Cuko: vinegar",
+        "nameId": "Cuko: cuka",
+        "amount": "3 tbsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Cuko: chili",
+        "nameId": "Cuko: cabai",
+        "amount": "5",
+        "category": "spice"
+      },
+      {
+        "name": "Cuko: garlic",
+        "nameId": "Cuko: bawang putih",
+        "amount": "3 cloves",
+        "category": "vegetable"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Blend fish, garlic, salt. Add ice water. Fold in tapioca gently.",
+        "textId": "Haluskan ikan, bawang putih, garam. Tambah air es. Masukkan tapioka pelan.",
+        "durationSec": 180
+      },
+      {
+        "order": 2,
+        "text": "Form a ball, press a quail egg inside, seal. Make 12.",
+        "textId": "Bentuk bulat, tekan telur puyuh di dalam, tutup. Buat 12.",
+        "durationSec": 600
+      },
+      {
+        "order": 3,
+        "text": "Boil 5 min until floating. Drain.",
+        "textId": "Rebus 5 mnt hingga mengapung. Tiriskan.",
+        "durationSec": 300
+      },
+      {
+        "order": 4,
+        "text": "Fry until golden (3 min).",
+        "textId": "Goreng hingga keemasan (3 mnt).",
+        "durationSec": 180
+      },
+      {
+        "order": 5,
+        "text": "Boil cuko ingredients in 300ml water 10 min. Strain.",
+        "textId": "Rebus bahan cuko dalam 300ml air 10 mnt. Saring.",
+        "durationSec": 600
+      },
+      {
+        "order": 6,
+        "text": "Serve hot with cuko.",
+        "textId": "Sajikan hangat dengan cuko.",
+        "durationSec": 5
+      }
+    ],
+    "nutrition": {
+      "calories": 420,
+      "protein": 26,
+      "carbs": 52,
+      "fat": 12,
+      "fiber": 1
+    },
+    "tags": [
+      "fish",
+      "snack",
+      "palembang",
+      "egg"
+    ],
+    "dietary": [
+      "halal"
+    ],
+    "rating": 4.7,
+    "reviews": 612,
+    "createdAt": "2025-10-01"
+  },
+  {
+    "id": "r-027",
+    "slug": "nasi-campur-bali",
+    "title": "Nasi Campur Bali",
+    "titleId": "Nasi Campur Bali",
+    "description": "Bali's signature plate: rice, sate lilit, lawar, egg, vegetables — every flavor on one tray.",
+    "descriptionId": "Hidangan khas Bali: nasi, sate lilit, lawar, telur, sayuran — semua rasa dalam satu piring.",
+    "image": "https://images.unsplash.com/photo-1567337710282-00832b415979?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#f59e0b",
+      "#0c0a09"
+    ],
+    "cuisine": "Balinese",
+    "difficulty": "hard",
+    "prepTime": 45,
+    "cookTime": 60,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Steamed rice",
+        "nameId": "Nasi putih",
+        "amount": "4 cups",
+        "category": "grain"
+      },
+      {
+        "name": "Chicken (for sate lilit)",
+        "nameId": "Ayam untuk sate lilit",
+        "amount": "300g",
+        "category": "protein"
+      },
+      {
+        "name": "Minced pork (optional)",
+        "nameId": "Babi cincang (opsional)",
+        "amount": "200g",
+        "category": "protein"
+      },
+      {
+        "name": "Long bean",
+        "nameId": "Kacang panjang",
+        "amount": "100g",
+        "category": "vegetable"
+      },
+      {
+        "name": "Young jackfruit",
+        "nameId": "Nangka muda",
+        "amount": "150g",
+        "category": "vegetable"
+      },
+      {
+        "name": "Grated coconut",
+        "nameId": "Kelapa parut",
+        "amount": "100g",
+        "category": "dairy"
+      },
+      {
+        "name": "Egg, hard-boiled",
+        "nameId": "Telur rebus",
+        "amount": "4",
+        "category": "protein"
+      },
+      {
+        "name": "Lemongrass",
+        "nameId": "Serai",
+        "amount": "4 stalks",
+        "category": "spice"
+      },
+      {
+        "name": "Lime leaf",
+        "nameId": "Daun jeruk",
+        "amount": "6",
+        "category": "spice"
+      },
+      {
+        "name": "Galangal",
+        "nameId": "Lengkuas",
+        "amount": "3cm",
+        "category": "spice"
+      },
+      {
+        "name": "Shallot",
+        "nameId": "Bawang merah",
+        "amount": "8",
+        "category": "vegetable"
+      },
+      {
+        "name": "Garlic",
+        "nameId": "Bawang putih",
+        "amount": "5 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Coconut oil",
+        "nameId": "Minyak kelapa",
+        "amount": "3 tbsp",
+        "category": "other"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Make sate lilit: blend aromatics with chicken, mix with grated coconut, wrap on lemongrass.",
+        "textId": "Buat sate lilit: haluskan bumbu dengan ayam, campur kelapa parut, bungkus serai.",
+        "durationSec": 900
+      },
+      {
+        "order": 2,
+        "text": "Grill sate lilit 4 min per side.",
+        "textId": "Panggang sate lilit 4 mnt per sisi.",
+        "durationSec": 480
+      },
+      {
+        "order": 3,
+        "text": "Make lawar: combine minced meat (cooked), jackfruit, long bean, grated coconut, spice oil.",
+        "textId": "Buat lawar: campur daging cincang (matang), nangka, kacang panjang, kelapa parut, minyak bumbu.",
+        "durationSec": 900
+      },
+      {
+        "order": 4,
+        "text": "Slice boiled eggs.",
+        "textId": "Iris telur rebus.",
+        "durationSec": 60
+      },
+      {
+        "order": 5,
+        "text": "Plate: rice as base, arrange sate, lawar, egg, vegetables in sections.",
+        "textId": "Tata: nasi sebagai dasar, sate, lawar, telur, sayuran di sisi.",
+        "durationSec": 180
+      }
+    ],
+    "nutrition": {
+      "calories": 720,
+      "protein": 42,
+      "carbs": 62,
+      "fat": 32,
+      "fiber": 6
+    },
+    "tags": [
+      "balinese",
+      "rice",
+      "celebration",
+      "mixed"
+    ],
+    "dietary": [
+      "halal"
+    ],
+    "rating": 4.9,
+    "reviews": 689,
+    "createdAt": "2025-09-28"
+  },
+  {
+    "id": "r-028",
+    "slug": "bubur-ayam",
+    "title": "Bubur Ayam Jakarta",
+    "titleId": "Bubur Ayam Jakarta",
+    "description": "Jakarta-style chicken congee with shredded chicken, fried shallot, and cakwee. Cozy as it gets.",
+    "descriptionId": "Bubur ayam Jakarta dengan ayam suwir, bawang goreng, dan cakwee. Cozy maksimal.",
+    "image": "https://images.unsplash.com/photo-1607330289024-1535c6b4e1c1?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#fbbf24",
+      "#0c0a09"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "easy",
+    "prepTime": 10,
+    "cookTime": 40,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "Rice (uncooked)",
+        "nameId": "Beras (mentah)",
+        "amount": "1/2 cup",
+        "category": "grain"
+      },
+      {
+        "name": "Chicken thigh, poached and shredded",
+        "nameId": "Paha ayam rebus, suwir",
+        "amount": "200g",
+        "category": "protein"
+      },
+      {
+        "name": "Chicken stock",
+        "nameId": "Kaldu ayam",
+        "amount": "1L",
+        "category": "other"
+      },
+      {
+        "name": "Ginger, sliced",
+        "nameId": "Jahe, iris",
+        "amount": "2cm",
+        "category": "spice"
+      },
+      {
+        "name": "Garlic, minced",
+        "nameId": "Bawang putih, cincang",
+        "amount": "2 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Cakwee (fried dough fritter)",
+        "nameId": "Cakwee",
+        "amount": "4",
+        "category": "other"
+      },
+      {
+        "name": "Celery leaves",
+        "nameId": "Daun seledri",
+        "amount": "2 tbsp",
+        "category": "spice"
+      },
+      {
+        "name": "Fried shallot",
+        "nameId": "Bawang goreng",
+        "amount": "3 tbsp",
+        "category": "other"
+      },
+      {
+        "name": "Soy sauce",
+        "nameId": "Kecap asin",
+        "amount": "to taste",
+        "category": "sauce"
+      },
+      {
+        "name": "White pepper",
+        "nameId": "Merica putih",
+        "amount": "to taste",
+        "category": "sauce"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Simmer rice in chicken stock with ginger 30 min, stirring often until porridge consistency.",
+        "textId": "Didihkan beras dalam kaldu dengan jahe 30 mnt, aduk sering hingga jadi bubur.",
+        "durationSec": 1800,
+        "tip": "Stir more often at the end to avoid sticking."
+      },
+      {
+        "order": 2,
+        "text": "Poach chicken 12 min, shred finely.",
+        "textId": "Rebus ayam 12 mnt, suwir halus.",
+        "durationSec": 720
+      },
+      {
+        "order": 3,
+        "text": "Sear garlic in dry pan until golden, then mix into porridge.",
+        "textId": "Sangrai bawang putih di wajan kering hingga kuning, campur ke bubur.",
+        "durationSec": 120
+      },
+      {
+        "order": 4,
+        "text": "Ladle porridge into bowls. Top with chicken, cakwee, celery, fried shallots.",
+        "textId": "Tuang bubur ke mangkuk. Tabur ayam, cakwee, seledri, bawang goreng.",
+        "durationSec": 30
+      },
+      {
+        "order": 5,
+        "text": "Serve with soy sauce and white pepper on the side.",
+        "textId": "Sajikan dengan kecap asin dan merica putih di samping.",
+        "durationSec": 10
+      }
+    ],
+    "nutrition": {
+      "calories": 380,
+      "protein": 26,
+      "carbs": 48,
+      "fat": 8,
+      "fiber": 1
+    },
+    "tags": [
+      "porridge",
+      "chicken",
+      "comfort",
+      "breakfast"
+    ],
+    "dietary": [
+      "halal"
+    ],
+    "rating": 4.8,
+    "reviews": 845,
+    "createdAt": "2025-09-25"
+  },
+  {
+    "id": "r-029",
+    "slug": "kue-lapis",
+    "title": "Kue Lapis Legit",
+    "titleId": "Kue Lapis Legit",
+    "description": "Layered spice cake with 20+ thin buttery layers. A labor of love worth every minute.",
+    "descriptionId": "Kue lapis rempah dengan 20+ lapisan mentega tipis. Cinta dalam bentuk kue.",
+    "image": "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#fbbf24",
+      "#1c1917"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "hard",
+    "prepTime": 60,
+    "cookTime": 90,
+    "servings": 12,
+    "ingredients": [
+      {
+        "name": "Butter, softened",
+        "nameId": "Mentega, lelehkan",
+        "amount": "300g",
+        "category": "dairy"
+      },
+      {
+        "name": "Egg yolks",
+        "nameId": "Kuning telur",
+        "amount": "20",
+        "category": "protein"
+      },
+      {
+        "name": "Egg whites",
+        "nameId": "Putih telur",
+        "amount": "10",
+        "category": "protein"
+      },
+      {
+        "name": "Sugar",
+        "nameId": "Gula",
+        "amount": "200g",
+        "category": "sauce"
+      },
+      {
+        "name": "Flour",
+        "nameId": "Tepung terigu",
+        "amount": "100g",
+        "category": "grain"
+      },
+      {
+        "name": "Condensed milk",
+        "nameId": "Susu kental manis",
+        "amount": "50g",
+        "category": "dairy"
+      },
+      {
+        "name": "Spice mix (cinnamon, cardamom, clove)",
+        "nameId": "Campuran rempah (kayu manis, kapulaga, cengkeh)",
+        "amount": "2 tsp",
+        "category": "spice"
+      },
+      {
+        "name": "Vanilla",
+        "nameId": "Vanili",
+        "amount": "1 tsp",
+        "category": "other"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Cream butter and sugar until fluffy. Beat yolks until pale.",
+        "textId": "Kocok mentega dan gula hingga mengembang. Kocok kuning telur hingga pucat.",
+        "durationSec": 600
+      },
+      {
+        "order": 2,
+        "text": "Fold yolks into butter. Mix in condensed milk, spices, vanilla.",
+        "textId": "Masukkan kuning telur ke mentega. Campur susu kental, rempah, vanili.",
+        "durationSec": 180
+      },
+      {
+        "order": 3,
+        "text": "Fold in flour. Beat whites to stiff peaks, fold in gently.",
+        "textId": "Masukkan tepung. Kocok putih telur kaku, aduk pelan.",
+        "durationSec": 300
+      },
+      {
+        "order": 4,
+        "text": "Heat oven 180°C. Pour thin layer (3mm) in lined pan. Bake 5 min until golden.",
+        "textId": "Panaskan oven 180°C. Tuang lapisan tipis (3mm) di loyang. Panggang 5 mnt.",
+        "durationSec": 300
+      },
+      {
+        "order": 5,
+        "text": "Press layer down. Add another thin layer of batter, bake 5 min. Repeat 20+ times.",
+        "textId": "Tekan lapisan. Tambah lapisan tipis, panggang 5 mnt. Ulangi 20+ kali.",
+        "durationSec": 6000,
+        "tip": "Press each layer firmly for tight adhesion."
+      },
+      {
+        "order": 6,
+        "text": "Cool completely. Slice into squares with a hot, dry knife.",
+        "textId": "Dinginkan. Potong kotak dengan pisau panas kering.",
+        "durationSec": 1800
+      }
+    ],
+    "nutrition": {
+      "calories": 320,
+      "protein": 6,
+      "carbs": 28,
+      "fat": 20,
+      "fiber": 0
+    },
+    "tags": [
+      "cake",
+      "layered",
+      "celebration",
+      "indonesian"
+    ],
+    "dietary": [
+      "vegetarian",
+      "halal"
+    ],
+    "rating": 4.9,
+    "reviews": 412,
+    "createdAt": "2025-09-20"
+  },
+  {
+    "id": "r-030",
+    "slug": "tongseng-kambing",
+    "title": "Tongseng Kambing Solo",
+    "titleId": "Tongseng Kambing Solo",
+    "description": "Spicy Solo-style goat stew with cabbage and tomatoes. Kaffir lime makes it sing.",
+    "descriptionId": "Tongseng kambing Solo dengan kubis dan tomat. Daun jeruk bikin nyess.",
+    "image": "https://images.unsplash.com/photo-1547928576-b822bc410bdf?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#7c2d12",
+      "#0c0a09"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "medium",
+    "prepTime": 15,
+    "cookTime": 60,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Goat meat, cubed",
+        "nameId": "Daging kambing, potong",
+        "amount": "500g",
+        "category": "protein"
+      },
+      {
+        "name": "Cabbage, chopped",
+        "nameId": "Kubis, potong",
+        "amount": "200g",
+        "category": "vegetable"
+      },
+      {
+        "name": "Tomato, cut into wedges",
+        "nameId": "Tomat, potong",
+        "amount": "2",
+        "category": "vegetable"
+      },
+      {
+        "name": "Shallot, sliced",
+        "nameId": "Bawang merah, iris",
+        "amount": "6",
+        "category": "vegetable"
+      },
+      {
+        "name": "Garlic, minced",
+        "nameId": "Bawang putih, cincang",
+        "amount": "4 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Ginger, sliced",
+        "nameId": "Jahe, iris",
+        "amount": "2cm",
+        "category": "spice"
+      },
+      {
+        "name": "Lime leaf",
+        "nameId": "Daun jeruk",
+        "amount": "4",
+        "category": "spice"
+      },
+      {
+        "name": "Lemongrass",
+        "nameId": "Serai",
+        "amount": "2 stalks",
+        "category": "spice"
+      },
+      {
+        "name": "Cinnamon",
+        "nameId": "Kayu manis",
+        "amount": "1 stick",
+        "category": "spice"
+      },
+      {
+        "name": "Clove",
+        "nameId": "Cengkeh",
+        "amount": "3",
+        "category": "spice"
+      },
+      {
+        "name": "Coconut milk",
+        "nameId": "Santan",
+        "amount": "200ml",
+        "category": "dairy"
+      },
+      {
+        "name": "Bird's eye chili",
+        "nameId": "Cabai rawit",
+        "amount": "5",
+        "category": "spice"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Boil goat with ginger, lemongrass, cinnamon, clove 40 min until tender. Reserve broth.",
+        "textId": "Rebus kambing dengan jahe, serai, kayu manis, cengkeh 40 mnt hingga empuk. Sisihkan kaldu.",
+        "durationSec": 2400
+      },
+      {
+        "order": 2,
+        "text": "Sauté shallot, garlic until fragrant (3 min).",
+        "textId": "Tumis bawang merah, putih 3 mnt hingga harum.",
+        "durationSec": 180
+      },
+      {
+        "order": 3,
+        "text": "Add goat meat, lime leaf, chili, coconut milk, and 300ml broth. Simmer 15 min.",
+        "textId": "Tambah daging kambing, daun jeruk, cabai, santan, dan 300ml kaldu. Didihkan 15 mnt.",
+        "durationSec": 900
+      },
+      {
+        "order": 4,
+        "text": "Add cabbage and tomato, cook 3 min until just wilted.",
+        "textId": "Masukkan kubis dan tomat, masak 3 mnt hingga layu.",
+        "durationSec": 180
+      },
+      {
+        "order": 5,
+        "text": "Serve with steamed rice and sambal.",
+        "textId": "Sajikan dengan nasi panas dan sambal.",
+        "durationSec": 10
+      }
+    ],
+    "nutrition": {
+      "calories": 480,
+      "protein": 32,
+      "carbs": 14,
+      "fat": 32,
+      "fiber": 3
+    },
+    "tags": [
+      "goat",
+      "stew",
+      "spicy",
+      "solo"
+    ],
+    "dietary": [
+      "halal"
+    ],
+    "rating": 4.7,
+    "reviews": 358,
+    "createdAt": "2025-09-15"
+  },
+  {
+    "id": "r-031",
+    "slug": "pisang-goreng",
+    "title": "Pisang Goreng Madu",
+    "titleId": "Pisang Goreng Madu",
+    "description": "Crispy honey-glazed banana fritters. 15 minutes, perfect with coffee or ice cream.",
+    "descriptionId": "Pisang goreng glazing madu. 15 menit, sempurna dengan kopi atau es krim.",
+    "image": "https://images.unsplash.com/photo-1606851094291-6efae152bb87?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#facc15",
+      "#0c0a09"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "easy",
+    "prepTime": 5,
+    "cookTime": 10,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Ripe plantain, sliced",
+        "nameId": "Pisang kepok, iris",
+        "amount": "4",
+        "category": "vegetable"
+      },
+      {
+        "name": "Flour",
+        "nameId": "Tepung terigu",
+        "amount": "100g",
+        "category": "grain"
+      },
+      {
+        "name": "Rice flour",
+        "nameId": "Tepung beras",
+        "amount": "30g",
+        "category": "grain"
+      },
+      {
+        "name": "Sugar",
+        "nameId": "Gula",
+        "amount": "2 tbsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Salt",
+        "nameId": "Garam",
+        "amount": "1/4 tsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Honey",
+        "nameId": "Madu",
+        "amount": "3 tbsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Water",
+        "nameId": "Air",
+        "amount": "120ml",
+        "category": "other"
+      },
+      {
+        "name": "Vanilla",
+        "nameId": "Vanili",
+        "amount": "1/2 tsp",
+        "category": "other"
+      },
+      {
+        "name": "Oil for frying",
+        "nameId": "Minyak goreng",
+        "amount": "for frying",
+        "category": "other"
+      },
+      {
+        "name": "Cheese (optional topping)",
+        "nameId": "Keju (opsional)",
+        "amount": "50g",
+        "category": "dairy",
+        "optional": true
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Mix flours, sugar, salt, vanilla. Add water, whisk to a smooth batter.",
+        "textId": "Campur tepung, gula, garam, vanili. Tambah air, kocok hingga halus.",
+        "durationSec": 120
+      },
+      {
+        "order": 2,
+        "text": "Heat oil to 170°C. Dip banana slices in batter, fry 2 min per side.",
+        "textId": "Panaskan minyak ke 170°C. Celup pisang ke adonan, goreng 2 mnt per sisi.",
+        "durationSec": 240
+      },
+      {
+        "order": 3,
+        "text": "Drain on paper. Drizzle with warm honey. Top with cheese if using.",
+        "textId": "Tiriskan. Tuang madu hangat. Tabur keju jika pakai.",
+        "durationSec": 60
+      }
+    ],
+    "nutrition": {
+      "calories": 280,
+      "protein": 4,
+      "carbs": 42,
+      "fat": 10,
+      "fiber": 2
+    },
+    "tags": [
+      "dessert",
+      "banana",
+      "sweet",
+      "snack"
+    ],
+    "dietary": [
+      "vegetarian",
+      "halal",
+      "vegan"
+    ],
+    "rating": 4.7,
+    "reviews": 891,
+    "createdAt": "2025-09-10"
+  },
+  {
+    "id": "r-032",
+    "slug": "cumi-saus-tiram",
+    "title": "Cumi Saus Tiram",
+    "titleId": "Cumi Saus Tiram",
+    "description": "Tender squid in glossy oyster sauce with chili and spring onion. Fast, fresh, restaurant-grade.",
+    "descriptionId": "Cumi empuk dalam saus tiram mengkilap dengan cabai dan daun bawang. Cepat, segar, kelas restoran.",
+    "image": "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=1200&q=80&auto=format&fit=crop",
+    "gradient": [
+      "#1e3a8a",
+      "#0c0a09"
+    ],
+    "cuisine": "Indonesian",
+    "difficulty": "easy",
+    "prepTime": 10,
+    "cookTime": 8,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Squid, cleaned and scored",
+        "nameId": "Cumi, bersihkan dan sayat",
+        "amount": "400g",
+        "category": "protein"
+      },
+      {
+        "name": "Garlic, minced",
+        "nameId": "Bawang putih, cincang",
+        "amount": "3 cloves",
+        "category": "vegetable"
+      },
+      {
+        "name": "Ginger, minced",
+        "nameId": "Jahe, cincang",
+        "amount": "1 tsp",
+        "category": "spice"
+      },
+      {
+        "name": "Red chili, sliced",
+        "nameId": "Cabai merah, iris",
+        "amount": "2",
+        "category": "spice"
+      },
+      {
+        "name": "Spring onion, cut",
+        "nameId": "Daun bawang, potong",
+        "amount": "2 stalks",
+        "category": "vegetable"
+      },
+      {
+        "name": "Oyster sauce",
+        "nameId": "Saus tiram",
+        "amount": "2 tbsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Soy sauce",
+        "nameId": "Kecap asin",
+        "amount": "1 tsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Sugar",
+        "nameId": "Gula",
+        "amount": "1 tsp",
+        "category": "sauce"
+      },
+      {
+        "name": "Cornstarch slurry",
+        "nameId": "Larutan maizena",
+        "amount": "1 tbsp",
+        "category": "other"
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Pat squid dry. Score in a cross-hatch pattern (helps it curl).",
+        "textId": "Keringkan cumi. Sayat pola silang (biar keriting).",
+        "durationSec": 120
+      },
+      {
+        "order": 2,
+        "text": "Blanch squid 30 sec in boiling water. Drain. (Prevents overcooking later.)",
+        "textId": "Celup cumi 30 detik di air mendidih. Tiriskan. (Cegah overcooking.)",
+        "durationSec": 30,
+        "tip": "Hot pan + short cook = tender squid."
+      },
+      {
+        "order": 3,
+        "text": "Stir-fry garlic, ginger, chili 30 sec. Add squid, oyster sauce, soy sauce, sugar. Toss 1 min.",
+        "textId": "Tumis bawang putih, jahe, cabai 30 detik. Tambah cumi, saus tiram, kecap, gula. Aduk 1 mnt.",
+        "durationSec": 60
+      },
+      {
+        "order": 4,
+        "text": "Pour cornstarch slurry, toss until glossy. Top with spring onion.",
+        "textId": "Tuang larutan maizena, aduk hingga mengkilap. Tabur daun bawang.",
+        "durationSec": 30
+      }
+    ],
+    "nutrition": {
+      "calories": 220,
+      "protein": 24,
+      "carbs": 14,
+      "fat": 6,
+      "fiber": 1
+    },
+    "tags": [
+      "seafood",
+      "squid",
+      "quick",
+      "stir-fry"
+    ],
+    "dietary": [
+      "halal"
+    ],
+    "rating": 4.6,
+    "reviews": 287,
+    "createdAt": "2025-09-05"
+  }
+]

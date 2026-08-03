@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ChefHat, BookOpen, ListOrdered, Utensils, Check } from "lucide-react";
 import { useLanguage } from "@/components/providers/language-provider";
-import { GENERATION_PHASES } from "@/lib/generate";
+import { GENERATION_PHASES } from "@/lib/phases";
 import { cn } from "@/lib/utils";
 
 const ICONS = [BookOpen, ListOrdered, Utensils, ChefHat];

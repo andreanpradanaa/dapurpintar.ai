@@ -1,89 +1,71 @@
-# Dapur Pintar AI
+# Dapur Pintar
 
-> Turn Ingredients Into Delicious Meals with AI.
+> A quiet cooking companion. Tell us what's in your kitchen — we'll help you decide what to make.
 
-A premium AI recipe generator. Enter what's in your kitchen, get a tailored recipe with steps, timing, and nutrition — in seconds.
+A premium recipe generator. The frontend (Next.js) talks to a Go + Fiber backend that uses a curated recipe library in Postgres plus OpenAI to compose fresh recipes (RAG pattern).
 
-## Quick start
+## Structure
 
-```bash
-npm install
-npm run dev
+```
+dapurpintar.ai/
+├── frontend/           # Next.js 15 app (the UI)
+├── backend/            # Go 1.26 + Fiber v2 + Postgres + OpenAI
+├── docker-compose.yml  # Postgres for local dev
+├── design-system/      # design tokens, master doc
+└── README.md
 ```
 
-Open http://localhost:3000.
+## Quick start (full stack)
+
+```bash
+# 1. Start Postgres
+docker compose up -d postgres
+
+# 2. Set backend env
+cd backend
+cp .env.example .env
+# edit .env: set OPENAI_API_KEY
+
+# 3. Start backend (auto-migrates, auto-seeds on first boot)
+make dev
+
+# 4. In another terminal, start the frontend
+cd ../frontend
+npm install
+npm run dev
+
+# 5. Open
+#    http://localhost:3000  — frontend
+#    http://localhost:8080/api/v1/health — backend health
+```
 
 ## Stack
 
-- **Next.js 15** (App Router) + **React 19**
-- **Tailwind 4** with custom design tokens via `@theme`
-- **Framer Motion** for micro-interactions
-- **Zustand** for client state (persisted to localStorage)
-- **Lucide React** for icons
-- **Sonner** for toasts
-- **Inter** (display + body) + **JetBrains Mono** (numerics)
+- **Frontend** — Next.js 15 + React 19, Tailwind 4, Framer Motion, Zustand, Lucide
+- **Backend** — Go 1.26 + Fiber v2, pgx/v5, golang-migrate-compatible, go-playground/validator
+- **Database** — PostgreSQL 16
+- **AI** — OpenAI `gpt-4o-mini` with structured JSON output
+- **Pattern** — RAG: top-3 from the curated library as style references, LLM composes a fresh recipe
 
-## Routes
+## Phase 1 endpoints
 
-### Public (no auth)
+| Method | Path | Purpose |
+|---|---|---|
+| `POST` | `/api/v1/recipes/generate` | Given ingredients, return a fresh recipe + match score + sources + alternatives |
+| `GET`  | `/api/v1/recipes/:slug` | Fetch a recipe from the library by slug |
+| `GET`  | `/api/v1/health` | Status, db, llm provider, recipe count |
 
-| Route | Purpose |
-|---|---|
-| `/` | Landing page — 8 sections |
-| `/pricing` | Standalone pricing |
-| `/faq` | Standalone FAQ |
-| `/login` | Sign in |
-| `/register` | Create account |
+See [`backend/README.md`](./backend/README.md) for the full backend docs, the RAG architecture, and migration commands.
 
-### Authenticated (gated by sidebar app shell)
+## Documentation
 
-| Route | Purpose |
-|---|---|
-| `/dashboard` | Greeting + quick-generate + stats + recent |
-| `/generate` | Recipe generator with AI loading flow |
-| `/recipes/[slug]` | Recipe detail with steps, nutrition, timer |
-| `/history` | List of past generations |
-| `/favorites` | Saved recipes |
-| `/settings` | Tabs: Account, Preferences, Notifications, Billing, Danger |
-| `/profile` | User profile + activity |
+- [`backend/README.md`](./backend/README.md) — backend architecture, RAG pipeline, migrations, env
+- [`design-system/dapur-pintar-ai/MASTER.md`](./design-system/dapur-pintar-ai/MASTER.md) — design system, type scale, color tokens, accessibility
 
-### System
+## What's NOT in Phase 1 (later phases)
 
-| Route | Purpose |
-|---|---|
-| `/not-found` | 404 |
-| `/error` | Error boundary |
-| `/loading` | Global loading |
-| `/offline` | Offline fallback |
-
-## Design system
-
-All tokens live in `app/globals.css` under `@theme`. Type-safe re-exports in `lib/design-tokens.ts`. UI primitives in `components/ui/`.
-
-- **Color**: `#09090B` base · `#18181B` card · `#1F2937` elevated · `#10B981` accent
-- **Type**: Inter only, 6 weights
-- **Radius**: 6 / 8 / 12 / 16 / 20 / 24 / 999
-- **Easing**: `cubic-bezier(0.16, 1, 0.3, 1)` (Expo.out) for enters, `cubic-bezier(0.4, 0, 1, 1)` for exits
-- **Motion**: 150ms micro · 200ms state · 300ms layout · 500ms reveal
-- **Dark-mode first**; light mode supported via system preference
-
-See `design-system/dapur-pintar-ai/MASTER.md` for the full design rationale.
-
-## Mock data
-
-- `lib/mock-data/recipes.ts` — 30+ realistic Indonesian recipes (Nasi Goreng, Soto Ayam, Rendang, etc.) with full ingredients, steps, timing, nutrition, and bilingual copy
-- `lib/mock-data/ingredients.ts` — 50+ common Indonesian pantry items
-
-## Scripts
-
-```bash
-npm run dev        # localhost:3000
-npm run build      # production build
-npm run start      # serve production
-npm run lint       # eslint
-npm run typecheck  # tsc --noEmit
-```
-
-## Notes
-
-This build uses fully mocked data. To wire to a real backend, replace the implementation in `lib/generate.ts` and `lib/store.ts` actions with API calls. The store's `addHistory`, `toggleFavorite`, etc. are the only places that mutate state.
+- **Phase 2** — auth (JWT), `GET /api/v1/recipes` list, `GET /api/v1/ingredients` autocomplete
+- **Phase 3** — user history, favorites (writes to DB)
+- **Phase 4** — rate limiting, LLM response cache
+- **Phase 5** — streaming responses, image generation
+- **Phase 6** — observability
