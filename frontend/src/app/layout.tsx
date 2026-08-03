@@ -10,7 +10,7 @@ export const metadata: Metadata = { title: "DapurPintar AI", description: "Decid
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="landing">
       <body>
         <NetworkProvider>
           <ToastProvider>

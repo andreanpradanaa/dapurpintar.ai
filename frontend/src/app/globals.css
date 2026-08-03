@@ -1,17 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
+  from { opacity: 0; transform: translateY(32px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
 }
 
 @layer base {
@@ -23,7 +38,9 @@
            placeholder:text-bambu-300 transition-all;
   }
   button:focus-visible { @apply outline-none ring-2 ring-rempah-500/40 ring-offset-2; }
-  ::selection { @apply bg-emerald-soft text-ink; }
+  ::selection { @apply bg-sage-soft text-sage-deep; }
+
+  .landing body { @apply bg-canvas text-ink; }
 }
 
 @layer components {
@@ -31,6 +48,23 @@
 }
 
 @layer utilities {
-  .animate-fadeUp { animation: fadeUp 0.6s ease-out; }
-  .animate-float { animation: float 4s ease-in-out infinite; }
+  .animate-fadeUp { animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+  .animate-fadeIn { animation: fadeIn 0.6s ease-out; }
+  .animate-float { animation: float 6s ease-in-out infinite; }
+  .animate-shimmer { animation: shimmer 2s ease-in-out infinite; background-size: 200% 100%; }
+  .animate-pulse-soft { animation: pulse-soft 2s ease-in-out infinite; }
+
+  .text-balance { text-wrap: balance; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fadeUp,
+    .animate-fadeIn,
+    .animate-float,
+    .animate-shimmer,
+    .animate-pulse-soft {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
 }
