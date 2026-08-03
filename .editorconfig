@@ -1,8 +1,0 @@
-UTF-8
-LF
-Final Newline
-Trim Whitespace
-YAML 2 spaces
-JSON 2 spaces
-Markdown exception
-Go menggunakan gofmt (tab), jadi jangan override indentasi file .go.
