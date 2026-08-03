@@ -187,58 +187,128 @@ func extractJSON(raw string) string {
 	return s[start : end+1]
 }
 
-// tryCloseJSON attempts to close an incomplete JSON object by
-// counting unclosed braces and appending } characters. This handles
-// the common case where a free-model LLM is stopped mid-output by
-// a token limit or upstream cutoff before it can write the final }.
+// tryCloseJSON attempts to close an incomplete JSON object or array
+// by counting unclosed braces {} and brackets [] and appending the
+// appropriate closing characters in reverse order (] first, then }).
 func tryCloseJSON(raw string) string {
-	depth := 0
+	braceDepth := 0
+	bracketDepth := 0
 	for _, c := range raw {
-		if c == '{' {
-			depth++
-		} else if c == '}' {
-			depth--
+		switch c {
+		case '{':
+			braceDepth++
+		case '}':
+			braceDepth--
+		case '[':
+			bracketDepth++
+		case ']':
+			bracketDepth--
 		}
 	}
-	for depth > 0 {
+	for bracketDepth > 0 {
+		raw += "]"
+		bracketDepth--
+	}
+	for braceDepth > 0 {
 		raw += "}"
-		depth--
+		braceDepth--
 	}
 	return raw
 }
 
+// repairStrategy tries to fix truncated/incomplete JSON. It receives
+// the raw string and returns a repaired version along with a bool
+// indicating whether a repair was applied.
+type repairStrategy func(string) (string, bool)
+
 // parseAndHydrate parses the LLM JSON output with multiple fallback
-// strategies, applies field-level defaults for anything the model
-// didn't fill in, and hydrates presentation-only fields.
+// repair strategies, applies field-level defaults for anything the
+// model didn't fill in, and hydrates presentation-only fields.
 func parseAndHydrate(raw string) (*model.Recipe, error) {
 	clean := extractJSON(raw)
 
-	// Strategy 1: direct parse (handles well-formed JSON)
+	// Fast path: well-formed JSON (common case)
 	draft, err := unmarshalDraft(clean)
 	if err == nil {
 		return hydrate(draft), nil
 	}
 
-	// Strategy 2: try to close incomplete JSON (missing })
-	closed := tryCloseJSON(clean)
-	if closed != clean {
+	// Try each repair strategy, followed by brace-closing
+	for _, repair := range repairStrategies {
+		candidate, ok := repair(clean)
+		if !ok {
+			continue
+		}
+		closed := tryCloseJSON(candidate)
+		if closed == clean {
+			continue
+		}
 		draft, err2 := unmarshalDraft(closed)
 		if err2 == nil {
 			return hydrate(draft), nil
 		}
 	}
 
-	// Strategy 3: try stripping the last incomplete field and closing
-	lastComma := strings.LastIndex(clean, `,"`)
-	if lastComma > 0 {
-		truncated := clean[:lastComma] + "}"
-		draft, err3 := unmarshalDraft(truncated)
-		if err3 == nil {
-			return hydrate(draft), nil
+	return nil, fmt.Errorf("parse llm output: %w (clean: %s)", err, truncate(clean, 200))
+}
+
+// repairStrategies lists repair strategies in priority order.
+// Each is applied independently on the original clean string.
+var repairStrategies = []repairStrategy{
+	identityRepair,             // 1. brace-close only
+	closeTruncatedStringRepair, // 2. close unterminated string value
+	stripLastFieldRepair,       // 3. drop the last incomplete field
+	trimUntilValidRepair,       // 4. brute-force trim from end until valid
+}
+
+// identityRepair passes through the original unchanged. Combined with
+// tryCloseJSON (brace-close), this handles truncated JSON that just
+// needs closing braces.
+func identityRepair(raw string) (string, bool) { return raw, true }
+
+// stripLastFieldRepair removes the last incomplete key-value pair by
+// cutting back to the most recent `,"` separator and closing the object.
+func stripLastFieldRepair(raw string) (string, bool) {
+	lastComma := strings.LastIndex(raw, `,"`)
+	if lastComma <= 0 {
+		return "", false
+	}
+	return raw[:lastComma] + "}", true
+}
+
+// closeTruncatedStringRepair handles the case where truncation occurred
+// mid-string-value (e.g. ..."description":"A quick ... Perf). It appends
+// a closing quote, letting tryCloseJSON later close the braces.
+func closeTruncatedStringRepair(raw string) (string, bool) {
+	s := strings.TrimRight(raw, " \t\n\r")
+	if len(s) == 0 {
+		return "", false
+	}
+	last := s[len(s)-1]
+	if last == '}' || last == ']' || last == '"' {
+		return "", false
+	}
+	return s + `"`, true
+}
+
+// trimUntilValidRepair is the last resort: it repeatedly cuts back to
+// the most recent `,` boundary and closes the object. Stops when the
+// result parses successfully or no more commas remain.
+func trimUntilValidRepair(raw string) (string, bool) {
+	const minLen = 20 // shorter than {"title":"X"} is hopeless
+	work := raw
+	for len(work) > minLen {
+		idx := strings.LastIndex(work, ",")
+		if idx < 0 {
+			break
+		}
+		work = work[:idx]
+		candidate := tryCloseJSON(work + "}")
+		if _, err := unmarshalDraft(candidate); err == nil {
+			return candidate, true
 		}
 	}
-
-	return nil, fmt.Errorf("parse llm output: %w (clean: %s)", err, truncate(clean, 200))
+	return "", false
 }
 
 // hydrate fills presentation-only fields and applies field-level

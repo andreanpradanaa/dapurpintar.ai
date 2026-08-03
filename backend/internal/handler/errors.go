@@ -2,9 +2,9 @@ package handler
 
 import (
 	"errors"
-	"strings"
 
 	"github.com/dapurpintar/backend/internal/repo"
+	"github.com/dapurpintar/backend/internal/service/llm"
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog"
 )
@@ -63,9 +63,18 @@ func FromError(c *fiber.Ctx, log *zerolog.Logger, err error) error {
 	switch {
 	case errors.Is(err, repo.ErrNotFound):
 		return SendError(c, log, fiber.StatusNotFound, CodeNotFound, "Recipe not found", nil)
-	case errors.Is(err, repo.ErrEmptyLibrary) || strings.Contains(err.Error(), "empty"):
+	case errors.Is(err, repo.ErrEmptyLibrary):
 		return SendError(c, log, fiber.StatusServiceUnavailable, CodeEmptyLibrary,
 			"The recipe library is empty. Run seed.", nil)
+	case errors.Is(err, llm.ErrTimeout):
+		return SendError(c, log, fiber.StatusGatewayTimeout, CodeUpstreamTimeout,
+			"LLM took too long to respond. Please try again.", nil)
+	case errors.Is(err, llm.ErrRateLimit):
+		return SendError(c, log, fiber.StatusTooManyRequests, CodeUpstream,
+			"LLM rate limit reached. Please wait a moment and try again.", nil)
+	case errors.Is(err, llm.ErrBadOutput):
+		return SendError(c, log, fiber.StatusBadGateway, CodeUpstream,
+			"LLM returned malformed output. Please try again.", nil)
 	}
 	return SendInternal(c, log, err)
 }
