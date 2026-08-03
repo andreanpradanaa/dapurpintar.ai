@@ -125,6 +125,22 @@ make migrate-create name=add_history_table  # new migration
 
 The server also auto-runs migrations on boot.
 
+## LLM provider flexibility
+
+The backend speaks the OpenAI Chat Completions API. Point it at any
+compatible endpoint via `OPENAI_BASE_URL`:
+
+| Provider | Base URL | Notes |
+|---|---|---|
+| OpenAI (default) | `https://api.openai.com/v1` | `gpt-4o-mini`, `gpt-4o` |
+| opencode.ai | `https://api.opencode.ai/v1` (verify) | If opencode.ai exposes an OpenAI-compatible API |
+| Together | `https://api.together.xyz/v1` | `meta-llama/...` |
+| Groq | `https://api.groq.com/openai/v1` | `llama-3.1-...` |
+| OpenRouter | `https://openrouter.ai/api/v1` | Any model |
+| Local llama.cpp | `http://localhost:8080/v1` | Self-hosted |
+
+The model name in `OPENAI_MODEL` must match what the endpoint expects.
+
 ## Notes for future phases
 
 - **Phase 2** — auth (JWT), `GET /api/v1/recipes` list, `GET /api/v1/ingredients` autocomplete

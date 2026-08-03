@@ -17,14 +17,15 @@ func init() {
 }
 
 type Config struct {
-	Port         string
-	Env          string
-	LogLevel     string
-	DatabaseURL  string
-	OpenAIKey    string
-	OpenAIModel  string
+	Port          string
+	Env           string
+	LogLevel      string
+	DatabaseURL   string
+	OpenAIKey     string
+	OpenAIModel   string
+	OpenAIBaseURL string
 	OpenAITimeout time.Duration
-	CORSOrigins  []string
+	CORSOrigins   []string
 }
 
 func Load() (*Config, error) {
@@ -35,6 +36,7 @@ func Load() (*Config, error) {
 		DatabaseURL:   getEnv("DATABASE_URL", ""),
 		OpenAIKey:     getEnv("OPENAI_API_KEY", ""),
 		OpenAIModel:   getEnv("OPENAI_MODEL", "gpt-4o-mini"),
+		OpenAIBaseURL: getEnv("OPENAI_BASE_URL", "https://api.openai.com/v1"),
 		OpenAITimeout: getEnvDuration("OPENAI_TIMEOUT", 30*time.Second),
 		CORSOrigins:   getEnvList("CORS_ORIGINS", []string{"http://localhost:3000"}),
 	}

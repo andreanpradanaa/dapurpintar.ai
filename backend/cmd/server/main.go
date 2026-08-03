@@ -80,8 +80,12 @@ func run() error {
 	}
 
 	// Build LLM client
-	llmClient := llm.NewOpenAIClient(cfg.OpenAIKey, cfg.OpenAIModel, log)
-	log.Info("llm client ready", "provider", llmClient.Name(), "model", cfg.OpenAIModel)
+	llmClient := llm.NewOpenAIClient(cfg.OpenAIKey, cfg.OpenAIModel, cfg.OpenAIBaseURL, log)
+	log.Info("llm client ready",
+		"provider", llmClient.Name(),
+		"model", cfg.OpenAIModel,
+		"base_url", cfg.OpenAIBaseURL,
+	)
 
 	// Build services
 	gen := service.NewGenerator(pgRepo, llmClient, log)
