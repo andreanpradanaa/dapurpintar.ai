@@ -3,39 +3,13 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  ChefHat, Search, ShoppingBasket, CalendarDays, Bot,
+  ChefHat, Search, Bot,
   ArrowRight, Shield, CheckCircle2, Star, Sparkles,
-  Leaf, Clock, Users, ChevronDown, Menu, X, Globe,
+  Leaf, Clock, Users, ChevronDown, Globe,
 } from "lucide-react";
 import { api, type Recipe } from "@/lib/api";
 
 const stagger = { container: { hidden: {}, show: { transition: { staggerChildren: 0.08 } } }, item: { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } } };
-
-function FeatureCard({ icon: Icon, title, desc }: { icon: React.ElementType; title: string; desc: string }) {
-  return (
-    <motion.div whileHover={{ y: -4 }} className="bg-surface rounded-2xl border border-line p-6 transition-shadow hover:shadow-lg hover:shadow-emerald-soft/50">
-      <div className="w-10 h-10 rounded-xl bg-emerald-soft flex items-center justify-center mb-4"><Icon className="w-5 h-5 text-emerald" /></div>
-      <h3 className="font-display text-lg font-semibold text-ink mb-2">{title}</h3>
-      <p className="text-ink-muted text-sm leading-relaxed">{desc}</p>
-    </motion.div>
-  );
-}
-
-function DemoCard({ title, items }: { title: string; items: string[] }) {
-  return (
-    <motion.div whileHover={{ y: -2 }} className="bg-surface border border-line rounded-2xl p-6 transition-shadow hover:shadow-md">
-      <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-emerald mb-3">{title}</p>
-      <div className="space-y-2">
-        {items.map((s, i) => (
-          <div key={i} className="flex items-center gap-2 text-sm text-ink">
-            <CheckCircle2 className="w-4 h-4 text-emerald flex-shrink-0" />
-            <span>{s}</span>
-          </div>
-        ))}
-      </div>
-    </motion.div>
-  );
-}
 
 export default function LandingPage() {
   const [query, setQuery] = useState("");
@@ -166,54 +140,144 @@ export default function LandingPage() {
         </motion.div>
       </section>
 
-      {/* ---- 3. Features ---- */}
-      <section id="demo" className="max-w-6xl mx-auto px-6 py-section">
-        <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center max-w-xl mx-auto mb-16 space-y-3">
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-emerald font-semibold">One assistant, four decisions</p>
-          <h2 className="text-display font-display text-ink">Everything your kitchen needs</h2>
-          <p className="text-ink-muted">From knowing what to cook to completing your shopping, one intelligent assistant handles it.</p>
+      {/* ---- 3. Feature Showcase — Immersive Storytelling ---- */}
+      <section className="overflow-hidden">
+        {/* Section intro */}
+        <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-6xl mx-auto px-6 pt-section text-center space-y-3">
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-emerald font-semibold">Your kitchen should know what's in it</p>
         </motion.div>
 
-        <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger.container} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            { icon: ChefHat, title: "Know what to cook", desc: "AI reads your pantry and suggests meals you can make right now — no guesswork." },
-            { icon: Box, title: "Track your ingredients", desc: "Add what you have. We track expiry, suggest what to use first, and keep your pantry smart." },
-            { icon: CalendarDays, title: "Plan your week", desc: "Build weekly meal plans with a drag-and-drop grid. Assign recipes to days in seconds." },
-            { icon: ShoppingBasket, title: "Shop with purpose", desc: "Generate shopping lists from your meal plan. Activate, complete, and never over-buy again." },
-          ].map((f, i) => <FeatureCard key={i} {...f} />)}
-        </motion.div>
-      </section>
-
-      {/* ---- 4-7. Demo sections ---- */}
-      {[
-        { title: "AI-powered recommendations", subtitle: "Type what's in your kitchen. Get recipe suggestions instantly.", items: ["Soto Ayam — 20 min · 4 servings", "Nasi Goreng — 10 min · 2 servings", "Sate Ayam — 15 min · 4 servings"] },
-        { title: "Smart pantry management", subtitle: "Track ingredients, get expiry alerts, and know what to use first.", items: ["Auto-categorize: bumbu, protein, sayur, pokok", "Expiry reminders at 3 days", "Running low alerts for quantity ≤ 1"] },
-        { title: "Weekly meal planner", subtitle: "Plan 7 days of meals with a visual grid. Assign recipes to slots.", items: ["Drag-and-drop recipe assignment", "Breakfast, lunch, dinner, snack slots", "One-click complete or cancel"] },
-        { title: "Shopping list with intent", subtitle: "Generate lists from meal plans, activate in the store, complete as you go.", items: ["Auto-generate from planned meals", "Toggle items complete while shopping", "Draft → activated → completed lifecycle"] },
-      ].map((d, i) => (
-        <section key={i} className={`${i % 2 === 0 ? 'bg-surface border-y border-line' : ''}`}>
-          <div className="max-w-6xl mx-auto px-6 py-16 md:py-24">
-            <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="grid md:grid-cols-2 gap-12 items-center">
-              <div className={i % 2 === 1 ? "md:order-2" : ""}>
-                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-emerald font-semibold mb-3">{"0" + (i + 1)}</p>
-                <h3 className="font-display text-2xl md:text-3xl font-bold text-ink mb-3">{d.title}</h3>
-                <p className="text-ink-muted mb-6">{d.subtitle}</p>
-                <DemoCard title="SAMPLE OUTPUT" items={d.items} />
+        {/* Feature 1 — AI Recommendation: text left, mockup right */}
+        <div className="max-w-6xl mx-auto px-6 min-h-[90vh] flex items-center py-16">
+          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center w-full">
+            <div className="space-y-5">
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-emerald font-semibold">01 · AI Recommendations</p>
+              <h3 className="font-display text-3xl md:text-4xl font-bold text-ink leading-tight">You have eggs, rice, and onions. What now?</h3>
+              <p className="text-ink-muted text-base leading-relaxed max-w-md">DapurPintar reads what's in your kitchen and suggests real meals you can cook right now — not random recipes that need a trip to the store.</p>
+              <Link href="/login" className="inline-flex items-center gap-2 text-sm font-medium text-ink hover:text-emerald transition-colors group">Try it yourself <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" /></Link>
+            </div>
+            <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.4 }} className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-soft/40 to-transparent rounded-[28px] blur-2xl" />
+              <div className="relative bg-surface border border-line rounded-[28px] shadow-xl shadow-ink/5 p-5 space-y-3">
+                <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.15em] text-emerald"><Sparkles className="w-3 h-3" /> AI Suggestion</div>
+                <div className="flex flex-wrap gap-2">
+                  {[{n:"eggs", s:"fresh"},{n:"rice", s:"fresh"},{n:"onion", s:"low"}].map(i => (
+                    <span key={i.n} className="inline-flex items-center gap-1.5 bg-canvas-alt border border-line rounded-full pl-3 pr-3 py-1.5 text-xs font-medium text-ink">
+                      <span className={`w-1.5 h-1.5 rounded-full ${i.s==="low"?"bg-amber":"bg-emerald"}`} />{i.n}
+                    </span>
+                  ))}
+                </div>
+                <div className="border-t border-line pt-3">
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-emerald-soft flex items-center justify-center flex-shrink-0"><ChefHat className="w-5 h-5 text-emerald" /></div>
+                    <div>
+                      <p className="font-display text-lg font-semibold text-ink">Nasi Goreng</p>
+                      <p className="text-xs text-ink-muted mt-0.5">Uses 3 of your ingredients</p>
+                      <div className="flex gap-3 mt-2 text-[10px] font-mono text-ink-soft"><span>15 min</span><span>2 servings</span><span className="text-emerald font-semibold">92% match</span></div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className={`bg-canvas-alt rounded-3xl border border-line p-8 ${i % 2 === 1 ? "md:order-1" : ""}`}>
-                <div className="space-y-3">
-                  {d.items.map((s, j) => (
-                    <div key={j} className="bg-surface rounded-xl border border-line p-4 flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-emerald-soft flex items-center justify-center flex-shrink-0"><CheckCircle2 className="w-4 h-4 text-emerald" /></div>
-                      <span className="text-sm text-ink font-medium">{s}</span>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Feature 2 — Smart Pantry: mockup left, text right */}
+        <div className="max-w-6xl mx-auto px-6 min-h-[90vh] flex items-center py-16 bg-surface/50">
+          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center w-full">
+            <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.4 }} className="relative md:order-1 order-2">
+              <div className="absolute inset-0 bg-gradient-to-bl from-emerald-soft/30 to-transparent rounded-[28px] blur-2xl" />
+              <div className="relative bg-surface border border-line rounded-[28px] shadow-xl shadow-ink/5 p-5 space-y-3">
+                <div className="flex items-center justify-between">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-emerald font-semibold">Your Pantry</p>
+                  <span className="text-[10px] font-mono text-ink-soft">12 items</span>
+                </div>
+                <div className="space-y-1.5">
+                  {[{n:"Beras",q:"2 kg",c:"Pokok",e:null},{n:"Telur",q:"6 butir",c:"Protein",e:"3d"},{n:"Bawang putih",q:"5 siung",c:"Bumbu",e:null},{n:"Santan",q:"200ml",c:"Bumbu",e:"2d"},{n:"Ayam",q:"500g",c:"Protein",e:"1d"}].slice(0,4).map(i => (
+                    <div key={i.n} className="flex items-center justify-between py-2 px-3 rounded-xl hover:bg-canvas-alt transition-colors">
+                      <div><p className="text-sm font-medium text-ink">{i.n}</p><p className="text-[10px] text-ink-soft">{i.q} · {i.c}</p></div>
+                      {i.e ? <span className="text-[10px] font-mono text-amber bg-amber-soft px-2 py-0.5 rounded-full">{i.e}</span> : <span className="w-1.5 h-1.5 rounded-full bg-emerald" />}
                     </div>
                   ))}
                 </div>
               </div>
             </motion.div>
-          </div>
-        </section>
-      ))}
+            <div className="space-y-5 md:order-2 order-1">
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-emerald font-semibold">02 · Smart Pantry</p>
+              <h3 className="font-display text-3xl md:text-4xl font-bold text-ink leading-tight">Your pantry remembers so you don't have to.</h3>
+              <p className="text-ink-muted text-base leading-relaxed max-w-md">Auto-categorized by type, tracked by expiry, and always updated. Know exactly what's running low before you even open the fridge.</p>
+              <Link href="/login" className="inline-flex items-center gap-2 text-sm font-medium text-ink hover:text-emerald transition-colors group">Build your pantry <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" /></Link>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Feature 3 — Meal Planner: text left, mockup right */}
+        <div className="max-w-6xl mx-auto px-6 min-h-[90vh] flex items-center py-16">
+          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center w-full">
+            <div className="space-y-5">
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-emerald font-semibold">03 · Meal Planner</p>
+              <h3 className="font-display text-3xl md:text-4xl font-bold text-ink leading-tight">Plan a week of meals in the time it takes to boil water.</h3>
+              <p className="text-ink-muted text-base leading-relaxed max-w-md">Drag recommended meals into a weekly calendar. Breakfast, lunch, dinner, snack — assigned to days in seconds. Leave the mental load to the AI.</p>
+              <Link href="/login" className="inline-flex items-center gap-2 text-sm font-medium text-ink hover:text-emerald transition-colors group">Start planning <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" /></Link>
+            </div>
+            <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.4 }} className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-soft/40 to-transparent rounded-[28px] blur-2xl" />
+              <div className="relative bg-surface border border-line rounded-[28px] shadow-xl shadow-ink/5 p-4">
+                <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-emerald font-semibold mb-3">This Week</p>
+                <div className="grid grid-cols-7 gap-1">
+                  {["M","T","W","T","F","S","S"].map((d,i) => <div key={i} className="text-center text-[10px] font-mono text-ink-soft py-1">{d}</div>)}
+                  {Array.from({length:7}).map((_,i) => (
+                    <div key={i} className={`rounded-lg min-h-[56px] p-1 ${i<3?"bg-emerald-soft/40":i<5?"bg-canvas-alt":"bg-amber-soft/30"}`}>
+                      {i===0 && <div className="text-[8px] font-semibold text-emerald px-1 py-0.5 bg-surface/80 rounded">Soto</div>}
+                      {i===1 && <div className="text-[8px] font-semibold text-emerald px-1 py-0.5 bg-surface/80 rounded">Nasi Grg</div>}
+                      {i===4 && <div className="text-[8px] font-semibold text-amber px-1 py-0.5 bg-surface/80 rounded">Gado-gado</div>}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Feature 4 (Shopping) already uses the right text/left mockup pattern similar to feature 2 */}
+        {/* Feature 4 — Shopping Assistant: mockup left, text right */}
+        <div className="max-w-6xl mx-auto px-6 min-h-[90vh] flex items-center py-16 bg-surface/50">
+          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center w-full">
+            <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.4 }} className="relative md:order-1 order-2">
+              <div className="absolute inset-0 bg-gradient-to-bl from-emerald-soft/30 to-transparent rounded-[28px] blur-2xl" />
+              <div className="relative bg-surface border border-line rounded-[28px] shadow-xl shadow-ink/5 p-5 space-y-3">
+                <div className="flex items-center justify-between">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-emerald font-semibold">Shopping List</p>
+                  <span className="text-[10px] font-mono text-ink-soft">3 of 8 completed</span>
+                </div>
+                {[
+                  {n:"Beras",q:"2 kg",ok:true},{n:"Telur",q:"6 butir",ok:true},{n:"Daun jeruk",q:"1 ikat",ok:false},{n:"Kecap manis",q:"1 botol",ok:false},{n:"Ayam kampung",q:"1 ekor",ok:false},
+                ].map(i => (
+                  <div key={i.n} className={`flex items-center gap-3 py-2 px-3 rounded-xl transition-colors ${i.ok?"opacity-50":"hover:bg-canvas-alt"}`}>
+                    <div className={`w-5 h-5 rounded-md border-2 flex items-center justify-center flex-shrink-0 ${i.ok?"bg-emerald border-emerald":"border-line"}`}>{i.ok && <CheckCircle2 className="w-3 h-3 text-surface" />}</div>
+                    <div className="flex-1"><span className={`text-sm ${i.ok?"line-through text-ink-soft":"text-ink font-medium"}`}>{i.n}</span></div>
+                    <span className="text-[10px] font-mono text-ink-soft">{i.q}</span>
+                  </div>
+                ))}
+                <div className="border-t border-line pt-2 flex justify-between text-[10px] font-mono text-ink-soft">
+                  <span>Est. total</span><span className="text-ink font-semibold">Rp 85.000</span>
+                </div>
+              </div>
+            </motion.div>
+            <div className="space-y-5 md:order-2 order-1">
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-emerald font-semibold">04 · Shopping Assistant</p>
+              <h3 className="font-display text-3xl md:text-4xl font-bold text-ink leading-tight">Missing ingredients? They're already on your list.</h3>
+              <p className="text-ink-muted text-base leading-relaxed max-w-md">What you don't have becomes what you need. Activate your list, check off as you shop, and never forget an ingredient again.</p>
+              <Link href="/login" className="inline-flex items-center gap-2 text-sm font-medium text-ink hover:text-emerald transition-colors group">Grocery smarter <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" /></Link>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Closing statement */}
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-6xl mx-auto px-6 pb-section text-center">
+          <p className="font-display text-2xl md:text-3xl text-ink font-bold">Everything connected. One intelligent kitchen.</p>
+        </motion.div>
+      </section>
 
       {/* ---- 8. AI Chat Preview ---- */}
       <section className="max-w-6xl mx-auto px-6 py-section">
@@ -341,14 +405,5 @@ export default function LandingPage() {
         </div>
       </footer>
     </div>
-  );
-}
-
-function Box(props: React.ComponentProps<"svg">) {
-  return (
-    <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-      <polyline points="3.27 6.96 12 12.01 20.73 6.96" /><line x1="12" y1="22.08" x2="12" y2="12" />
-    </svg>
   );
 }
