@@ -210,10 +210,10 @@ function RecipeResult({
           </div>
           <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/55 to-transparent pointer-events-none" />
           <div className="absolute bottom-4 left-4 right-4">
-            <h2 className="text-2xl sm:text-3xl font-serif font-medium text-text-primary">
+            <h2 className="text-2xl sm:text-3xl font-serif font-medium text-white drop-shadow-sm">
               {recipe.title}
             </h2>
-            <p className="mt-1 text-sm text-text-primary/85 line-clamp-2 max-w-2xl">
+            <p className="mt-1 text-sm text-white/90 line-clamp-2 max-w-2xl drop-shadow-sm">
               {recipe.description}
             </p>
           </div>

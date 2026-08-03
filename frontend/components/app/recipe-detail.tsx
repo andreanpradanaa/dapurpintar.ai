@@ -143,13 +143,13 @@ export function RecipeDetail({ slug }: { slug: string }) {
             </div>
           </div>
           <div className="absolute bottom-5 left-5 right-5">
-            <h1 className="text-3xl sm:text-5xl font-serif font-medium text-text-primary tracking-tight text-balance">
+            <h1 className="text-3xl sm:text-5xl font-serif font-medium text-white tracking-tight text-balance drop-shadow-sm">
               {recipe.title}
             </h1>
-            <p className="mt-2 text-sm sm:text-base text-text-primary/85 max-w-2xl leading-[1.55]">
+            <p className="mt-2 text-sm sm:text-base text-white/90 max-w-2xl leading-[1.55] drop-shadow-sm">
               {recipe.description}
             </p>
-            <div className="mt-3 flex items-center gap-3 text-xs text-text-primary/85">
+            <div className="mt-3 flex items-center gap-3 text-xs text-white/90 drop-shadow-sm">
               <span className="flex items-center gap-1">
                 <Star className="h-3 w-3 fill-accent text-accent" />
                 {recipe.rating} · {recipe.reviews} cooks
