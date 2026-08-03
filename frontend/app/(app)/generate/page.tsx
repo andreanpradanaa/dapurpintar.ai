@@ -11,6 +11,7 @@ import { GenerationLoader } from "@/components/app/generation-loader";
 import { useLanguage } from "@/components/providers/language-provider";
 import { useStore } from "@/lib/store";
 import { generateRecipe } from "@/lib/generate";
+import { ApiError } from "@/lib/api";
 import { toast } from "sonner";
 import type { Recipe, Dietary } from "@/lib/types";
 import { photoForRecipe } from "@/lib/photo";
@@ -51,15 +52,27 @@ export default function GeneratePage() {
     setLoading(true);
     setResult(null);
 
-    const recipe = await generateRecipe(ingredients, dietary);
-    setResult(recipe);
-    setLoading(false);
-    addHistory({
-      recipeId: recipe.id,
-      ingredients,
-      dietary,
-    });
-    toast.success("Here's your recipe.");
+    try {
+      const recipe = await generateRecipe(ingredients, dietary);
+      setResult(recipe);
+      addHistory({
+        recipeId: recipe.id,
+        ingredients,
+        dietary,
+      });
+      toast.success("Here's your recipe.");
+    } catch (err) {
+      // Surface a clear, actionable message to the user
+      const message =
+        err instanceof ApiError
+          ? err.body.message
+          : err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again.";
+      toast.error(message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

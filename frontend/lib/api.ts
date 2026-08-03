@@ -49,13 +49,28 @@ export class ApiError extends Error {
 
 async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
   const url = `${API_URL}${path}`;
-  const res = await fetch(url, {
-    ...init,
-    headers: {
-      "Content-Type": "application/json",
-      ...(init.headers ?? {}),
-    },
-  });
+  let res: Response;
+  try {
+    res = await fetch(url, {
+      ...init,
+      headers: {
+        "Content-Type": "application/json",
+        ...(init.headers ?? {}),
+      },
+    });
+  } catch (err) {
+    // Network-level failure: server down, DNS error, CORS preflight
+    // rejected, offline, etc. Convert to ApiError so the caller can
+    // handle it uniformly with HTTP errors.
+    const message =
+      err instanceof Error
+        ? `Cannot reach backend at ${API_URL}: ${err.message}`
+        : `Cannot reach backend at ${API_URL}`;
+    throw new ApiError(0, {
+      error: "network_error",
+      message,
+    });
+  }
   if (!res.ok) {
     let body: ApiError["body"] = {
       error: "unknown",

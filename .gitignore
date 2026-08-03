@@ -11,6 +11,7 @@
 /frontend/.next/
 /frontend/out/
 /frontend/.swc/
+/frontend/node_modules/
 
 # production
 /build
@@ -33,6 +34,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+next-env.d.ts
 
 # Go (backend)
 /backend/bin/
