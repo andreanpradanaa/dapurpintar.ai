@@ -105,7 +105,7 @@ func (c *OpenAIClient) GenerateRecipe(ctx context.Context, req GenerateRequest) 
 	body := openaiRequest{
 		Model:       c.model,
 		Temperature: 0.7,
-		MaxTokens:   3000,
+		MaxTokens:   5000,
 		Messages: []openaiMsg{
 			{Role: "system", Content: systemPrompt},
 			{Role: "user", Content: userPrompt},
@@ -160,61 +160,92 @@ func (c *OpenAIClient) GenerateRecipe(ctx context.Context, req GenerateRequest) 
 var codeFenceRegex = regexp.MustCompile("(?s)```(?:json)?\\s*\\n?(.*?)\\s*```")
 
 // extractJSON pulls the first top-level JSON object out of an LLM
-// response. Handles three common failure modes:
+// response. Handles four common failure modes:
 //  1. response wrapped in ```json ... ``` fences
 //  2. prose preamble ("Here is your recipe: { ... } Thanks!")
 //  3. trailing garbage after the closing brace
-func extractJSON(raw string) (string, error) {
+//  4. truncated JSON (missing closing braces) — cleaned up in parseAndHydrate
+func extractJSON(raw string) string {
 	s := strings.TrimSpace(raw)
 
 	// First try: strip code fences if present
 	if m := codeFenceRegex.FindStringSubmatch(s); len(m) >= 2 {
-		return strings.TrimSpace(m[1]), nil
+		return strings.TrimSpace(m[1])
 	}
 
 	// Second try: find the first { and the matching last }
 	start := strings.Index(s, "{")
 	if start < 0 {
-		return "", errors.New("no '{' found in llm response")
+		// No JSON at all — return the raw string, parseAndHydrate will handle it
+		return s
 	}
 	end := strings.LastIndex(s, "}")
 	if end < 0 || end <= start {
-		return "", errors.New("no matching '}' found in llm response")
+		// No closing brace — take everything from { onwards, try to close later
+		return s[start:]
 	}
-	return s[start : end+1], nil
+	return s[start : end+1]
 }
 
-// parseAndHydrate parses the LLM JSON output, applies field-level
-// defaults for anything the model didn't fill in, and hydrates
-// presentation-only fields (id, slug, gradient, createdAt).
+// tryCloseJSON attempts to close an incomplete JSON object by
+// counting unclosed braces and appending } characters. This handles
+// the common case where a free-model LLM is stopped mid-output by
+// a token limit or upstream cutoff before it can write the final }.
+func tryCloseJSON(raw string) string {
+	depth := 0
+	for _, c := range raw {
+		if c == '{' {
+			depth++
+		} else if c == '}' {
+			depth--
+		}
+	}
+	for depth > 0 {
+		raw += "}"
+		depth--
+	}
+	return raw
+}
+
+// parseAndHydrate parses the LLM JSON output with multiple fallback
+// strategies, applies field-level defaults for anything the model
+// didn't fill in, and hydrates presentation-only fields.
 func parseAndHydrate(raw string) (*model.Recipe, error) {
-	clean, err := extractJSON(raw)
-	if err != nil {
-		return nil, err
+	clean := extractJSON(raw)
+
+	// Strategy 1: direct parse (handles well-formed JSON)
+	draft, err := unmarshalDraft(clean)
+	if err == nil {
+		return hydrate(draft), nil
 	}
 
-	var draft struct {
-		Title         string                   `json:"title"`
-		TitleID       string                   `json:"titleId"`
-		Description   string                   `json:"description"`
-		DescriptionID string                   `json:"descriptionId"`
-		Cuisine       string                   `json:"cuisine"`
-		Difficulty    string                   `json:"difficulty"`
-		PrepTime      *int                     `json:"prepTime"`
-		CookTime      *int                     `json:"cookTime"`
-		Servings      *int                     `json:"servings"`
-		Ingredients   []map[string]interface{} `json:"ingredients"`
-		Steps         []map[string]interface{} `json:"steps"`
-		Nutrition     map[string]interface{}   `json:"nutrition"`
-		Tags          []string                 `json:"tags"`
-		Dietary       []string                 `json:"dietary"`
-	}
-	if err := json.Unmarshal([]byte(clean), &draft); err != nil {
-		return nil, fmt.Errorf("json unmarshal: %w (clean: %s)", err, truncate(clean, 200))
+	// Strategy 2: try to close incomplete JSON (missing })
+	closed := tryCloseJSON(clean)
+	if closed != clean {
+		draft, err2 := unmarshalDraft(closed)
+		if err2 == nil {
+			return hydrate(draft), nil
+		}
 	}
 
+	// Strategy 3: try stripping the last incomplete field and closing
+	lastComma := strings.LastIndex(clean, `,"`)
+	if lastComma > 0 {
+		truncated := clean[:lastComma] + "}"
+		draft, err3 := unmarshalDraft(truncated)
+		if err3 == nil {
+			return hydrate(draft), nil
+		}
+	}
+
+	return nil, fmt.Errorf("parse llm output: %w (clean: %s)", err, truncate(clean, 200))
+}
+
+// hydrate fills presentation-only fields and applies field-level
+// defaults for anything the model didn't fill in.
+func hydrate(draft *recipeDraft) *model.Recipe {
 	if draft.Title == "" {
-		return nil, errors.New("llm response missing required field: title")
+		draft.Title = "Recipe"
 	}
 	if draft.TitleID == "" {
 		draft.TitleID = draft.Title
@@ -247,30 +278,55 @@ func parseAndHydrate(raw string) (*model.Recipe, error) {
 		draft.Steps = []map[string]interface{}{minimalStep(1)}
 	}
 
-	recipe := &model.Recipe{
-		ID:           "gen_" + newID(),
-		Slug:         slugify(draft.Title),
-		Title:        strings.TrimSpace(draft.Title),
-		TitleID:      strings.TrimSpace(draft.TitleID),
-		Description:  strings.TrimSpace(draft.Description),
+	return &model.Recipe{
+		ID:            "gen_" + newID(),
+		Slug:          slugify(draft.Title),
+		Title:         strings.TrimSpace(draft.Title),
+		TitleID:       strings.TrimSpace(draft.TitleID),
+		Description:   strings.TrimSpace(draft.Description),
 		DescriptionID: strings.TrimSpace(draft.DescriptionID),
-		Image:        "",
-		Gradient:     []string{"#A8553A", "#723627"},
-		Cuisine:      draft.Cuisine,
-		Difficulty:   model.Difficulty(draft.Difficulty),
-		PrepTime:     *draft.PrepTime,
-		CookTime:     *draft.CookTime,
-		Servings:     *draft.Servings,
-		Ingredients:  normalizeIngredients(draft.Ingredients),
-		Steps:        normalizeSteps(draft.Steps),
-		Nutrition:    normalizeNutrition(draft.Nutrition),
-		Tags:         defaultSlice(draft.Tags),
-		Dietary:      normalizeDietary(draft.Dietary),
-		Rating:       0,
-		Reviews:      0,
-		CreatedAt:    time.Now().UTC().Format(time.RFC3339),
+		Image:         "",
+		Gradient:      []string{"#A8553A", "#723627"},
+		Cuisine:       draft.Cuisine,
+		Difficulty:    model.Difficulty(draft.Difficulty),
+		PrepTime:      *draft.PrepTime,
+		CookTime:      *draft.CookTime,
+		Servings:      *draft.Servings,
+		Ingredients:   normalizeIngredients(draft.Ingredients),
+		Steps:         normalizeSteps(draft.Steps),
+		Nutrition:     normalizeNutrition(draft.Nutrition),
+		Tags:          defaultSlice(draft.Tags),
+		Dietary:       normalizeDietary(draft.Dietary),
+		Rating:        0,
+		Reviews:       0,
+		CreatedAt:     time.Now().UTC().Format(time.RFC3339),
 	}
-	return recipe, nil
+}
+
+// unmarshalDraft parses raw JSON into the intermediate recipe draft struct.
+func unmarshalDraft(raw string) (*recipeDraft, error) {
+	var draft recipeDraft
+	if err := json.Unmarshal([]byte(raw), &draft); err != nil {
+		return nil, err
+	}
+	return &draft, nil
+}
+
+type recipeDraft struct {
+	Title         string                   `json:"title"`
+	TitleID       string                   `json:"titleId"`
+	Description   string                   `json:"description"`
+	DescriptionID string                   `json:"descriptionId"`
+	Cuisine       string                   `json:"cuisine"`
+	Difficulty    string                   `json:"difficulty"`
+	PrepTime      *int                     `json:"prepTime"`
+	CookTime      *int                     `json:"cookTime"`
+	Servings      *int                     `json:"servings"`
+	Ingredients   []map[string]interface{} `json:"ingredients"`
+	Steps         []map[string]interface{} `json:"steps"`
+	Nutrition     map[string]interface{}   `json:"nutrition"`
+	Tags          []string                 `json:"tags"`
+	Dietary       []string                 `json:"dietary"`
 }
 
 func intPtr(i int) *int { return &i }
