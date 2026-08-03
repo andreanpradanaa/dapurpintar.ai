@@ -1,16 +1,15 @@
 package router
 
 import (
-	"log/slog"
-
 	"github.com/dapurpintar/backend/internal/handler"
 	"github.com/gofiber/fiber/v2"
+	"github.com/rs/zerolog"
 )
 
 type Deps struct {
 	Health  *handler.HealthHandler
 	Recipes *handler.RecipesHandler
-	Log     *slog.Logger
+	Log     *zerolog.Logger
 }
 
 func Register(app *fiber.App, d Deps) {

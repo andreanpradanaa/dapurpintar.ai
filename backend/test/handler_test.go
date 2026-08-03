@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"log/slog"
 	"net/http/httptest"
 	"os"
 	"path/filepath"
@@ -18,6 +17,7 @@ import (
 	"github.com/dapurpintar/backend/internal/service"
 	"github.com/dapurpintar/backend/internal/service/llm"
 	"github.com/gofiber/fiber/v2"
+	"github.com/rs/zerolog"
 )
 
 // stubLLM returns a deterministic recipe so handler tests don't hit OpenAI.
@@ -88,8 +88,9 @@ func (m *memoryRepo) seedSample() {
 	})
 }
 
-func newDiscardLogger() *slog.Logger {
-	return slog.New(slog.NewTextHandler(io.Discard, nil))
+func newDiscardLogger() *zerolog.Logger {
+	logger := zerolog.New(io.Discard)
+	return &logger
 }
 
 func setupApp(t *testing.T) *fiber.App {

@@ -2,11 +2,11 @@ package handler
 
 import (
 	"errors"
-	"log/slog"
 	"strings"
 
 	"github.com/dapurpintar/backend/internal/repo"
 	"github.com/gofiber/fiber/v2"
+	"github.com/rs/zerolog"
 )
 
 type ErrorResponse struct {
@@ -26,32 +26,32 @@ const (
 	CodeEmptyLibrary    = "empty_library"
 )
 
-func SendError(c *fiber.Ctx, log *slog.Logger, status int, code, message string, fields map[string]string) error {
+func SendError(c *fiber.Ctx, log *zerolog.Logger, status int, code, message string, fields map[string]string) error {
 	reqID, _ := c.Locals("requestid").(string)
 	if log != nil && status >= 500 {
-		log.Error("request error",
-			"status", status,
-			"code", code,
-			"message", message,
-			"path", c.Path(),
-			"method", c.Method(),
-			"requestId", reqID,
-		)
+		log.Error().
+			Int("status", status).
+			Str("code", code).
+			Str("message", message).
+			Str("path", c.Path()).
+			Str("method", c.Method()).
+			Str("requestId", reqID).
+			Msg("request error")
 	}
 	return c.Status(status).JSON(ErrorResponse{
 		Error: code, Message: message, RequestID: reqID, Fields: fields,
 	})
 }
 
-func SendInternal(c *fiber.Ctx, log *slog.Logger, err error) error {
+func SendInternal(c *fiber.Ctx, log *zerolog.Logger, err error) error {
 	reqID, _ := c.Locals("requestid").(string)
 	if log != nil {
-		log.Error("internal error",
-			"err", err.Error(),
-			"path", c.Path(),
-			"method", c.Method(),
-			"requestId", reqID,
-		)
+		log.Error().
+			Str("err", err.Error()).
+			Str("path", c.Path()).
+			Str("method", c.Method()).
+			Str("requestId", reqID).
+			Msg("internal error")
 	}
 	return c.Status(fiber.StatusInternalServerError).JSON(ErrorResponse{
 		Error: CodeInternal, Message: err.Error(), RequestID: reqID,
@@ -59,7 +59,7 @@ func SendInternal(c *fiber.Ctx, log *slog.Logger, err error) error {
 }
 
 // FromError maps known errors to status + code.
-func FromError(c *fiber.Ctx, log *slog.Logger, err error) error {
+func FromError(c *fiber.Ctx, log *zerolog.Logger, err error) error {
 	switch {
 	case errors.Is(err, repo.ErrNotFound):
 		return SendError(c, log, fiber.StatusNotFound, CodeNotFound, "Recipe not found", nil)

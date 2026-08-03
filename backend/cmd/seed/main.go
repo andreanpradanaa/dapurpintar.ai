@@ -3,12 +3,12 @@ package main
 import (
 	"context"
 	"fmt"
-	"log/slog"
 	"os"
 
 	"github.com/dapurpintar/backend/internal/config"
 	"github.com/dapurpintar/backend/internal/repo"
 	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/rs/zerolog"
 )
 
 // seed is a standalone command to load data/recipes.json into the
@@ -24,7 +24,8 @@ func main() {
 }
 
 func run() error {
-	log := slog.New(slog.NewJSONHandler(os.Stdout, nil))
+	logger := zerolog.New(zerolog.ConsoleWriter{Out: os.Stdout, TimeFormat: "15:04:05"}).With().Timestamp().Logger()
+	log := &logger
 
 	cfg, err := config.Load()
 	if err != nil {
@@ -45,7 +46,7 @@ func run() error {
 		return err
 	}
 	if count > 0 {
-		log.Info("library already populated, skipping", "count", count)
+		log.Info().Int("count", count).Msg("library already populated, skipping")
 		return nil
 	}
 

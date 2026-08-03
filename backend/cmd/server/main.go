@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"log/slog"
+	"io"
 	"os"
 	"os/signal"
 	"strings"
@@ -24,6 +24,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/fiber/v2/middleware/requestid"
 	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/rs/zerolog"
 )
 
 func main() {
@@ -34,20 +35,18 @@ func main() {
 }
 
 func run() error {
-	// Load config
 	cfg, err := config.Load()
 	if err != nil {
 		return fmt.Errorf("load config: %w", err)
 	}
 
-	log := newLogger(cfg.LogLevel)
-	log.Info("starting dapur pintar backend",
-		"env", cfg.Env,
-		"port", cfg.Port,
-		"model", cfg.OpenAIModel,
-	)
+	log := newLogger(cfg.LogLevel, cfg.Env)
+	log.Info().
+		Str("env", cfg.Env).
+		Str("port", cfg.Port).
+		Str("model", cfg.OpenAIModel).
+		Msg("starting dapur pintar backend")
 
-	// Connect to Postgres
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
@@ -56,55 +55,48 @@ func run() error {
 		return fmt.Errorf("connect db: %w", err)
 	}
 	defer pool.Close()
-	log.Info("connected to postgres")
+	log.Info().Msg("connected to postgres")
 
-	// Auto-migrate
 	if err := runMigrations(ctx, pool, log); err != nil {
 		return fmt.Errorf("migrate: %w", err)
 	}
-	log.Info("migrations applied")
+	log.Info().Msg("migrations applied")
 
-	// Auto-seed if empty
 	pgRepo := repo.NewPostgresRepo(pool)
 	count, err := pgRepo.Count(ctx)
 	if err != nil {
 		return fmt.Errorf("count recipes: %w", err)
 	}
 	if count == 0 {
-		log.Info("recipe library empty, seeding from data/recipes.json")
+		log.Info().Msg("recipe library empty, seeding from data/recipes.json")
 		if err := repo.SeedFromJSON(ctx, pgRepo, log, "data/recipes.json"); err != nil {
 			return fmt.Errorf("seed: %w", err)
 		}
 	} else {
-		log.Info("recipe library ready", "count", count)
+		log.Info().Int("count", count).Msg("recipe library ready")
 	}
 
-	// Build LLM client
 	llmClient := llm.NewOpenAIClient(cfg.OpenAIKey, cfg.OpenAIModel, cfg.OpenAIBaseURL, log)
-	log.Info("llm client ready",
-		"provider", llmClient.Name(),
-		"model", cfg.OpenAIModel,
-		"base_url", cfg.OpenAIBaseURL,
-	)
+	log.Info().
+		Str("provider", llmClient.Name()).
+		Str("model", cfg.OpenAIModel).
+		Str("base_url", cfg.OpenAIBaseURL).
+		Msg("llm client ready")
 
-	// Build services
 	gen := service.NewGenerator(pgRepo, llmClient, log)
 
-	// Build handlers
 	healthH := handler.NewHealthHandler(pgRepo, llmClient.Name())
 	recipesH := handler.NewRecipesHandler(gen, pgRepo, log)
 
-	// Build fiber app
 	app := fiber.New(fiber.Config{
 		AppName:               "dapur-pintar-backend",
 		DisableStartupMessage: true,
 		ReadTimeout:           15 * time.Second,
-		WriteTimeout:          60 * time.Second, // LLM calls can take time
+		WriteTimeout:          60 * time.Second,
 		IdleTimeout:           60 * time.Second,
 		ErrorHandler:          errorHandler(log),
 	})
 
-	// Middleware
 	app.Use(requestid.New())
 	app.Use(recover.New(recover.Config{EnableStackTrace: false}))
 	app.Use(logger.New(logger.Config{
@@ -121,40 +113,37 @@ func run() error {
 	}))
 	app.Use(middleware.Recover(log))
 
-	// Routes
 	router.Register(app, router.Deps{
 		Health:  healthH,
 		Recipes: recipesH,
 		Log:     log,
 	})
 
-	// Graceful shutdown
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, os.Interrupt, syscall.SIGTERM)
 
 	errCh := make(chan error, 1)
 	go func() {
 		addr := ":" + cfg.Port
-		log.Info("listening", "addr", addr)
+		log.Info().Str("addr", addr).Msg("listening")
 		errCh <- app.Listen(addr)
 	}()
 
 	select {
 	case sig := <-stop:
-		log.Info("shutdown signal received", "signal", sig.String())
+		log.Info().Str("signal", sig.String()).Msg("shutdown signal received")
 	case err := <-errCh:
 		if err != nil && !errors.Is(err, fiber.ErrServiceUnavailable) {
 			return err
 		}
 	}
 
-	// Graceful shutdown
 	shutdownCtx, shutdownCancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer shutdownCancel()
 	if err := app.ShutdownWithContext(shutdownCtx); err != nil {
-		log.Error("shutdown error", "err", err)
+		log.Error().Err(err).Msg("shutdown error")
 	}
-	log.Info("shutdown complete")
+	log.Info().Msg("shutdown complete")
 	return nil
 }
 
@@ -182,22 +171,20 @@ func connectDB(ctx context.Context, url string) (*pgxpool.Pool, error) {
 	return pool, nil
 }
 
-func newLogger(level string) *slog.Logger {
-	var lvl slog.Level
-	switch strings.ToLower(level) {
-	case "debug":
-		lvl = slog.LevelDebug
-	case "warn", "warning":
-		lvl = slog.LevelWarn
-	case "error":
-		lvl = slog.LevelError
-	default:
-		lvl = slog.LevelInfo
+func newLogger(level, env string) *zerolog.Logger {
+	lvl, err := zerolog.ParseLevel(strings.ToLower(level))
+	if err != nil {
+		lvl = zerolog.InfoLevel
 	}
-	return slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: lvl}))
+	var output io.Writer = os.Stdout
+	if env == "development" {
+		output = zerolog.ConsoleWriter{Out: os.Stdout, TimeFormat: time.RFC3339}
+	}
+	logger := zerolog.New(output).Level(lvl).With().Timestamp().Logger()
+	return &logger
 }
 
-func errorHandler(log *slog.Logger) fiber.ErrorHandler {
+func errorHandler(log *zerolog.Logger) fiber.ErrorHandler {
 	return func(c *fiber.Ctx, err error) error {
 		code := fiber.StatusInternalServerError
 		var fe *fiber.Error
@@ -205,16 +192,16 @@ func errorHandler(log *slog.Logger) fiber.ErrorHandler {
 			code = fe.Code
 		}
 		reqID, _ := c.Locals("requestid").(string)
-		log.Error("unhandled error",
-			"status", code,
-			"err", err.Error(),
-			"path", c.Path(),
-			"method", c.Method(),
-			"requestId", reqID,
-		)
+		log.Error().
+			Int("status", code).
+			Str("err", err.Error()).
+			Str("path", c.Path()).
+			Str("method", c.Method()).
+			Str("requestId", reqID).
+			Msg("unhandled error")
 		return c.Status(code).JSON(fiber.Map{
 			"error":     "internal_error",
-			"message":   err.Error(), // expose for dev; switch to generic in prod
+			"message":   err.Error(),
 			"requestId": reqID,
 		})
 	}

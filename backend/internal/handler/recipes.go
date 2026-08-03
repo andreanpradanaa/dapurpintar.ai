@@ -1,22 +1,21 @@
 package handler
 
 import (
-	"log/slog"
-
 	"github.com/dapurpintar/backend/internal/repo"
 	"github.com/dapurpintar/backend/internal/service"
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
+	"github.com/rs/zerolog"
 )
 
 type RecipesHandler struct {
 	gen      *service.Generator
 	repo     repo.RecipeRepo
-	log      *slog.Logger
+	log      *zerolog.Logger
 	validate *validator.Validate
 }
 
-func NewRecipesHandler(gen *service.Generator, r repo.RecipeRepo, log *slog.Logger) *RecipesHandler {
+func NewRecipesHandler(gen *service.Generator, r repo.RecipeRepo, log *zerolog.Logger) *RecipesHandler {
 	return &RecipesHandler{
 		gen:      gen,
 		repo:     r,

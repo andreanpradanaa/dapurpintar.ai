@@ -1,14 +1,12 @@
 package handler
 
 import (
-	"log/slog"
-
 	"github.com/dapurpintar/backend/internal/repo"
 	"github.com/gofiber/fiber/v2"
 )
 
 type HealthHandler struct {
-	repo  repo.RecipeRepo
+	repo    repo.RecipeRepo
 	llmName string
 }
 
@@ -43,6 +41,3 @@ func (h *HealthHandler) Get(c *fiber.Ctx) error {
 		Recipes: count,
 	})
 }
-
-// keep import of slog used by other handlers
-var _ = slog.Default
