@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#09090B"/>
+      <stop offset="1" stop-color="#18181B"/>
+    </linearGradient>
+    <linearGradient id="em" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10B981"/>
+      <stop offset="1" stop-color="#34D399"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="800" cy="315" r="400" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10B981" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#10B981" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <ellipse cx="850" cy="315" rx="500" ry="350" fill="url(#halo)"/>
+  <g transform="translate(80, 220)">
+    <rect width="80" height="80" rx="18" fill="url(#em)"/>
+    <path d="M30 14L30 50C30 58 35 66 50 66C65 66 70 58 70 50L70 14" stroke="#022c22" stroke-width="6" stroke-linecap="round" fill="none"/>
+    <path d="M30 32L70 32" stroke="#022c22" stroke-width="6" stroke-linecap="round" opacity="0.4" fill="none"/>
+  </g>
+  <text x="200" y="290" font-family="Inter, system-ui, sans-serif" font-size="64" font-weight="700" fill="#FAFAFA" letter-spacing="-1.5">Dapur Pintar AI</text>
+  <text x="200" y="370" font-family="Inter, system-ui, sans-serif" font-size="38" font-weight="500" fill="#A1A1AA">Turn ingredients into delicious</text>
+  <text x="200" y="418" font-family="Inter, system-ui, sans-serif" font-size="38" font-weight="500" fill="#A1A1AA">meals with AI.</text>
+  <g transform="translate(880, 200)">
+    <rect width="240" height="280" rx="20" fill="#18181B" stroke="rgba(255,255,255,0.08)"/>
+    <rect x="20" y="20" width="200" height="140" rx="10" fill="#10B981" opacity="0.3"/>
+    <rect x="20" y="180" width="120" height="10" rx="3" fill="#FAFAFA" opacity="0.8"/>
+    <rect x="20" y="200" width="180" height="8" rx="3" fill="#A1A1AA" opacity="0.4"/>
+    <rect x="20" y="220" width="100" height="8" rx="3" fill="#A1A1AA" opacity="0.4"/>
+    <rect x="20" y="245" width="80" height="22" rx="6" fill="#10B981"/>
+  </g>
+</svg>
