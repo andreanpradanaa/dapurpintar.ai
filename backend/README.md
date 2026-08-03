@@ -1,12 +1,12 @@
 # Dapur Pintar — Backend
 
-Go 1.26 + Fiber v2 + PostgreSQL + OpenAI.
+Go 1.26 + Fiber v2 + PostgreSQL + OpenRouter (LLM gateway).
 
 ## Phase 1 scope
 
 `POST /api/v1/recipes/generate` — given a list of ingredients, scores
 the curated Postgres library by ingredient overlap, takes the top 3 as
-style references, and asks OpenAI to compose a fresh recipe.
+style references, and asks the LLM to compose a fresh recipe.
 
 `GET /api/v1/recipes/:slug` — returns a recipe from the library.
 
