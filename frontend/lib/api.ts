@@ -7,7 +7,7 @@
 import type { Recipe, Difficulty, Dietary, RecipeIngredient, RecipeStep, Nutrition } from "./types";
 
 const API_URL =
-  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") || "http://localhost:8080";
+  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") || "";
 
 export type Language = "en" | "id";
 

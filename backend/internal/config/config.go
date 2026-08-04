@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
 	"time"
@@ -11,9 +12,28 @@ import (
 )
 
 func init() {
-	// Best-effort load of .env. We don't fail if the file is missing —
-	// env vars may be set directly in production / Docker.
-	_ = godotenv.Load()
+	// Search from the current directory upward so `go run` works from
+	// either backend/ or the repository root. Production can still use
+	// environment variables without an .env file.
+	_ = loadDotEnv()
+}
+
+func loadDotEnv() error {
+	dir, err := os.Getwd()
+	if err != nil {
+		return err
+	}
+	for {
+		envPath := filepath.Join(dir, ".env")
+		if _, err := os.Stat(envPath); err == nil {
+			return godotenv.Load(envPath)
+		}
+		parent := filepath.Dir(dir)
+		if parent == dir {
+			return nil
+		}
+		dir = parent
+	}
 }
 
 type Config struct {

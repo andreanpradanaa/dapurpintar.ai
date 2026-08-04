@@ -2,37 +2,45 @@
 
 @theme {
   /* === Color: Surface === */
-  --color-bg-base: #faf6f0;
+  --color-bg-base: #FFFBEB;
   --color-bg-card: #ffffff;
   --color-bg-elevated: #ffffff;
-  --color-bg-section: #f4efe5;
-  --color-bg-overlay: rgba(26, 22, 18, 0.32);
+  --color-bg-section: #F8F2F0;
+  --color-bg-overlay: rgba(15, 23, 42, 0.32);
 
-  /* === Color: Text (deep warm ink scale) === */
-  --color-text-primary: #1a1612;
-  --color-text-secondary: #3d352d;
-  --color-text-muted: #6b6358;
-  --color-text-subtle: #9b9286;
-  --color-text-inverse: #faf6f0;
+  /* === Color: Text === */
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #334155;
+  --color-text-muted: #64748B;
+  --color-text-subtle: #94A3B8;
+  --color-text-inverse: #FFFBEB;
 
-  /* === Color: Accent — Terracotta (single, used sparingly) === */
-  --color-accent: #a8553a;
-  --color-accent-hover: #8e4530;
-  --color-accent-active: #723627;
-  --color-accent-soft: rgba(168, 85, 58, 0.08);
-  --color-accent-soft-strong: rgba(168, 85, 58, 0.14);
+  /* === Color: Brand — Bold Terracotta === */
+  --color-accent: #9A3412;
+  --color-accent-hover: #7C2D12;
+  --color-accent-active: #431407;
+  --color-accent-soft: rgba(154, 52, 18, 0.08);
+  --color-accent-soft-strong: rgba(154, 52, 18, 0.14);
   --color-accent-fg: #ffffff;
 
-  /* === Color: Border (ink-tinted, low contrast) === */
-  --color-border: rgba(26, 22, 18, 0.08);
-  --color-border-strong: rgba(26, 22, 18, 0.14);
-  --color-border-accent: rgba(168, 85, 58, 0.4);
+  /* === Color: CTA — Fresh Green === */
+  --color-cta: #059669;
+  --color-cta-hover: #047857;
+  --color-cta-active: #065F46;
+  --color-cta-soft: rgba(5, 150, 105, 0.08);
+  --color-cta-soft-strong: rgba(5, 150, 105, 0.16);
+  --color-cta-fg: #ffffff;
 
-  /* === Color: Semantic (muted earth tones) === */
-  --color-success: #5c7a4d;
-  --color-warning: #b8804a;
-  --color-danger: #a14b3a;
-  --color-info: #5a7a8a;
+  /* === Color: Border === */
+  --color-border: #F2E6E2;
+  --color-border-strong: #E8D5CF;
+  --color-border-accent: rgba(154, 52, 18, 0.4);
+
+  /* === Color: Semantic === */
+  --color-success: #059669;
+  --color-warning: #EA580C;
+  --color-danger: #DC2626;
+  --color-info: #2563EB;
 
   /* === Typography === */
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
@@ -50,19 +58,19 @@
   --radius-3xl: 24px;
   --radius-full: 9999px;
 
-  /* === Shadow (warm-tinted, restrained) === */
-  --shadow-xs: 0 1px 2px rgba(26, 22, 18, 0.04);
-  --shadow-sm: 0 1px 2px rgba(26, 22, 18, 0.04), 0 1px 1px rgba(26, 22, 18, 0.02);
-  --shadow-md: 0 4px 16px rgba(26, 22, 18, 0.06);
-  --shadow-lg: 0 12px 32px rgba(26, 22, 18, 0.08);
-  --shadow-xl: 0 24px 64px rgba(26, 22, 18, 0.10);
-  --shadow-accent: 0 4px 16px rgba(168, 85, 58, 0.16);
-  --shadow-accent-lg: 0 8px 32px rgba(168, 85, 58, 0.20);
+  /* === Shadow (terracotta-tinted) === */
+  --shadow-xs: 0 1px 2px rgba(154, 52, 18, 0.04);
+  --shadow-sm: 0 1px 2px rgba(154, 52, 18, 0.04), 0 1px 1px rgba(154, 52, 18, 0.02);
+  --shadow-md: 0 4px 16px rgba(154, 52, 18, 0.06);
+  --shadow-lg: 0 12px 32px rgba(154, 52, 18, 0.08);
+  --shadow-xl: 0 24px 64px rgba(154, 52, 18, 0.10);
+  --shadow-accent: 0 4px 16px rgba(154, 52, 18, 0.16);
+  --shadow-accent-lg: 0 8px 32px rgba(154, 52, 18, 0.20);
 
   /* === Spacing (extended 8pt scale) === */
   --spacing: 0.25rem;
 
-  /* === Easing (calmer than before) === */
+  /* === Easing === */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
@@ -97,7 +105,7 @@ body {
   color: var(--color-accent-active);
 }
 
-/* === Scrollbar (warm tinted) === */
+/* === Scrollbar === */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -106,18 +114,18 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(26, 22, 18, 0.12);
+  background: rgba(154, 52, 18, 0.12);
   border-radius: 999px;
   border: 2px solid transparent;
   background-clip: padding-box;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(26, 22, 18, 0.20);
+  background: rgba(154, 52, 18, 0.20);
   background-clip: padding-box;
   border: 2px solid transparent;
 }
 
-/* === Focus ring (terracotta, no glow) === */
+/* === Focus ring (terracotta) === */
 :focus {
   outline: none;
 }
@@ -127,40 +135,40 @@ body {
   border-radius: 4px;
 }
 
-/* === Subtle paper texture (optional tactile feel) === */
+/* === Subtle paper texture === */
 .bg-paper {
   background-color: var(--color-bg-base);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.085 0 0 0 0 0.07 0 0 0 0.025 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 200px 200px;
 }
 
-/* === Subtle warm wash for hero/CTA sections === */
+/* === Warm wash for hero/CTA sections === */
 .bg-warm-wash {
   background-image: radial-gradient(
     ellipse 80% 50% at 50% 0%,
-    rgba(168, 85, 58, 0.06) 0%,
+    rgba(154, 52, 18, 0.06) 0%,
     transparent 70%
   );
 }
 
-/* === Editorial photo treatment (warm filter) === */
+/* === Editorial photo treatment === */
 .photo-warm {
-  filter: saturate(0.85) contrast(1.02) brightness(1.02);
+  filter: saturate(1.0) contrast(1.04) brightness(1.04);
 }
 
-/* === Grid pattern (subtle, warm) === */
+/* === Grid pattern === */
 .bg-grid {
   background-image: linear-gradient(
       to right,
-      rgba(26, 22, 18, 0.04) 1px,
+      rgba(154, 52, 18, 0.04) 1px,
       transparent 1px
     ),
-    linear-gradient(to bottom, rgba(26, 22, 18, 0.04) 1px, transparent 1px);
+    linear-gradient(to bottom, rgba(154, 52, 18, 0.04) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
 }
 
-/* === Skeleton shimmer (warm) === */
+/* === Skeleton shimmer === */
 @keyframes shimmer {
   0% {
     background-position: -200% 0;
@@ -172,9 +180,9 @@ body {
 .skeleton {
   background: linear-gradient(
     90deg,
-    rgba(26, 22, 18, 0.04) 0%,
-    rgba(26, 22, 18, 0.08) 50%,
-    rgba(26, 22, 18, 0.04) 100%
+    rgba(154, 52, 18, 0.04) 0%,
+    rgba(154, 52, 18, 0.08) 50%,
+    rgba(154, 52, 18, 0.04) 100%
   );
   background-size: 200% 100%;
   animation: shimmer 1.6s ease-in-out infinite;
@@ -239,5 +247,5 @@ body {
 
 /* === Hairline divider === */
 .hairline {
-  border-color: rgba(26, 22, 18, 0.08);
+  border-color: var(--color-border);
 }

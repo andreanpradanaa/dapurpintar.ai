@@ -1,0 +1,33 @@
+# Dapur Pintar — Backend on Fly.io
+# Free-tier config: shared-cpu 256MB, auto-stop when idle.
+# Cold start ~10-20s on first request after idle. No payment required as long
+# as usage stays within Fly free allowance.
+
+app = "dapur-pintar-backend"
+primary_region = "sin"   # Singapore — closest to Indonesia users
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  PORT = "8080"
+  ENV = "production"
+  LOG_LEVEL = "info"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true   # gratis: mesin tidur saat idle
+  auto_start_machines = true  # bangun saat ada request
+  min_machines_running = 0    # boleh 0 → full gratis
+
+[[http_service.checks]]
+  interval = "10s"
+  timeout = "3s"
+  grace_period = "10s"
+  method = "GET"
+  path = "/api/v1/health"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"

@@ -49,8 +49,8 @@ type StoreState = {
 
 const DEFAULT_USER: User = {
   id: "u-001",
-  name: "Andini Pradipta",
-  email: "andini@dapurpintar.ai",
+  name: "Gusti Adistriani",
+  email: "gusti@dapurpintar.ai",
   bio: "Home cook exploring Indonesian cuisine with AI. 🍳",
   plan: "pro",
   joinedAt: "2025-08-12",

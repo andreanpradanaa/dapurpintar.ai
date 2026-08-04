@@ -27,8 +27,8 @@ function RegisterForm() {
   const params = useSearchParams();
   const signIn = useStore((s) => s.signIn);
   const updateUser = useStore((s) => s.updateUser);
-  const [name, setName] = useState("Andini Pradipta");
-  const [email, setEmail] = useState("andini@dapurpintar.ai");
+  const [name, setName] = useState("Gusti Adistriani");
+  const [email, setEmail] = useState("gusti@dapurpintar.ai");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 

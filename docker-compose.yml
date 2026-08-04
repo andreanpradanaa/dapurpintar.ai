@@ -20,7 +20,7 @@ services:
 
   backend:
     build:
-      context: ./backend`
+      context: ./backend
       dockerfile: Dockerfile
     container_name: dapur-backend
     depends_on:

@@ -5,7 +5,7 @@ import { useLanguage } from "@/components/providers/language-provider";
 import { AvatarGroup } from "@/components/ui/avatar";
 
 const USERS = [
-  { name: "Andini Pradipta" },
+  { name: "Gusti Adistriani" },
   { name: "Made Wirawan" },
   { name: "Sari Indah" },
   { name: "Reza Hidayat" },
