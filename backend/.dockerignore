@@ -1,0 +1,24 @@
+# Build artifacts
+server
+seed
+*.test.go
+*_test.go
+
+# Local env & secrets
+.env
+.env.*
+!.env.example
+
+# Dev/IDE
+.DS_Store
+.idea
+.vscode
+*.swp
+
+# Git
+.git
+.gitignore
+
+# Logs & runtime
+*.log
+dapur_pgdata
